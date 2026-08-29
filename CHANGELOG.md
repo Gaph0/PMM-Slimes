@@ -1,4 +1,5 @@
 # Changelog
+- 2026-08-30: fix: incident carrier kept unknown backstories after accept
 - 2026-08-29: fix: slime carrier takeover severity + text tweaks
 - 2026-08-29: fix: slime carrier never transformed - takeover hediff had initialSeverity 0 (culled on first tick by Hediff.ShouldRemove) and overrode TickInterval instead of PostTickInterval; now starts at 0.01 and climbs via the SeverityPerDay comp
 - 2026-08-29: Balance: drop guaranteed parasite slime from exotic traders

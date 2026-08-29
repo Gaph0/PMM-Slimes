@@ -187,7 +187,11 @@ namespace PMM_SlimeFaction
         private static readonly AccessTools.FieldRef<Pawn_StoryTracker, BackstoryDef> AdulthoodRef =
             AccessTools.FieldRefAccess<Pawn_StoryTracker, BackstoryDef>("adulthood");
 
-        /// <summary>Snapshot her real backstories onto the comp, then stamp "unknown".</summary>
+        /// <summary>Snapshot her real backstories onto the comp, then stamp "unknown".
+        /// Idempotent: a second call must NOT re-snapshot, or it would capture the
+        /// already-masked "unknown" placeholders and clobber the real stories (the
+        /// postfix and the incident both call Mask, so this guard is what keeps the
+        /// snapshot intact).</summary>
         public static void Mask(Pawn pawn)
         {
             if (pawn?.story == null)
@@ -195,8 +199,9 @@ namespace PMM_SlimeFaction
                 return;
             }
             CarrierSlimeVisitorComp comp = pawn.TryGetComp<CarrierSlimeVisitorComp>();
-            if (comp != null)
+            if (comp != null && comp.realChildhood == null)
             {
+                // First mask only: capture her real generated stories before overwriting.
                 comp.realChildhood = ChildhoodRef(pawn.story);
                 comp.realAdulthood = AdulthoodRef(pawn.story);
             }
