@@ -1,7 +1,6 @@
 #!/bin/bash
-# Safety check: require a built DLL before pushing.
-dll="Assemblies/PMM_SlimeFaction.dll"
-if [ ! -f "$dll" ]; then
-  echo "ERROR: $dll not found. Build the mod before pushing."
+# Safety check: build before pushing; refuse to push a broken tree.
+if ! ./build.sh; then
+  echo "ERROR: build failed. Fix compile errors before pushing."
   exit 1
 fi
