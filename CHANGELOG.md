@@ -1,4 +1,6 @@
 # Changelog
+- 2026-08-29: fix: slime carrier takeover never completed
+- 2026-08-29: fix: slime carrier never transformed - takeover hediff overrode TickInterval instead of PostTickInterval, so the SeverityPerDay comp never ticked and severity never climbed
 - 2026-08-29: Balance: drop guaranteed parasite slime from exotic traders
 - 2026-08-29: feat: parasite slime item and slime carrier (rare ExoticMisc trader roll, never guaranteed; infested women keep race/backstories/hair/genes, gain Momo + slime-gel genes, go sterile, yield human skin/meat)
 - 2026-08-29: feat: slime carrier visit event (a travelling woman begs to join; staged secret -> 2-day takeover -> turn, with turn alert; accept reveals her colonist backstories, reject/attack she slips away)

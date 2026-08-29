@@ -208,16 +208,22 @@ namespace PMM_SlimeFaction
     /// The hidden takeover countdown. Invisible and symptomless while severity climbs
     /// (~2 days, driven by the vanilla SeverityPerDay comp in the def); at full severity
     /// the parasite finishes remaking her (<see cref="SlimeCarrierUtility.ApplyCarrierGenes"/>)
-    /// and this hediff removes itself. Must extend HediffWithComps, not plain Hediff:
-    /// the def declares comps, and RimWorld refuses comps on a plain-Hediff hediffClass.
+    /// and this hediff removes itself.
+    ///
+    /// Overrides PostTickInterval, NOT TickInterval: in RimWorld 1.6 the pawn health
+    /// tracker drives hediffs via PostTickInterval(delta), and HediffWithComps.PostTickInterval
+    /// is what ticks the comps (CompPostTickInterval) and applies their severityAdjustment.
+    /// Base Hediff.TickInterval does NOT call PostTickInterval, so overriding TickInterval
+    /// would leave the SeverityPerDay comp unticked and severity would never climb - the
+    /// exact "never transforms" bug. Must extend HediffWithComps for the comps to load.
     /// </summary>
     public class Hediff_ParasiteTakeover : HediffWithComps
     {
         public override bool Visible => false;
 
-        public override void TickInterval(int delta)
+        public override void PostTickInterval(int delta)
         {
-            base.TickInterval(delta);
+            base.PostTickInterval(delta); // ticks the SeverityPerDay comp, applies its growth
             if (pawn == null || pawn.Dead || !pawn.IsHashIntervalTick(250, delta))
             {
                 return;
