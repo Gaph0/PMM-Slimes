@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		A slime wanders in. Modelled on the vanilla WildManWandersIn incident; the custom
+		worker additionally gates the event to warm, wet grasslands (see
+		IncidentWorker_SlimeWandersIn): biome Grasslands, coldest-month temperature >= 18 C
+		(the old slime faction's settlement-warmth threshold) and rainfall >= 1500 mm.
+	-->
+	<IncidentDef>
+		<defName>PMM_SlimeWandersIn</defName>
+		<label>slime wanders in</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PMM_SlimeFaction.IncidentWorker_SlimeWandersIn</workerClass>
+		<allowedBiomes>
+			<li MayRequire="Ludeon.RimWorld.Odyssey">Grasslands</li>
+		</allowedBiomes>
+		<baseChance>1.0</baseChance>
+		<populationEffect>IncreaseMedium</populationEffect>
+		<letterLabel>{0} wanders in</letterLabel>
+		<letterText>A {0} oozing along the warm grasslands has wandered into the area. {PAWN_pronoun}'s called {PAWN_nameDef}.\n\nYou can attempt to tame {PAWN_objective}.</letterText>
+		<letterDef>NeutralEvent</letterDef>
+	</IncidentDef>
+
+	<!--
+		A bubble slime wanders in. Same wild-man flow as PMM_SlimeWandersIn, but the
+		worker (IncidentWorker_BubbleSlimeWandersIn) only fires on maps that have both
+		caves (overhead mountain) and world-tile pollution - the dark, filthy places
+		bubble slimes call home. Always spawns the bubble-only PMM_SlimeWildBubble kind.
+		No biome gate: pollution and caves can turn up anywhere.
+	-->
+	<IncidentDef>
+		<defName>PMM_BubbleSlimeWandersIn</defName>
+		<label>bubble slime wanders in</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PMM_SlimeFaction.IncidentWorker_BubbleSlimeWandersIn</workerClass>
+		<baseChance>1.6</baseChance>
+		<populationEffect>IncreaseMedium</populationEffect>
+		<letterLabel>{0} wanders in</letterLabel>
+		<letterText>A foul-smelling {0} has crawled out of the polluted caves and oozed into the area. {PAWN_pronoun}'s called {PAWN_nameDef}.\n\nYou can attempt to tame {PAWN_objective}.</letterText>
+		<letterDef>NeutralEvent</letterDef>
+	</IncidentDef>
+
+	<!--
+		A taisui wanders in. Same wild-man flow as the common slime, but the worker
+		(IncidentWorker_TaisuiWandersIn) only fires on maps that have caves (overhead
+		mountain) - the deep underground places Taisui endlessly circle. Always spawns
+		the taisui-only PMM_SlimeWildTaisui kind. No biome or climate gate: Taisui are
+		not tied to surface weather, only to caves. baseChance 0.05 matches the dark
+		slime's rarity (5 in 120 inside the base-1.0 slime incident), so a taisui turns
+		up about as often as a dark slime - but only on maps that have caves.
+	-->
+	<!--
+		A strange woman walks out of the rain. A special event, not a wander-in: the worker
+		(IncidentWorker_NureonagoVisit) only fires during rainy weather (Rain,
+		RainyThunderstorm, or Odyssey's TorrentialRain) while the colony has at least one
+		bondable man (unbonded male of age, or a protagonist), and only if no nureonago is
+		already on the map. The woman who approaches is a disguised nureonago; talking to
+		her and accepting or rejecting her reveals the truth. baseChance 0.8 looks common,
+		but the weather and unbonded-man gates make it genuinely rare in practice.
+	-->
+	<IncidentDef>
+		<defName>PMM_NureonagoVisit</defName>
+		<label>strange woman in the rain</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PMM_SlimeFaction.IncidentWorker_NureonagoVisit</workerClass>
+		<baseChance>0.8</baseChance>
+		<populationEffect>IncreaseMedium</populationEffect>
+		<letterLabel>A stranger in the rain</letterLabel>
+		<letterDef>NeutralEvent</letterDef>
+	</IncidentDef>
+
+	<IncidentDef>
+		<defName>PMM_TaisuiWandersIn</defName>
+		<label>taisui wanders in</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PMM_SlimeFaction.IncidentWorker_TaisuiWandersIn</workerClass>
+		<baseChance>0.05</baseChance>
+		<populationEffect>IncreaseMedium</populationEffect>
+		<letterLabel>{0} wanders in</letterLabel>
+		<letterText>A mysterious {0} has emerged from the deep caves and oozed into the area, its many-eyed body circling an unseen path. {PAWN_pronoun}'s called {PAWN_nameDef}.\n\nYou can attempt to tame {PAWN_objective}.</letterText>
+		<letterDef>NeutralEvent</letterDef>
+	</IncidentDef>
+
+	<!--
+		A sea slime wanders in. Same wild-man flow as the common slime, but the worker
+		(IncidentWorker_SeaSlimeWandersIn) only fires on coastal tiles that border an
+		ocean. Always spawns the sea-only PMM_SlimeWildSea kind. No biome or climate
+		gate: sea slimes are tied to the sea, not to surface weather. baseChance 1.0
+		matches the common slime's wander-in, but restricted to coastal maps.
+	-->
+	<IncidentDef>
+		<defName>PMM_SeaSlimeWandersIn</defName>
+		<label>sea slime wanders in</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PMM_SlimeFaction.IncidentWorker_SeaSlimeWandersIn</workerClass>
+		<baseChance>1.0</baseChance>
+		<populationEffect>IncreaseMedium</populationEffect>
+		<letterLabel>{0} wanders in</letterLabel>
+		<letterText>A sea-green {0} has drifted ashore on the tide and oozed into the area. {PAWN_pronoun}'s called {PAWN_nameDef}.\n\nYou can attempt to tame {PAWN_objective}.</letterText>
+		<letterDef>NeutralEvent</letterDef>
+	</IncidentDef>
+
+</Defs>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		Mood thought granted while the mochi warmth hediff is active. Situational (not a
+		memory): ThoughtWorker_Hediff grants it for exactly as long as the pawn has the
+		PMM_Hediff_MochiWarmth hediff (8 in-game hours), then it ends with the hediff -
+		no separate duration to manage. This is the same pattern vanilla uses for the
+		anesthetic thought.
+	-->
+	<ThoughtDef>
+		<defName>PMM_Thought_MochiWarmth</defName>
+		<thoughtClass>Thought_Situational</thoughtClass>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PMM_Hediff_MochiWarmth</hediff>
+		<stages>
+			<li>
+				<label>mochi warmth</label>
+				<description>That mochi jelly was so soft and sweet. I feel warm and content.</description>
+				<baseMoodEffect>6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

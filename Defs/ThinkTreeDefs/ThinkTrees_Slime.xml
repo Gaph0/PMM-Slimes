@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		Give the slime pawn kind the same wild-man behaviour as vanilla WildMan. The vanilla
+		Humanlike think tree only applies MainWildManBehaviorCore + the idle wander to
+		pawnKind=WildMan (ThinkNode_ConditionalPawnKind), so a slime would otherwise
+		fall through to the guest branch and immediately JobGiver_ExitMapBest off the map.
+		These subtrees are inserted via the Humanlike_PostMain insertTag, mirroring the
+                vanilla wild-man branches for the slime kinds.
+
+                There is one branch per slime pawn kind: ThinkNode_ConditionalPawnKind matches the
+                pawn's kindDef exactly (it does NOT follow pawn.def / the race, so our
+                race-by-xenotype swap is irrelevant here). Every slime kind must be listed or it
+                will walk straight off the map.
+                PMM_SlimeWild        = the common wander-in (blue / red / dark mix)
+                PMM_SlimeWildBubble  = the bubble-only polluted-caves wander-in
+                PMM_SlimeWildTaisui  = the taisui-only caves wander-in
+                PMM_SlimeWildSea     = the sea-only coastal wander-in
+
+                PMM_NureonagoRefugee is deliberately NOT given the wild-man subtree: she is a
+                visitor, not a wild creature, and must never become a tameable wild man. She
+                only gets an idle/wait branch (in the idle tree below) so that a dev-spawned
+                nureonago waits in place instead of falling through to the guest exit. Her real
+                wait/leave behaviour is driven by the NureonagoVisitorComp duty, which takes
+                priority over this idle branch.
+        -->
+        <ThinkTreeDef>
+                <defName>PMM_SlimeWildBehavior</defName>
+                <insertTag>Humanlike_PostMain</insertTag>
+                <thinkRoot Class="ThinkNode_Priority">
+                        <subNodes>
+
+                                <li Class="ThinkNode_ConditionalPawnKind">
+                                        <pawnKind>PMM_SlimeWild</pawnKind>
+                                        <subNodes>
+                                                <li Class="ThinkNode_Subtree">
+                                                        <treeDef>MainWildManBehaviorCore</treeDef>
+                                                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                                                </li>
+                                        </subNodes>
+                                </li>
+
+                                <li Class="ThinkNode_ConditionalPawnKind">
+                                        <pawnKind>PMM_SlimeWildBubble</pawnKind>
+                                        <subNodes>
+                                                <li Class="ThinkNode_Subtree">
+                                                        <treeDef>MainWildManBehaviorCore</treeDef>
+                                                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                                                </li>
+                                        </subNodes>
+                                </li>
+
+                                <li Class="ThinkNode_ConditionalPawnKind">
+                                        <pawnKind>PMM_SlimeWildTaisui</pawnKind>
+                                        <subNodes>
+                                                <li Class="ThinkNode_Subtree">
+                                                        <treeDef>MainWildManBehaviorCore</treeDef>
+                                                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                                                </li>
+                                        </subNodes>
+                                </li>
+
+                                <li Class="ThinkNode_ConditionalPawnKind">
+                                        <pawnKind>PMM_SlimeWildSea</pawnKind>
+                                        <subNodes>
+                                                <li Class="ThinkNode_Subtree">
+                                                        <treeDef>MainWildManBehaviorCore</treeDef>
+                                                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                                                </li>
+                                        </subNodes>
+                                </li>
+
+                                <!-- No wild-man subtree for the nureonago: see the header note. -->
+
+			</subNodes>
+		</thinkRoot>
+	</ThinkTreeDef>
+
+	<ThinkTreeDef>
+		<defName>PMM_SlimeWildIdle</defName>
+		<insertTag>Humanlike_PostMain</insertTag>
+		<thinkRoot Class="ThinkNode_Priority">
+			<subNodes>
+
+				<li Class="ThinkNode_ConditionalPawnKind">
+					<pawnKind>PMM_SlimeWild</pawnKind>
+					<subNodes>
+						<li Class="ThinkNode_Tagger">
+							<tagToGive>Idle</tagToGive>
+							<subNodes>
+								<li Class="JobGiver_WanderAnywhere">
+									<maxDanger>Deadly</maxDanger>
+									<ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+								</li>
+							</subNodes>
+						</li>
+					</subNodes>
+				</li>
+
+                                <li Class="ThinkNode_ConditionalPawnKind">
+                                        <pawnKind>PMM_SlimeWildBubble</pawnKind>
+                                        <subNodes>
+                                                <li Class="ThinkNode_Tagger">
+                                                        <tagToGive>Idle</tagToGive>
+                                                        <subNodes>
+                                                                <li Class="JobGiver_WanderAnywhere">
+                                                                        <maxDanger>Deadly</maxDanger>
+                                                                        <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                                                                </li>
+                                                        </subNodes>
+                                                </li>
+                                        </subNodes>
+                                </li>
+
+                                <li Class="ThinkNode_ConditionalPawnKind">
+                                        <pawnKind>PMM_SlimeWildTaisui</pawnKind>
+                                        <subNodes>
+                                                <li Class="ThinkNode_Tagger">
+                                                        <tagToGive>Idle</tagToGive>
+                                                        <subNodes>
+                                                                <li Class="JobGiver_WanderAnywhere">
+                                                                        <maxDanger>Deadly</maxDanger>
+                                                                        <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                                                                </li>
+                                                        </subNodes>
+                                                </li>
+                                        </subNodes>
+                                </li>
+
+                                <li Class="ThinkNode_ConditionalPawnKind">
+                                        <pawnKind>PMM_SlimeWildSea</pawnKind>
+                                        <subNodes>
+                                                <li Class="ThinkNode_Tagger">
+                                                        <tagToGive>Idle</tagToGive>
+                                                        <subNodes>
+                                                                <li Class="JobGiver_WanderAnywhere">
+                                                                        <maxDanger>Deadly</maxDanger>
+                                                                        <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                                                                </li>
+                                                        </subNodes>
+                                                </li>
+                                        </subNodes>
+                                </li>
+
+                                <!-- The disguised nureonago walks to a spot just outside the colony
+                                     and loiters there (NOT a wild man, never tameable). Her HostFaction
+                                     is cleared at spawn, so the vanilla guest branch never fires.
+                                     JobGiver_NureonagoWait wanders her toward and around the wait spot
+                                     her comp picked at spawn - the creepjoiner/trader approach, with no
+                                     lord/duty. When the rain stops the comp clears the spot, this giver
+                                     yields nothing, and the final-backup branch exits her off the map. -->
+                                <li Class="ThinkNode_ConditionalPawnKind">
+                                        <pawnKind>PMM_NureonagoRefugee</pawnKind>
+                                        <subNodes>
+                                                <li Class="ThinkNode_Tagger">
+                                                        <tagToGive>Idle</tagToGive>
+                                                        <subNodes>
+                                                                <li Class="PMM_SlimeFaction.JobGiver_NureonagoWait" />
+                                                        </subNodes>
+                                                </li>
+                                        </subNodes>
+                                </li>
+
+                        </subNodes>
+                </thinkRoot>
+        </ThinkTreeDef>
+
+</Defs>
+

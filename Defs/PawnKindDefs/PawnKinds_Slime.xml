@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		The one and only slime pawn kind. Variety now comes entirely from the xenotype roll
+		below (blue / bubble / red / dark), not from separate pawn kinds.
+
+		Slimes spawn with NO weapons and NO apparel: gear generation only runs when
+		weaponTags/weaponMoney/apparelTags/apparelMoney/apparelRequired are set
+		(same approach as the naked, unarmed vanilla WildMan pawn kind).
+		They fight with fists and their gel body alone.
+	-->
+	<PawnKindDef>
+		<defName>PMM_SlimeWild</defName>
+		<label>slime</label>
+		<!-- Custom race (deep-merged from Human): the info card shows slime jelly instead of
+		     human meat and no leather, and the vanilla butcher path agrees with our patch. -->
+		<race>PMM_Race_SlimeMomo</race>
+		<!-- Factionless: slimes only enter the map as wild creatures (PMM_SlimeWandersIn incident),
+		     and are tamed like wild men (IsWildMan patch in the assembly). -->
+		<maxGenerationAge>60</maxGenerationAge>
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<!-- Never spawn with pollution-adaptive apparel (gas masks) on polluted tiles. -->
+		<apparelIgnorePollution>true</apparelIgnorePollution>
+		<combatPower>45</combatPower>
+		<initialWillRange>0~4</initialWillRange>
+		<initialResistanceRange>4~17</initialResistanceRange>
+		<!-- Every slime has the same life story: one custom backstory category holding exactly one
+		     childhood and one adulthood, so generation has nothing else to pick. -->
+		<backstoryFilters>
+			<li>
+				<categories>
+					<li>PMM_SlimeSpawn</li>
+				</categories>
+			</li>
+		</backstoryFilters>
+		<!-- Slime colour mix for the regular wander-in: blue / red / dark. The weights sum
+		     to 120, i.e. >= 100%, so no baseliner can be rolled. Bubble slimes are NOT in
+		     this mix: they only wander into polluted maps with caves, via their own
+		     PMM_BubbleSlimeWandersIn incident and the PMM_SlimeWildBubble kind below. -->
+		<xenotypeSet>
+			<xenotypeChances>
+				<PMM_Slime>100</PMM_Slime>
+				<PMM_SlimeRed>15</PMM_SlimeRed>
+				<PMM_SlimeDark>5</PMM_SlimeDark>
+			</xenotypeChances>
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<!--
+		The nureonago's disguise: an ordinary human woman who walks out of the rain.
+		Spawned only by the PMM_NureonagoVisit incident. Deliberately a plain Human-race
+		baseliner with no gear and no slime genes - the whole point is that nothing about
+		her reads as a monster until the reveal (the incident then swaps her xenotype to
+		PMM_SlimeNureonago and her race to the slime race). Pinned female: nureonago are
+		always women. No wild-man backstory filter and no WildMan flag: she behaves like a
+		visitor, not a wild creature, and her "unknown" backstories are assigned by the
+		incident at spawn.
+	-->
+	<PawnKindDef>
+		<defName>PMM_NureonagoRefugee</defName>
+		<label>strange woman</label>
+		<race>Human</race>
+		<fixedGender>Female</fixedGender>
+		<maxGenerationAge>35</maxGenerationAge>
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<apparelIgnorePollution>true</apparelIgnorePollution>
+		<combatPower>35</combatPower>
+		<initialWillRange>3~5</initialWillRange>
+		<initialResistanceRange>6~12</initialResistanceRange>
+		<xenotypeSet>
+			<xenotypeChances>
+				<Baseliner>100</Baseliner>
+			</xenotypeChances>
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<!--
+		Bubble slime pawn kind, spawned only by the PMM_BubbleSlimeWandersIn incident
+		(polluted maps with caves). Same naked, unarmed wild-creature setup as
+		PMM_SlimeWild, but pinned to the bubble race/xenotype.
+	-->
+	<PawnKindDef>
+		<defName>PMM_SlimeWildBubble</defName>
+		<label>bubble slime</label>
+		<race>PMM_Race_SlimeMomoBubble</race>
+		<maxGenerationAge>60</maxGenerationAge>
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<apparelIgnorePollution>true</apparelIgnorePollution>
+		<combatPower>45</combatPower>
+		<initialWillRange>0~4</initialWillRange>
+		<initialResistanceRange>4~17</initialResistanceRange>
+		<backstoryFilters>
+			<li>
+				<categories>
+					<li>PMM_SlimeSpawn</li>
+				</categories>
+			</li>
+		</backstoryFilters>
+		<xenotypeSet>
+			<xenotypeChances>
+				<PMM_SlimeBubble>100</PMM_SlimeBubble>
+			</xenotypeChances>
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<!--
+		Taisui pawn kind, spawned only by the PMM_TaisuiWandersIn incident (maps with
+		caves). Same naked, unarmed wild-creature setup as the other slimes, but pinned
+		to the taisui race/xenotype.
+	-->
+	<PawnKindDef>
+		<defName>PMM_SlimeWildTaisui</defName>
+		<label>taisui</label>
+		<race>PMM_Race_SlimeMomoTaisui</race>
+		<maxGenerationAge>60</maxGenerationAge>
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<apparelIgnorePollution>true</apparelIgnorePollution>
+		<combatPower>45</combatPower>
+		<initialWillRange>0~4</initialWillRange>
+		<initialResistanceRange>4~17</initialResistanceRange>
+		<backstoryFilters>
+			<li>
+				<categories>
+					<li>PMM_SlimeSpawn</li>
+				</categories>
+			</li>
+		</backstoryFilters>
+		<xenotypeSet>
+			<xenotypeChances>
+				<PMM_SlimeTaisui>100</PMM_SlimeTaisui>
+			</xenotypeChances>
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<!--
+		Sea slime pawn kind, spawned only by the PMM_SeaSlimeWandersIn incident (coastal
+		tiles bordering an ocean). Same naked, unarmed wild-creature setup as the other
+		slimes, but pinned to the sea race/xenotype. The Water terrain move-speed factor
+		and the fishing stat offsets give the sea slime its fast swimming and strong
+		fishing (the stats are Animals-skill driven, so the offsets stack on top of the
+		AptitudeStrong_Animals gene).
+	-->
+	<PawnKindDef>
+		<defName>PMM_SlimeWildSea</defName>
+		<label>sea slime</label>
+		<race>PMM_Race_SlimeMomoSea</race>
+		<maxGenerationAge>60</maxGenerationAge>
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<apparelIgnorePollution>true</apparelIgnorePollution>
+		<combatPower>45</combatPower>
+		<initialWillRange>0~4</initialWillRange>
+		<initialResistanceRange>4~17</initialResistanceRange>
+		<!-- Sea slimes use their own backstory category so they pick the fishing-flavoured
+		     PMM_SlimeSeaAdult adulthood (with its Animals skill gain) instead of the
+		     generic PMM_SlimeAdult. -->
+		<backstoryFilters>
+			<li>
+				<categories>
+					<li>PMM_SlimeSpawn</li>
+					<li>PMM_SlimeSeaSpawn</li>
+				</categories>
+			</li>
+		</backstoryFilters>
+		<!-- Glides through water far faster than a person can wade: vanilla coastal
+		     animals use a Water terrain move-speed factor of 2.0; sea slimes get 2.5.
+		     Read by the vanilla StatPart_TerrainMoveSpeed on the MoveSpeed stat. -->
+		<moveSpeedFactorByTerrainTag>
+			<li>
+				<key>Water</key>
+				<value>2.5</value>
+			</li>
+		</moveSpeedFactorByTerrainTag>
+		<xenotypeSet>
+			<xenotypeChances>
+				<PMM_SlimeSea>100</PMM_SlimeSea>
+			</xenotypeChances>
+		</xenotypeSet>
+	</PawnKindDef>
+
+</Defs>

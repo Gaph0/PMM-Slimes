@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		Slime gel gene. Carries the slime-specific physiology that pure XML cannot express:
+		the C# GeneClass (PMM_SlimeFaction.Gene_SlimeGel) and its Harmony patches apply these at runtime:
+		  - raises the carrier's ambient Filth Rate (4x);
+		  - makes the carrier drop Filth_Slime instead of the default pawn filth (never trash);
+		  - periodically drops slime jelly on the ground beneath the carrier (hidden hediff added in PostAdd);
+		  - hair always renders in the carrier's skin colour, and tattoos can never be applied;
+		  - all damage to the carrier lands as bruises (no bones to break, no skin to cut);
+		  - butchering the carrier yields only slime jelly, no meat or skin.
+		The gene is endogenes-only and not part of the tradeable gene pool.
+	-->
+	<GeneDef>
+		<defName>PMM_Gene_SlimeGel</defName>
+		<label>slime gel</label>
+		<labelShortAdj>gelatinous</labelShortAdj>
+		<description>Carriers of this gene have a gelatinous, semi-liquid body. They constantly shed a slick of slime filth, and their bodies periodically ooze blobs of nourishing slime jelly. With no bones and no skin, every wound they suffer is a bruise.</description>
+		<geneClass>PMM_SlimeFaction.Gene_SlimeGel</geneClass>
+		<displayCategory>Miscellaneous</displayCategory>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
+		<biostatCpx>1</biostatCpx>
+		<biostatMet>3</biostatMet>
+		<!-- Raise ambient filth rate from the pawn default (1) to 4, a clear slime-trail feel. -->
+		<statOffsets>
+			<FilthRate>4</FilthRate>
+		</statOffsets>
+		<customEffectDescriptions>
+			<li>Constantly sheds slime filth.</li>
+			<li>Periodically drops slime jelly.</li>
+			<li>Boneless, skinless body: all wounds are bruises, and butchering yields only slime jelly.</li>
+		</customEffectDescriptions>
+	</GeneDef>
+
+	<!--
+		Sea foam skin: a light blue skin colour for the sea slime, paler than the vanilla
+		Skin_Blue (100,165,193). Uses Biotech's abstract GeneSkinColorOverride parent, so
+		it carries the skin-colour-override behaviour and stays out of the tradeable pool.
+		Biotech-only, like every skin-colour gene.
+	-->
+	<GeneDef ParentName="GeneSkinColorOverride" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>PMM_Skin_SeaFoam</defName>
+		<label>sea foam skin</label>
+		<labelShortAdj>sea foam</labelShortAdj>
+		<description>Carriers of this gene produce a pigment that turns their skin a pale, watery blue.</description>
+		<skinColorOverride>(158, 205, 224)</skinColorOverride>
+		<displayOrderInCategory>88</displayOrderInCategory>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>sea</symbol></li>
+				<li><symbol>foam</symbol></li>
+				<li><symbol>tide</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+	</GeneDef>
+
+	<!--
+		Wet-pale skin: a pale blue for the nureonago, paler than both the vanilla Skin_Blue
+		(100,165,193) and the sea slime's PMM_Skin_SeaFoam (158,205,224) - the damp, faintly
+		blue cast of a slime mimicking a human woman. Same Biotech skin-override parent.
+	-->
+	<GeneDef ParentName="GeneSkinColorOverride" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>PMM_Skin_WetPale</defName>
+		<label>wet-pale skin</label>
+		<labelShortAdj>wet-pale</labelShortAdj>
+		<description>Carriers of this gene produce a pale, watery pigment that turns their skin a faint, damp-looking blue.</description>
+		<skinColorOverride>(185, 213, 233)</skinColorOverride>
+		<displayOrderInCategory>89</displayOrderInCategory>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>rain</symbol></li>
+				<li><symbol>dew</symbol></li>
+				<li><symbol>damp</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+	</GeneDef>
+
+	<!--
+		Fastidious gene: the nureonago's devoted-housekeeper trait. Unlike the slime gel gene
+		(which uses statOffsets to RAISE the ambient filth rate), this uses statFactors to
+		multiply it well below a human's, and to speed up cleaning. Multiplicative so it
+		stacks sensibly with the gel gene's flat offset.
+	-->
+	<GeneDef>
+		<defName>PMM_Gene_Fastidious</defName>
+		<label>fastidious</label>
+		<labelShortAdj>fastidious</labelShortAdj>
+		<description>Carriers of this gene are instinctive, devoted housekeepers. They shed far less filth than an ordinary person and clean with brisk efficiency.</description>
+		<displayCategory>Miscellaneous</displayCategory>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
+		<biostatCpx>1</biostatCpx>
+		<biostatMet>-1</biostatMet>
+		<statFactors>
+			<FilthRate>0.2</FilthRate>
+			<CleaningSpeed>1.5</CleaningSpeed>
+		</statFactors>
+		<customEffectDescriptions>
+			<li>Sheds 80% less filth than a normal person.</li>
+			<li>Cleans 50% faster.</li>
+		</customEffectDescriptions>
+	</GeneDef>
+
+</Defs>

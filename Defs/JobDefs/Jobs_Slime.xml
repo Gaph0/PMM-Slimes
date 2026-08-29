@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		The "talk to the stranger" job, issued from the right-click float menu on the
+		disguised nureonago. The driver walks the colonist up to her, then opens the
+		accept/reject dialog (see JobDriver_TalkToNureonago in the assembly). Player
+		misc work so it is interruptible like any right-click order.
+	-->
+	<JobDef>
+		<defName>PMM_Job_TalkToNureonago</defName>
+		<driverClass>PMM_SlimeFaction.JobDriver_TalkToNureonago</driverClass>
+		<reportString>talking to the stranger.</reportString>
+		<playerInterruptible>true</playerInterruptible>
+	</JobDef>
+
+</Defs>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<PMM_PleasureAscensionNeedsSlime>{0} must be coated in slime first (sticky slime bomb, amoeba hold, or draining slime splash).</PMM_PleasureAscensionNeedsSlime>
+
+        <LetterLabelSeaSlimeCatch>Something in the net</LetterLabelSeaSlimeCatch>
+        <LetterSeaSlimeCatch>While fishing, {FISHER_nameDef} hauled up more than a fish - a sea slime tangled in the net! She's called {SLIME_nameDef}.
+
+You can attempt to tame her.</LetterSeaSlimeCatch>
+
+        <!-- Nureonago event -->
+        <PMM_LetterNureonagoArrive>A strange woman has walked out of the rain and is waiting at the edge of the settlement, gently smiling. She's called {PAWN_nameDef}. Nobody seems to know where she came from.
+
+Perhaps one of your people should go and talk to her. She looks like she'll leave once the rain stops.</PMM_LetterNureonagoArrive>
+        <PMM_LetterLabelNureonagoReveal>A damp disguise</PMM_LetterLabelNureonagoReveal>
+        <PMM_LetterNureonagoReveal>Up close, the truth is plain: {PAWN_nameDef}'s skin and clothes are always damp, and her body is soft and yielding - she is no human woman, but a nureonago, a slime that mimics people on rainy days!</PMM_LetterNureonagoReveal>
+        <PMM_TalkToNureonago>Talk to {PAWN_nameDef}</PMM_TalkToNureonago>
+        <PMM_TalkToNureonagoNoPath>Talk to the stranger (no path)</PMM_TalkToNureonagoNoPath>
+        <PMM_NureonagoDialogueTitle>A stranger in the rain</PMM_NureonagoDialogueTitle>
+        <PMM_NureonagoDialogue>{TALKER_nameDef} approaches the woman standing in the rain. Up close, she is always faintly damp, and she returns a gentle, hopeful smile. She says nothing, but her meaning is clear: she wants to stay.
+
+Let her join the settlement?</PMM_NureonagoDialogue>
+        <PMM_NureonagoAccept>Accept her</PMM_NureonagoAccept>
+        <PMM_NureonagoReject>Send her away</PMM_NureonagoReject>
+        <PMM_NureonagoDisguiseBroken>Her disguise is broken! {PAWN_nameDef} is a nureonago, and she is furious.</PMM_NureonagoDisguiseBroken>
+        <PMM_NureonagoScorned>{PAWN_nameDef} has been spurned - and the nureonago is far stronger than she looks.</PMM_NureonagoScorned>
+
+</LanguageData>

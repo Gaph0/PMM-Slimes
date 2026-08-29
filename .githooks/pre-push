@@ -1,0 +1,7 @@
+#!/bin/bash
+# Safety check: require a built DLL before pushing.
+dll="Assemblies/PMM_SlimeFaction.dll"
+if [ ! -f "$dll" ]; then
+  echo "ERROR: $dll not found. Build the mod before pushing."
+  exit 1
+fi

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Person names, e.g. "Gloop", "Blub 'Squelch' Glooby" -->
+	<RulePackDef>
+		<defName>NamerPersonSlime</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=2)->[firstName]</li>
+				<li>r_name(p=3)->[firstName] [lastName]</li>
+				<li>r_name->[firstName] '[nickName]' [lastName]</li>
+
+				<li>firstName(p=2)->[syl][sylEnd]</li>
+				<li>firstName->[syl][syl][sylEnd]</li>
+
+				<li>lastName(p=2)->[syl][sylEnd]</li>
+				<li>lastName->[syl][syl][sylEnd]</li>
+
+				<li>nickName->[gooNick]</li>
+
+				<li>syl->Glo</li>
+				<li>syl->Bli</li>
+				<li>syl->Sli</li>
+				<li>syl->Gel</li>
+				<li>syl->Mu</li>
+				<li>syl->Dro</li>
+				<li>syl->Oo</li>
+				<li>syl->Bu</li>
+				<li>syl->Plo</li>
+				<li>syl->Zli</li>
+				<li>syl->Squ</li>
+				<li>syl->Bla</li>
+
+				<li>sylEnd->op</li>
+				<li>sylEnd->ob</li>
+				<li>sylEnd->oo</li>
+				<li>sylEnd->ib</li>
+				<li>sylEnd->lub</li>
+				<li>sylEnd->erp</li>
+				<li>sylEnd->le</li>
+				<li>sylEnd->leb</li>
+				<li>sylEnd->ush</li>
+				<li>sylEnd->ik</li>
+				<li>sylEnd->gus</li>
+				<li>sylEnd->by</li>
+
+				<li>gooNick->Blob</li>
+				<li>gooNick->Gloop</li>
+				<li>gooNick->Sludge</li>
+				<li>gooNick->Puddle</li>
+				<li>gooNick->Goop</li>
+				<li>gooNick->Drip</li>
+				<li>gooNick->Squelch</li>
+				<li>gooNick->Wobble</li>
+				<li>gooNick->Jelly</li>
+				<li>gooNick->Muck</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+</Defs>

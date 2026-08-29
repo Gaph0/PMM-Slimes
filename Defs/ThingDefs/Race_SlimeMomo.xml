@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		Slime momo race. Inherits everything from Human via XML deep merge (body, tools,
+		think tree, stat bases, ...), so slimes remain fully humanlike — but their body is
+		living gel: butchering yields slime jelly instead of human meat, and there is no
+		skin to tan into leather.
+
+		Meat must go through <specificMeatDef>, not <meatDef>: at startup the game runs
+		ThingDefGenerator_Meat.ImpliedMeatDefs, which GENERATES a meat def for every race
+		with hasMeat && hasCorpse and no specificMeatDef/useMeatFrom, and OVERWRITES
+		race.meatDef with it. A plain <meatDef> override is therefore replaced by a
+		generated "Slime momo meat". specificMeatDef both opts the race out of that
+		generation and (via RaceProperties.ResolveReferencesSpecial) sets meatDef = the
+		jelly, so the butcher stat tooltip and the info card point at slime jelly.
+
+		leatherDef cannot be cleared in XML: an empty def reference (<leatherDef />) makes
+		the cross-ref loader log a "could not resolve cross-reference" error at startup.
+		It is nulled in C# instead (SlimeRaceSetup in SlimeMod.cs), which also hides the
+		"leather type" row in the info card. LeatherAmount is zeroed here as well so the
+		leather amount stat row disappears and no code path can ever yield leather.
+	-->
+	<!--
+		Abstract base for every slime momo race. Inherits the full human body/stats from
+		Human (deep merge) and adds the shared slime overrides. Concrete colour races below
+		parent off THIS (abstract defs are the only valid ParentName targets — a concrete
+		def like the blue race cannot be a ParentName and throws "Could not find parent
+		node", which is exactly the error this fixes). Each colour only sets its own label
+		and specificMeatDef.
+	-->
+	<ThingDef Name="PMM_SlimeMomoRaceBase" ParentName="Human" Abstract="True">
+		<statBases>
+			<!-- Base 20 x body size 1.0 = 20 shown on the meat stat row and tooltip. -->
+			<MeatAmount>20</MeatAmount>
+			<LeatherAmount>0</LeatherAmount>
+		</statBases>
+	</ThingDef>
+
+	<!-- Blue slime momo race (the default PMM_Slime xenotype). -->
+	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
+		<defName>PMM_Race_SlimeMomo</defName>
+		<label>slime momo</label>
+		<description>A momo whose body has become living gel. There are no bones to break and no skin to tan — a slain slime momo collapses into a pool of slime jelly and nothing more.</description>
+		<race>
+			<specificMeatDef>PMM_SlimeJelly</specificMeatDef>
+		</race>
+	</ThingDef>
+
+	<!-- Red slime momo: same body, but butchers into red slime jelly. -->
+	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
+		<defName>PMM_Race_SlimeMomoRed</defName>
+		<label>red slime momo</label>
+		<race>
+			<specificMeatDef>PMM_SlimeJellyRed</specificMeatDef>
+		</race>
+	</ThingDef>
+
+	<!-- Bubble slime momo. The ConsumeWastepack comp gives player-owned bubble slimes
+	     a gizmo to devour a nearby toxic wastepack, the reaction bubbling off as a
+	     small cloud of toxic gas. -->
+	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
+		<defName>PMM_Race_SlimeMomoBubble</defName>
+		<label>bubble slime momo</label>
+		<race>
+			<specificMeatDef>PMM_SlimeJellyBubble</specificMeatDef>
+		</race>
+		<comps>
+			<li Class="PMM_SlimeFaction.CompProperties_ConsumeWastepack"/>
+		</comps>
+	</ThingDef>
+
+	<!-- Dark slime momo. -->
+	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
+		<defName>PMM_Race_SlimeMomoDark</defName>
+		<label>dark slime momo</label>
+		<race>
+			<specificMeatDef>PMM_SlimeJellyDark</specificMeatDef>
+		</race>
+	</ThingDef>
+
+	<!-- Taisui momo. -->
+	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
+		<defName>PMM_Race_SlimeMomoTaisui</defName>
+		<label>taisui momo</label>
+		<race>
+			<specificMeatDef>PMM_SlimeJellyTaisui</specificMeatDef>
+		</race>
+	</ThingDef>
+
+	<!-- Sea slime momo. The paralytic-tentacles comp gives player-owned sea slimes a
+	     gizmo to inject a paralytic poison that slows a victim for an hour. -->
+	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
+		<defName>PMM_Race_SlimeMomoSea</defName>
+		<label>sea slime momo</label>
+		<race>
+			<specificMeatDef>PMM_SlimeJellySea</specificMeatDef>
+		</race>
+		<comps>
+			<li Class="PMM_SlimeFaction.CompProperties_ParalyticTentacles"/>
+		</comps>
+	</ThingDef>
+
+</Defs>

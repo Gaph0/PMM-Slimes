@@ -1,0 +1,15 @@
+#!/bin/bash
+# Auto-append commit message to CHANGELOG.md and amend it into the commit.
+msg=$(git log -1 --pretty=%s)
+# Skip merge commits and the changelog amend itself
+case "$msg" in
+  Merge*|"chore: changelog"*) exit 0 ;;
+esac
+
+date=$(date +%Y-%m-%d)
+file=CHANGELOG.md
+[ -f "$file" ] || echo "# Changelog" > "$file"
+
+sed -i "2a\\- $date: $msg" "$file"
+git add "$file"
+git commit --amend --no-edit --no-verify

@@ -1,0 +1,17 @@
+# Build artifacts / backups
+Assemblies/*.bak*
+*.dll
+*.pdb
+*.mdb
+
+# IDE / OS
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

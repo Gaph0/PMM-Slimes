@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- The clinging gel of Sticky Slime Bomb: a short, heavy slow. -->
+	<HediffDef>
+		<defName>PMM_SlimeSlow</defName>
+		<label>slime-coated</label>
+		<description>Clinging gel hobbles every step. It loses its grip in moments.</description>
+		<hediffClass>PMM_SlimeFaction.Hediff_SlimeSlow</hediffClass>
+		<defaultLabelColor>(0.5, 0.7, 1.0)</defaultLabelColor>
+		<isBad>true</isBad>
+		<stages>
+			<li>
+				<statFactors>
+					<MoveSpeed>0.8</MoveSpeed>
+				</statFactors>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- The mutual root of Amoeba Hold, carried by both participants. -->
+	<HediffDef>
+		<defName>PMM_AmoebaHold</defName>
+		<label>engulfed in slime</label>
+		<description>Wrapped in living gel and unable to pull free.</description>
+		<hediffClass>PMM_SlimeFaction.Hediff_AmoebaHold</hediffClass>
+		<defaultLabelColor>(0.5, 0.7, 1.0)</defaultLabelColor>
+		<isBad>true</isBad>
+		<stages>
+			<li>
+				<statFactors>
+					<MoveSpeed>0</MoveSpeed>
+				</statFactors>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- The 20s bind of Pleasure Ascension. -->
+	<HediffDef>
+		<defName>PMM_PleasureAscension</defName>
+		<label>pleasure ascension</label>
+		<description>Bound fast in dark slime while wave after wave of unbelievable pleasure crashes over them.</description>
+		<hediffClass>PMM_SlimeFaction.Hediff_PleasureAscension</hediffClass>
+		<defaultLabelColor>(0.8, 0.4, 1.0)</defaultLabelColor>
+		<isBad>true</isBad>
+		<stages>
+			<li>
+				<statFactors>
+					<MoveSpeed>0</MoveSpeed>
+				</statFactors>
+			</li>
+		</stages>
+	</HediffDef>
+
+</Defs>

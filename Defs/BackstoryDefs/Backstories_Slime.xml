@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		Every slime has the same life story. The PMM_SlimeSpawn category holds exactly one
+		childhood and one adulthood, and the slime pawn kinds filter backstory generation to
+		this category only, so the generator has nothing else to pick.
+	-->
+	<BackstoryDef>
+		<defName>PMM_SlimeChild</defName>
+		<title>slime spawnling</title>
+		<titleShort>spawnling</titleShort>
+		<description>{PAWN_nameDef} congealed out of the Great Puddle like every other slime, and spent {PAWN_possessive} early days drifting between pools, drinking in the sun and the rain.</description>
+		<slot>Childhood</slot>
+		<spawnCategories>
+			<li>PMM_SlimeSpawn</li>
+		</spawnCategories>
+		<bodyTypeGlobal>Child</bodyTypeGlobal>
+		<skillGains>
+			<Melee>2</Melee>
+		</skillGains>
+	</BackstoryDef>
+
+	<BackstoryDef>
+		<defName>PMM_SlimeAdult</defName>
+		<title>wandering slime</title>
+		<titleShort>slime</titleShort>
+		<description>Like every slime, {PAWN_nameDef} grew into a wanderer of the warm grasslands, drifting from pool to pool, oozing jelly, and searching for men to prey upon.</description>
+		<slot>Adulthood</slot>
+		<spawnCategories>
+			<li>PMM_SlimeSpawn</li>
+		</spawnCategories>
+		<bodyTypeGlobal>Female</bodyTypeGlobal>
+		<skillGains>
+			<Melee>3</Melee>
+			<Plants>2</Plants>
+		</skillGains>
+	</BackstoryDef>
+
+        <!--
+                Sea slime adulthood. Same forced single-story pattern as the other slimes, but
+                in its own spawn category (PMM_SlimeSeaSpawn) so the sea pawn kind picks only
+                this one. The Animals skill gain is what makes her a natural fisher: Animals
+                drives the Odyssey fishing stats, so she fishes well without any extra gene.
+        -->
+        <BackstoryDef>
+                <defName>PMM_SlimeSeaAdult</defName>
+                <title>drifting sea slime</title>
+                <titleShort>sea slime</titleShort>
+                <description>{PAWN_nameDef} grew into a drifter of the coasts, letting the tidal current carry her through the shallows, drawing a steady catch from the water, and searching for men to prey upon.</description>
+                <slot>Adulthood</slot>
+                <spawnCategories>
+                        <li>PMM_SlimeSeaSpawn</li>
+                </spawnCategories>
+                <bodyTypeGlobal>Female</bodyTypeGlobal>
+                <skillGains>
+                        <Melee>3</Melee>
+                        <Plants>2</Plants>
+                        <Animals>4</Animals>
+                </skillGains>
+        </BackstoryDef>
+
+	<!--
+		Unknown backstories for the nureonago's disguise. Before she is revealed, the woman
+		who walks out of the rain is a stranger: nobody knows where she came from. These
+		mirror Anomaly's creepjoiner "unknown" childhood/adulthood, defined locally so the
+		event needs no Anomaly dependency. The PMM_UnknownSpawn category satisfies the
+		loader's "no spawn categories" check; no pawn kind ever filters to it, so only the
+		incident (which assigns them directly by name at spawn) can produce them.
+	-->
+	<BackstoryDef>
+		<defName>PMM_UnknownChildhood</defName>
+		<title>unknown</title>
+		<titleShort>unknown</titleShort>
+		<description>Nobody knows where {PAWN_nameDef} came from.</description>
+		<slot>Childhood</slot>
+		<spawnCategories>
+			<li>PMM_UnknownSpawn</li>
+		</spawnCategories>
+	</BackstoryDef>
+
+	<BackstoryDef>
+		<defName>PMM_UnknownAdulthood</defName>
+		<title>unknown</title>
+		<titleShort>unknown</titleShort>
+		<description>Nobody knows where {PAWN_nameDef} came from.</description>
+		<slot>Adulthood</slot>
+		<spawnCategories>
+			<li>PMM_UnknownSpawn</li>
+		</spawnCategories>
+	</BackstoryDef>
+
+</Defs>
+

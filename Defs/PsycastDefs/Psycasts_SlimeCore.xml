@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		Path of the Slime Core — the dark slime's custom VPE psycaster path.
+		Only meaningful while Vanilla Psycasts Expanded is loaded: the ability
+		classes (PMM_SlimeFaction assembly) reference VEF types, and Project
+		Momo's VPE integration is what grants the path to spawned dark slimes.
+		With VPE absent the path is simply never unlocked.
+
+		The whole tree feeds Project Momo's economies: tease damage erodes
+		willpower (knockout at 0.9), drained essence refills the caster's Mana,
+		and every ability carries a hidden corruption dose on female targets.
+	-->
+	<VanillaPsycastsExpanded.PsycasterPathDef>
+		<defName>PMM_Path_SlimeCore</defName>
+		<label>Slime Core</label>
+		<description>The dark slime's awakened core lets her weaponize her own body: she splashes snaring gel, drains essence through it, and binds her prey in waves of overwhelming pleasure — leaving captured women one infusion short of becoming slimes themselves.</description>
+		<background>UI/Backgrounds/NightstalkerPath</background>
+		<altBackground>UI/AlternativeBackgrounds/PathBG_Nightstalker</altBackground>
+		<tab>Psycasts</tab>
+		<tooltip>An upper-rank slime casting from the power stored in her core. Snare, grope, drain — then bind the slime-coated victim in unbelievable pleasure until her will breaks and the corruption takes hold.</tooltip>
+	</VanillaPsycastsExpanded.PsycasterPathDef>
+
+	<!-- ======================= Tier 1: Sticky Slime Bomb ======================= -->
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>PMM_StickySlimeBomb</defName>
+		<label>sticky slime bomb</label>
+		<description>Hurl a burst of clinging gel over a wide area. Everyone caught is slowed to a crawl for 10 seconds and splashed with flustering slime.</description>
+		<iconPath>UI/Icons/Xenotypes/Impid</iconPath>
+		<abilityClass>PMM_SlimeFaction.Ability_StickySlimeBomb</abilityClass>
+		<castTime>60</castTime>
+		<cooldownTime>900</cooldownTime>
+		<range>14.9</range>
+		<radius>5</radius>
+		<hasAoE>true</hasAoE>
+		<targetMode>Location</targetMode>
+		<targetingParameters>
+			<canTargetLocations>true</canTargetLocations>
+			<canTargetPawns>false</canTargetPawns>
+			<canTargetBuildings>false</canTargetBuildings>
+		</targetingParameters>
+		<!-- Required whenever hasAoE is true: VEF's ModifyTargets dereferences
+		     this unconditionally and NREs without it (VPE's own AoE psycasts
+		     always declare one). -->
+		<targetingParametersForAoE>
+			<canTargetPawns>true</canTargetPawns>
+			<canTargetHumans>true</canTargetHumans>
+			<canTargetAnimals>false</canTargetAnimals>
+			<canTargetMechs>false</canTargetMechs>
+			<canTargetSelf>false</canTargetSelf>
+			<canTargetBuildings>false</canTargetBuildings>
+		</targetingParametersForAoE>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>PMM_Path_SlimeCore</path>
+				<level>1</level>
+				<order>1</order>
+				<psyfocusCost>0.10</psyfocusCost>
+				<entropyGain>10</entropyGain>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<!-- ======================= Tier 1: Slime Grope ======================= -->
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>PMM_SlimeGrope</defName>
+		<label>slime grope</label>
+		<description>A tendril of gel gropes the target from afar, dealing heavy tease damage and sucking a mouthful of essence back to the caster.</description>
+		<iconPath>UI/Icons/Xenotypes/Impid</iconPath>
+		<abilityClass>PMM_SlimeFaction.Ability_SlimeGrope</abilityClass>
+		<castTime>60</castTime>
+		<cooldownTime>1200</cooldownTime>
+		<range>4.9</range>
+		<targetMode>Humanlike</targetMode>
+		<targetingParameters>
+			<canTargetSelf>false</canTargetSelf>
+			<canTargetMechs>false</canTargetMechs>
+			<canTargetAnimals>false</canTargetAnimals>
+			<canTargetBuildings>false</canTargetBuildings>
+		</targetingParameters>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>PMM_Path_SlimeCore</path>
+				<level>1</level>
+				<order>2</order>
+				<psyfocusCost>0.15</psyfocusCost>
+				<entropyGain>20</entropyGain>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<!-- ==================== Tier 2: Draining Slime Splash ==================== -->
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>PMM_DrainingSlimeSplash</defName>
+		<label>draining slime splash</label>
+		<description>Splash a patch of living slime across the ground. For 15 seconds it laps at anyone standing in it — teasing them, sipping their essence for the caster, and seeping corruption into women.</description>
+		<iconPath>UI/Icons/Xenotypes/Impid</iconPath>
+		<abilityClass>PMM_SlimeFaction.Ability_DrainingSlimeSplash</abilityClass>
+		<castTime>60</castTime>
+		<cooldownTime>900</cooldownTime>
+		<range>9.9</range>
+		<radius>6</radius>
+		<hasAoE>true</hasAoE>
+		<targetMode>Location</targetMode>
+		<durationTime>900</durationTime>
+		<targetingParameters>
+			<canTargetLocations>true</canTargetLocations>
+			<canTargetPawns>false</canTargetPawns>
+			<canTargetBuildings>false</canTargetBuildings>
+		</targetingParameters>
+		<!-- Required whenever hasAoE is true (see Sticky Slime Bomb above). -->
+		<targetingParametersForAoE>
+			<canTargetPawns>true</canTargetPawns>
+			<canTargetHumans>true</canTargetHumans>
+			<canTargetAnimals>false</canTargetAnimals>
+			<canTargetMechs>false</canTargetMechs>
+			<canTargetSelf>false</canTargetSelf>
+			<canTargetBuildings>false</canTargetBuildings>
+		</targetingParametersForAoE>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>PMM_Path_SlimeCore</path>
+				<level>2</level>
+				<order>1</order>
+				<psyfocusCost>0.20</psyfocusCost>
+				<entropyGain>20</entropyGain>
+				<prerequisites>
+					<li>PMM_StickySlimeBomb</li>
+				</prerequisites>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<!-- ======================= Tier 2: Amoeba Hold ======================= -->
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>PMM_AmoebaHold</defName>
+		<label>amoeba hold</label>
+		<description>Flow over an adjacent victim and engulf them. Neither of you can move for 5 seconds while the gel teases them and drinks deeply of their essence.</description>
+		<iconPath>UI/Icons/Xenotypes/Impid</iconPath>
+		<abilityClass>PMM_SlimeFaction.Ability_AmoebaHold</abilityClass>
+		<castTime>30</castTime>
+		<cooldownTime>600</cooldownTime>
+		<range>4.9</range>
+		<targetMode>Humanlike</targetMode>
+		<targetingParameters>
+			<canTargetSelf>false</canTargetSelf>
+			<canTargetMechs>false</canTargetMechs>
+			<canTargetAnimals>false</canTargetAnimals>
+			<canTargetBuildings>false</canTargetBuildings>
+		</targetingParameters>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>PMM_Path_SlimeCore</path>
+				<level>2</level>
+				<order>2</order>
+				<psyfocusCost>0.10</psyfocusCost>
+				<entropyGain>10</entropyGain>
+				<prerequisites>
+					<li>PMM_SlimeGrope</li>
+				</prerequisites>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<!-- ==================== Tier 3: Pleasure Ascension ==================== -->
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>PMM_PleasureAscension</defName>
+		<label>pleasure ascension</label>
+		<description>Only usable on someone already coated in slime — slowed by the bomb, caught in the hold, or standing in the splash. Binds the victim for 20 seconds and subjects them to unbelievable pleasures: waves of tease that break even the strongest will. Women are left three quarters corrupted — one infusion short of becoming a slime.</description>
+		<iconPath>UI/Icons/Xenotypes/Impid</iconPath>
+		<abilityClass>PMM_SlimeFaction.Ability_PleasureAscension</abilityClass>
+		<castTime>120</castTime>
+		<cooldownTime>3600</cooldownTime>
+		<range>9.9</range>
+		<targetMode>Humanlike</targetMode>
+		<targetingParameters>
+			<canTargetSelf>false</canTargetSelf>
+			<canTargetMechs>false</canTargetMechs>
+			<canTargetAnimals>false</canTargetAnimals>
+			<canTargetBuildings>false</canTargetBuildings>
+		</targetingParameters>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>PMM_Path_SlimeCore</path>
+				<level>3</level>
+				<order>1</order>
+				<psyfocusCost>0.30</psyfocusCost>
+				<entropyGain>30</entropyGain>
+				<prerequisites>
+					<li>PMM_DrainingSlimeSplash</li>
+					<li>PMM_AmoebaHold</li>
+				</prerequisites>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+</Defs>

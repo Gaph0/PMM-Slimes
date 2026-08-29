@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		One tile of the living slime laid down by Draining Slime Splash. Its C#
+		class does all the work (tease/essence/corruption per second on whoever
+		stands on it, self-destructs when its duration runs out); the def just
+		makes it a non-blocking, non-selectable smear on the ground.
+	-->
+	<ThingDef>
+		<defName>PMM_SlimeWeb</defName>
+		<label>slime web</label>
+		<description>A smear of living dark slime. It laps at anyone standing in it.</description>
+		<thingClass>PMM_SlimeFaction.SlimeWeb</thingClass>
+		<category>Item</category>
+		<tickerType>Rare</tickerType>
+		<useHitPoints>False</useHitPoints>
+		<drawOffscreen>true</drawOffscreen>
+		<drawGUIOverlay>false</drawGUIOverlay>
+		<altitudeLayer>FloorEmplacement</altitudeLayer>
+		<pathCost>0</pathCost>
+		<passability>Standable</passability>
+		<selectable>false</selectable>
+		<neverMultiSelect>true</neverMultiSelect>
+		<graphicData>
+			<!-- Placeholder: vanilla corpse-bile goo. Replace with your own art in
+			     Textures/Things/PMM_SlimeWeb/ and update this path. -->
+			<texPath>Things/Filth/CorpseBile</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+			<drawSize>1.2</drawSize>
+		</graphicData>
+	</ThingDef>
+
+</Defs>

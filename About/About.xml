@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Project Momo Slime Faction</name>
+	<author>Gapho</author>
+	<supportedVersions>
+		<li>1.6</li>
+	</supportedVersions>
+	<packageId>PMM.SlimeFaction</packageId>
+	<description>
+Adds wild slimes for Project Momo: amorphous slime-folk who wander the warm, wet grasslands.
+
+Slimes only appear in the wild, wandering onto your map like wild men - and like wild men, they can be tamed or captured and convinced to join. They spawn from four slime xenotypes (Biotech): common blue slimes, fierce red slimes, dark slimes, and toxin-eating bubble slimes.
+
+A small C# assembly gives the slimes their signature physiology: their hair always matches their skin, they can never be tattooed, they shed slime filth wherever they walk, and with no bones and no skin, every wound they suffer is a bruise. Butcher one and you get slime jelly, never skin. Slime jelly nourishes like insect jelly with no poison chance - but women who eat too much of it will find themselves melting into slimes. Living slimes also shed blobs of slime jelly periodically.
+
+Their bodies are as soft as a human's to the weather: any temperature fatal to a naked human is fatal to a slime.
+
+Requires the Biotech and Odyssey expansions, and Harmony.
+	</description>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077</steamWorkshopUrl>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+		</li>
+		<li>
+			<packageId>Ludeon.RimWorld.Biotech</packageId>
+			<displayName>Biotech</displayName>
+		</li>
+		<li>
+			<packageId>Ludeon.RimWorld.Odyssey</packageId>
+			<displayName>Odyssey</displayName>
+		</li>
+		<li>
+			<packageId>PMM.Core</packageId>
+			<displayName>Project Momo</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3786764047</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>brrainz.harmony</li>
+		<li>Ludeon.RimWorld.Biotech</li>
+		<li>Ludeon.RimWorld.Odyssey</li>
+		<li>PMM.Core</li>
+		<li>VanillaExpanded.VPsycastsE</li>
+	</loadAfter>
+</ModMetaData>

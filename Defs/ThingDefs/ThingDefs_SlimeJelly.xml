@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		Slime jelly: an analogue to insect jelly (same nourishment, joy and never-rots
+		properties) but with no food-poison chance, and a hidden extra: women who eat too
+		much of it are monsterised into slimes via Project Momo's mamono corruption
+		(IngestionOutcomeDoer_SlimeJelly in the assembly).
+
+		Abstract base holding every shared field; the four concrete jellies below only set
+		their own name, description and market value. A slime yields the jelly matching its
+		xenotype when butchered (Patch_SlimeButcherProducts keys off the xenotype def).
+		PMM_SlimeJelly keeps its defName for save compatibility and doubles as the blue
+		(default) slime jelly and the generic jelly shown
+		on the race info card (race.meatDef).
+	-->
+	<ThingDef Name="PMM_SlimeJellyBase" Abstract="True">
+		<thingClass>ThingWithComps</thingClass>
+		<category>Item</category>
+		<drawerType>MapMeshOnly</drawerType>
+		<resourceReadoutPriority>Middle</resourceReadoutPriority>
+		<useHitPoints>true</useHitPoints>
+		<selectable>true</selectable>
+		<altitudeLayer>Item</altitudeLayer>
+		<stackLimit>75</stackLimit>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+		</comps>
+		<alwaysHaulable>true</alwaysHaulable>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<rotatable>false</rotatable>
+		<pathCost>14</pathCost>
+		<possessionCount>10</possessionCount>
+		<graphicData>
+			<!-- Placeholder art reusing the vanilla insect jelly texture. Replace with your own and update this path. -->
+			<texPath>Things/Item/Resource/AnimalProductRaw/InsectJelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<statBases>
+			<MarketValue>8.0</MarketValue>
+			<Mass>0.025</Mass>
+			<Nutrition>0.05</Nutrition>
+			<!-- No random poison chance, unlike insect jelly. -->
+			<FoodPoisonChanceFixedHuman>0</FoodPoisonChanceFixedHuman>
+		</statBases>
+		<ingestible>
+			<foodType>AnimalProduct</foodType>
+			<preferability>MealFine</preferability>
+			<joy>0.08</joy>
+			<joyKind>Gluttonous</joyKind>
+			<ingestEffect>EatVegetarian</ingestEffect>
+			<ingestSound>Meal_Eat</ingestSound>
+			<lowPriorityCaravanFood>true</lowPriorityCaravanFood>
+			<babiesCanIngest>true</babiesCanIngest>
+			<outcomeDoers>
+				<li Class="PMM_SlimeFaction.IngestionOutcomeDoer_SlimeJelly">
+					<!-- ~13 jelly in a short sitting monsterises a woman; corruption decays while she is upright, so casual snacking is safe. -->
+					<severityPerJelly>0.08</severityPerJelly>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<thingCategories>
+			<li>AnimalProductRaw</li>
+		</thingCategories>
+		<allowedArchonexusCount>150</allowedArchonexusCount>
+	</ThingDef>
+
+	<!-- Generic slime jelly (the default PMM_Slime xenotype's fallback). Keeps its
+	     defName, generic label and description for save compatibility: it is still the
+	     race's meatDef, the generic jelly on the race info card, and the fallback any
+	     code drops for an unrecognised xenotype.
+	     Blue slimes themselves now drop the dedicated PMM_SlimeJellyBlue below. -->
+	<ThingDef ParentName="PMM_SlimeJellyBase">
+		<defName>PMM_SlimeJelly</defName>
+		<label>slime jelly</label>
+		<description>A shimmering blob of semi-liquid slime, thick with mana. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nWomen who eat too much of it find their bodies slowly melting into something... gooier.</description>
+	</ThingDef>
+
+	<!-- Blue slime jelly: identical to the generic jelly, but properly named so blue
+	     slimes drop a jelly that matches them. Still monsterises women into blue slimes
+	     (the doer's per-jelly imprint falls back to PMM_Slime for any jelly it does not
+	     specifically recognise). -->
+	<ThingDef ParentName="PMM_SlimeJellyBase">
+		<defName>PMM_SlimeJellyBlue</defName>
+		<label>blue slime jelly</label>
+		<description>A shimmering blue blob of semi-liquid slime, thick with mana. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nWomen who eat too much of it find their bodies slowly melting into something... gooier.</description>
+	</ThingDef>
+
+	<!-- Bubble slime. Tainted with the slime's toxins: guaranteed food poisoning for
+	     anyone who eats it - EXCEPT pawns bonded (Tsugai or animal bond) to a bubble
+	     slime, whose bodies have adapted (IngestionOutcomeDoer_BubbleJellyFoodPoisoning
+	     in the assembly). The extra outcome doer adds to the inherited list, so it
+	     still monsterises women like any slime jelly. -->
+	<ThingDef ParentName="PMM_SlimeJellyBase">
+		<defName>PMM_SlimeJellyBubble</defName>
+		<label>bubble slime jelly</label>
+		<description>A light, airy blob of jelly from a bubble slime, fizzing softly. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nIt is tainted with the slime's toxins - anyone who eats it gets food poisoning, unless they have bonded to a bubble slime. In exchange, the slime's antitoxins flush all toxic buildup from the eater's body and grant partial toxic resistance for a few hours. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<statBases>
+			<MarketValue>12.0</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="PMM_SlimeFaction.IngestionOutcomeDoer_BubbleJellyFoodPoisoning">
+					<hediffDef>FoodPoisoning</hediffDef>
+					<severity>1.0</severity>
+					<chance>1.0</chance>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PMM_Hediff_BubbleSlimeAntitoxin</hediffDef>
+					<severity>1.0</severity>
+				</li>
+				<!-- Flush all accumulated toxic buildup from the eater's body. -->
+				<li Class="PMM_SlimeFaction.IngestionOutcomeDoer_RemoveToxBuildup"/>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- Temporary partial toxic resistance from eating bubble slime jelly. Fades
+	     over 3 in-game hours. ToxicResistance is a 0..1 stat where 1 = total
+	     immunity (the same value the ToxResist_Total gene offsets), so +0.30
+	     grants a 30% reduction in toxic buildup while it lasts. -->
+	<HediffDef>
+		<defName>PMM_Hediff_BubbleSlimeAntitoxin</defName>
+		<hediffClass>Hediff_High</hediffClass>
+		<label>bubble slime antitoxin</label>
+		<labelNoun>a bubble slime antitoxin</labelNoun>
+		<description>Bubble slime antitoxins in the bloodstream. The eater's body partially resists toxins of every kind while the effect lasts.</description>
+		<defaultLabelColor>(0.4,0.7,0.5)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<!-- 8 per day = full severity gone after 3 in-game hours. -->
+				<severityPerDay>-8.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<!-- 0.30 = 30% toxic resistance (partial, not full immunity). -->
+					<ToxicResistance>0.3</ToxicResistance>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Red slime. Also grants a temporary moving boost (red slimes are the quick,
+	     fierce variant). The extra outcome doer adds to the inherited list, so it still
+	     monsterises women like any slime jelly. -->
+	<ThingDef ParentName="PMM_SlimeJellyBase">
+		<defName>PMM_SlimeJellyRed</defName>
+		<label>red slime jelly</label>
+		<description>A warm, ruby blob of jelly from a red slime. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nA rush of red-slime vigour quickens the eater's step for a while. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<statBases>
+			<MarketValue>15.0</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PMM_Hediff_RedSlimeRush</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- Temporary moving boost from eating red slime jelly. Fades over about a day. -->
+	<HediffDef>
+		<defName>PMM_Hediff_RedSlimeRush</defName>
+		<hediffClass>Hediff_High</hediffClass>
+		<label>red slime rush</label>
+		<labelNoun>a red slime rush</labelNoun>
+		<description>Red slime jelly in the bloodstream. A warm vigour spreads through the limbs, quickening the eater's movements.</description>
+		<defaultLabelColor>(0.9,0.2,0.3)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<!-- 8 per day = full severity gone after 3 in-game hours. -->
+				<severityPerDay>-8.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<!-- x1.10: a 10% multiplier on movement (not a flat offset). -->
+						<postFactor>1.1</postFactor>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Dark slime -->
+	<ThingDef ParentName="PMM_SlimeJellyBase">
+		<defName>PMM_SlimeJellyDark</defName>
+		<label>dark slime jelly</label>
+		<description>A deep, near-black blob of jelly from a dark slime, thick with mana. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nThe dark slime's stored psy-power brushes the eater's mind, sharpening their psychic focus for a while. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<statBases>
+			<MarketValue>20.0</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PMM_Hediff_DarkSlimeClarity</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!--
+		Temporary psychic boost from eating dark slime jelly. Fades over 3 in-game hours.
+		Uses statOffsets (these are stats, not capacities). Small, flat bonuses:
+		  PsychicEntropyMax            = neural heat limit
+		  PsychicEntropyRecoveryRate   = neural heat regen
+		  MeditationFocusGain          = psyfocus meditation regen
+		(There is no StatDef for the psyfocus cap itself - "PawnPsyfocus" is only the
+		stat CATEGORY, not a StatDef, so it was removed. To grant psyfocus directly use
+		IngestionOutcomeDoer_OffsetPsyfocus on the jelly instead of a hediff offset.)
+	-->
+	<HediffDef>
+		<defName>PMM_Hediff_DarkSlimeClarity</defName>
+		<hediffClass>Hediff_High</hediffClass>
+		<label>dark slime clarity</label>
+		<labelNoun>a dark slime clarity</labelNoun>
+		<description>Dark slime jelly in the bloodstream. A faint psy-resonance steadies the eater's mind, easing the flow of psyfocus and neural heat.</description>
+		<defaultLabelColor>(0.5,0.3,0.7)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<!-- 8 per day = full severity gone after 3 in-game hours. -->
+				<severityPerDay>-8.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<PsychicEntropyMax>5</PsychicEntropyMax>
+					<PsychicEntropyRecoveryRate>0.5</PsychicEntropyRecoveryRate>
+					<MeditationFocusGain>0.05</MeditationFocusGain>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Taisui. The legendary elixir: eating it sharpens the mind for 6 hours
+		 (research speed and skill gain). Still monsterises women like any slime jelly. -->
+	<ThingDef ParentName="PMM_SlimeJellyBase">
+		<defName>PMM_SlimeJellyTaisui</defName>
+		<label>taisui jelly</label>
+		<description>A pale, faintly glowing blob of jelly from a Taisui. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nIt is the legendary elixir - eating it sharpens the mind, quickening research and learning for a time. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<statBases>
+			<MarketValue>25.0</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PMM_Hediff_TaisuiInsight</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- Temporary intellect boost from eating Taisui jelly. Fades over 6 in-game hours.
+		 ResearchSpeed and GlobalLearningFactor are stats (not capacities), so offsets. -->
+	<HediffDef>
+		<defName>PMM_Hediff_TaisuiInsight</defName>
+		<hediffClass>Hediff_High</hediffClass>
+		<label>taisui insight</label>
+		<labelNoun>a taisui insight</labelNoun>
+		<description>The Taisui elixir in the bloodstream. The eater's thoughts run clearer and deeper - research and learning come easily while the effect lasts.</description>
+		<defaultLabelColor>(0.9,0.8,0.4)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<!-- 4 per day = full severity gone after 6 in-game hours. -->
+				<severityPerDay>-4.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<ResearchSpeed>0.5</ResearchSpeed>
+					<GlobalLearningFactor>0.5</GlobalLearningFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Sea slime. Briny, invigorating: a brief burst of energy and focus.
+		 Still monsterises women like any slime jelly (into a sea slime). -->
+	<ThingDef ParentName="PMM_SlimeJellyBase">
+		<defName>PMM_SlimeJellySea</defName>
+		<label>sea slime jelly</label>
+		<description>A cool, sea-green blob of jelly from a sea slime, faintly briny. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nA bracing surge washes through the eater, refreshing body and mind for a short while. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<statBases>
+			<MarketValue>12.0</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PMM_Hediff_SeaSlimeVigour</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- Temporary refreshing boost from eating sea slime jelly. Fades over 3 in-game hours. -->
+	<HediffDef>
+		<defName>PMM_Hediff_SeaSlimeVigour</defName>
+		<hediffClass>Hediff_High</hediffClass>
+		<label>sea slime vigour</label>
+		<labelNoun>a sea slime vigour</labelNoun>
+		<description>Sea slime jelly in the bloodstream. A bracing vitality refreshes the eater's body and mind.</description>
+		<defaultLabelColor>(0.2,0.7,0.6)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<!-- 8 per day = full severity gone after 3 in-game hours. -->
+				<severityPerDay>-8.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<WorkSpeedGlobal>0.1</WorkSpeedGlobal>
+				</statOffsets>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Mochi slime jelly. From the nureonago: a soft, sweet, rice-cake-like jelly.
+		 Comforting: a gentle mood lift for 8 hours. Still monsterises women (into a
+		 nureonago) like any slime jelly. -->
+	<ThingDef ParentName="PMM_SlimeJellyBase">
+		<defName>PMM_SlimeJellyMochi</defName>
+		<label>mochi slime jelly</label>
+		<description>A soft, pillowy blob of jelly from a nureonago, with the gentle sweetness of fresh rice cakes. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nA warm, comforting fullness settles over the eater, lifting the spirits for a good while. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<statBases>
+			<MarketValue>12.0</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PMM_Hediff_MochiWarmth</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- Comforting warmth from eating mochi slime jelly: a mood-lifting thought that
+		 fades over 8 in-game hours. The stage thought drives the mood; the severity
+		 countdown drives the duration. -->
+	<HediffDef>
+		<defName>PMM_Hediff_MochiWarmth</defName>
+		<hediffClass>Hediff_High</hediffClass>
+		<label>mochi warmth</label>
+		<labelNoun>a mochi warmth</labelNoun>
+		<description>Mochi slime jelly in the bloodstream. A soft, comforting warmth settles over the eater.</description>
+		<defaultLabelColor>(0.85,0.75,0.6)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<!-- 3 per day = full severity gone after 8 in-game hours. -->
+				<severityPerDay>-3.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<!-- Paralytic poison injected by a sea slime's tentacles. Heavily slows the victim
+		 while it lasts (1 in-game hour). Applied by the paralytic tentacles gizmo. -->
+	<HediffDef>
+		<defName>PMM_Hediff_SeaParalytic</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>sea slime paralysis</label>
+		<labelNoun>a sea slime paralysis</labelNoun>
+		<description>A paralytic toxin from a sea slime's tentacles is spreading through the body. Limbs feel heavy and slow.</description>
+		<defaultLabelColor>(0.2,0.6,0.7)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>true</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<!-- 24 per day = full severity gone after 1 in-game hour. -->
+				<severityPerDay>-24.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<!-- x0.25: the victim moves at a quarter speed while paralysed. -->
+						<postFactor>0.25</postFactor>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!--
+		Hidden hediff that drives periodic slime jelly production. Added and removed by the
+		slime gel gene (Gene_SlimeGel.PostAdd/PostRemove), so any gene carrier oozes jelly.
+		Invisible on the Health tab and carries no effects besides the production comp.
+	-->
+	<HediffDef>
+		<defName>PMM_Hediff_SlimeJellyOozing</defName>
+		<label>slime jelly oozing</label>
+		<description>This slime's body is slowly shedding blobs of slime jelly.</description>
+		<!-- Custom hediff class overrides Visible to false: it drives jelly production only
+		     and never appears on the Health tab. -->
+		<hediffClass>PMM_SlimeFaction.Hediff_SlimeJellyOozing</hediffClass>
+		<isBad>false</isBad>
+		<everCurableByItem>false</everCurableByItem>
+		<initialSeverity>1</initialSeverity>
+		<maxSeverity>1</maxSeverity>
+		<comps>
+			<li Class="PMM_SlimeFaction.HediffCompProperties_SlimeJellyProduction">
+				<intervalDays>1</intervalDays>
+				<jellyCount>2~4</jellyCount>
+			</li>
+		</comps>
+	</HediffDef>
+
+</Defs>
