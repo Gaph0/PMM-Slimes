@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+		Parasite slime: a rare, single-blob item. Deliberately NOT parented on
+		PMM_SlimeJellyBase: the jelly base carries IngestionOutcomeDoer_SlimeJelly
+		(monsterises women into a xenotype slime, replacing xenotype/backstories),
+		and inherited outcome-doer lists merge additively and cannot be removed.
+		A parasite slime instead infests the woman who eats it, turning her into a
+		slime carrier: she keeps her race, xenotype, backstories, name, hair, skin
+		and genes, and gains only the Momo and slime-gel genes.
+		Acquisition: exotic-goods traders (ExoticMisc tag + a Patches stock entry).
+		Graphic: placeholder reusing the vanilla insect jelly texture.
+	-->
+	<ThingDef>
+		<defName>PMM_ParasiteSlime</defName>
+		<label>parasite slime</label>
+		<description>A quivering blob of semiliquid slime, warm to the touch. Unlike its kin it cannot take a woman's shape on its own - instead it infests a human woman who consumes it, melting into her body and remaking her from the inside while leaving her mind, memories and appearance eerily intact.\n\nA woman who eats this will become a slime carrier. Men are unaffected.</description>
+		<thingClass>ThingWithComps</thingClass>
+		<category>Item</category>
+		<drawerType>MapMeshOnly</drawerType>
+		<resourceReadoutPriority>Middle</resourceReadoutPriority>
+		<useHitPoints>true</useHitPoints>
+		<selectable>true</selectable>
+		<altitudeLayer>Item</altitudeLayer>
+		<stackLimit>1</stackLimit>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+		</comps>
+		<alwaysHaulable>true</alwaysHaulable>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<rotatable>false</rotatable>
+		<pathCost>14</pathCost>
+		<graphicData>
+			<!-- Placeholder art reusing the vanilla insect jelly texture. Must be
+			     Graphic_StackCount (as on the jelly defs and vanilla InsectJelly):
+			     the files on disk are InsectJelly_a/_b/_c, so Graphic_Single's
+			     as-is load of this path finds nothing. -->
+			<texPath>Things/Item/Resource/AnimalProductRaw/InsectJelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<statBases>
+			<MarketValue>800</MarketValue>
+			<Mass>0.5</Mass>
+			<Nutrition>0.05</Nutrition>
+			<FoodPoisonChanceFixedHuman>0</FoodPoisonChanceFixedHuman>
+		</statBases>
+		<ingestible>
+			<foodType>AnimalProduct</foodType>
+			<preferability>MealAwful</preferability>
+			<ingestEffect>EatVegetarian</ingestEffect>
+			<ingestSound>Meal_Eat</ingestSound>
+			<outcomeDoers>
+				<li Class="PMM_SlimeFaction.IngestionOutcomeDoer_ParasiteSlime"/>
+			</outcomeDoers>
+		</ingestible>
+		<thingCategories>
+			<li>AnimalProductRaw</li>
+		</thingCategories>
+		<!-- Exotic-goods traders can stock it; the guaranteed single-blob stock entry
+		     is injected by Patches/Patches_ParasiteSlimeTrader.xml. -->
+		<tradeTags>
+			<li>ExoticMisc</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!--
+		The parasite's silent takeover countdown. Invisible by design: the woman feels
+		nothing while the slime melts into her throat, stomach and womb and fuses with
+		her. Severity climbs over ~2 days via the vanilla SeverityPerDay comp; at full
+		severity the hediff class adds the Momo + slime-gel genes (the "turn"), removes
+		itself, and fires the turn alert letter. Not curable, not "bad", and never
+		shown - so it cannot be tended away. Started by event acceptance or item
+		ingestion (SlimeCarrierUtility.BeginTakeover).
+	-->
+	<HediffDef>
+		<defName>PMM_Hediff_ParasiteTakeover</defName>
+		<hediffClass>PMM_SlimeFaction.Hediff_ParasiteTakeover</hediffClass>
+		<label>parasite slime takeover</label>
+		<labelNoun>a parasite slime takeover</labelNoun>
+		<description>A parasite slime is fusing with her body. There is no outward sign - yet.</description>
+		<isBad>false</isBad>
+		<everCurableByItem>false</everCurableByItem>
+		<initialSeverity>0.0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<!-- 0 -> 1.0 in 2 days. -->
+				<severityPerDay>0.5</severityPerDay>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<!--
+		The slime carrier herself: the marker hediff that distinguishes a carrier from
+		a true slime (both carry the slime-gel gene). Everything carrier-specific keys
+		off this hediff:
+		  - sterile: the slime has fused with her womb, so she can never conceive
+		    (fertilityFactor 0, applied by vanilla StatPart_FertilityByHediffs;
+		    unaffected by Project Momo's age-curve patch);
+		  - no periodic jelly oozing and no jelly butcher yield (guards in the
+		    slime-gel patches): butchering her yields only human skin and meat;
+		  - hidden while she passes as an ordinary woman (event spawn, save-loaded
+		    carriers), revealed when the colony learns the truth (event reveal or the
+		    sudden takeover of an infested colonist).
+	-->
+	<HediffDef>
+		<defName>PMM_Hediff_ParasiteCarrier</defName>
+		<hediffClass>PMM_SlimeFaction.Hediff_ParasiteCarrier</hediffClass>
+		<label>slime carrier</label>
+		<labelNoun>a slime carrier</labelNoun>
+		<description>A parasite slime has fused with her body from head to toe. She looks like the woman she was, but her organs have been remade into a monster's essence-drinking equivalents. Her skin stays slick with slime, every wound she suffers is a bruise, and her remade womb can never bear a child.</description>
+		<isBad>false</isBad>
+		<everCurableByItem>false</everCurableByItem>
+		<initialSeverity>1.0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
+		<stages>
+			<li>
+				<fertilityFactor>0</fertilityFactor>
+			</li>
+		</stages>
+	</HediffDef>
+
+</Defs>

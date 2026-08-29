@@ -79,6 +79,28 @@
 		<letterDef>NeutralEvent</letterDef>
 	</IncidentDef>
 
+	<!--
+		A travelling woman walks in. The slime-carrier mirror of the nureonago visit:
+		same talk-to-join flow, but NO weather dependency - a parasite slime needs no
+		rain to pass as human. The worker (IncidentWorker_CarrierSlimeVisit) only fires
+		while the colony has at least one bondable man (the parasite seeks men, like any
+		slime) and no carrier is already on the map. The woman is a real, once-ordinary
+		human: vanilla backstories, name and looks, with the parasite hidden inside her.
+	-->
+	<IncidentDef>
+		<defName>PMM_CarrierSlimeVisit</defName>
+		<label>travelling woman</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PMM_SlimeFaction.IncidentWorker_CarrierSlimeVisit</workerClass>
+		<baseChance>0.4</baseChance>
+		<populationEffect>IncreaseMedium</populationEffect>
+		<letterLabel>A travelling woman</letterLabel>
+		<letterDef>NeutralEvent</letterDef>
+	</IncidentDef>
+
 	<IncidentDef>
 		<defName>PMM_TaisuiWandersIn</defName>
 		<label>taisui wanders in</label>

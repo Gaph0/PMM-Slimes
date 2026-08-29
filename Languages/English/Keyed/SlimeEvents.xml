@@ -24,4 +24,29 @@ Let her join the settlement?</PMM_NureonagoDialogue>
 	<PMM_NureonagoDisguiseBroken>Her disguise is broken! {PAWN_nameDef} is a nureonago, and she is furious.</PMM_NureonagoDisguiseBroken>
 	<PMM_NureonagoScorned>{PAWN_nameDef} has been spurned - and the nureonago is far stronger than she looks.</PMM_NureonagoScorned>
 
+	<!-- Parasite slime item -->
+	<PMM_ParasiteSlimeNoEffect>{PAWN_nameDef} eats the parasite slime. It slides down harmlessly - it can only infest a human woman.</PMM_ParasiteSlimeNoEffect>
+	<PMM_ParasiteSlimeStatLabel>Infests</PMM_ParasiteSlimeStatLabel>
+	<PMM_ParasiteSlimeStatValue>women only</PMM_ParasiteSlimeStatValue>
+	<PMM_ParasiteSlimeStatDesc>A woman who eats a parasite slime will be infested and slowly remade into a slime carrier. Men, children and monsters are unaffected.</PMM_ParasiteSlimeStatDesc>
+
+	<!-- Slime carrier turn alert: fires when the hidden ~2-day takeover completes
+	     (the item path's missing alert, and the accepted traveller's turn). -->
+	<PMM_LetterLabelCarrierTurn>The slime within</PMM_LetterLabelCarrierTurn>
+	<PMM_LetterCarrierTurn>The truth slithers into the open: a parasite slime has fused with {PAWN_nameDef}'s body, remaking her from the inside while leaving her face, her hair and her memories eerily intact. She is a slime carrier - outwardly the woman she always was, inwardly a monster.</PMM_LetterCarrierTurn>
+
+	<!-- Slime carrier visit event -->
+	<PMM_LetterCarrierArrive>A travelling woman has walked up to the edge of the settlement and is waiting there, smiling warmly. She's called {PAWN_nameDef}. She says she's been on the road a long time and is looking for a place to belong.
+
+Perhaps one of your people should go and talk to her. She doesn't look like she'll wait forever.</PMM_LetterCarrierArrive>
+	<PMM_TalkToCarrier>Talk to {PAWN_nameDef}</PMM_TalkToCarrier>
+	<PMM_TalkToCarrierNoPath>Talk to the traveller (no path)</PMM_TalkToCarrierNoPath>
+	<PMM_CarrierDialogueTitle>A travelling woman</PMM_CarrierDialogueTitle>
+	<PMM_CarrierDialogue>{TALKER_nameDef} approaches the waiting traveller. Up close, her skin has a faint, healthy sheen, and she returns a warm, hopeful smile. She says she's been travelling alone for a long time, and that she would very much like to stay.
+
+Let her join the settlement?</PMM_CarrierDialogue>
+	<PMM_CarrierAccept>Accept her</PMM_CarrierAccept>
+	<PMM_CarrierReject>Send her away</PMM_CarrierReject>
+	<PMM_CarrierDisguiseBroken>{PAWN_nameDef}'s composure cracks - she turns and slips away toward the edge of the map, as if something within her is desperate to keep its secret.</PMM_CarrierDisguiseBroken>
+
 </LanguageData>

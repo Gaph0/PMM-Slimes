@@ -76,6 +76,62 @@
 	</PawnKindDef>
 
 	<!--
+		The slime carrier's disguise: an ordinary human woman who wanders up to the
+		colony. Spawned only by the PMM_CarrierSlimeVisit incident. Like the nureonago
+		she is a plain Human-race baseliner with no gear - but UNLIKE the nureonago she
+		keeps her vanilla-generated backstories, name, hair and looks: she really was an
+		ordinary woman once, and the parasite inside her preserves the facade perfectly.
+		The incident carrier-ifies her post-generation (Momo + slime-gel genes and the
+		hidden carrier hediff), so nothing about her reads as a monster until the reveal.
+	-->
+	<PawnKindDef>
+		<defName>PMM_CarrierSlimeRefugee</defName>
+		<label>travelling woman</label>
+		<race>Human</race>
+		<fixedGender>Female</fixedGender>
+		<maxGenerationAge>35</maxGenerationAge>
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<apparelIgnorePollution>true</apparelIgnorePollution>
+		<combatPower>35</combatPower>
+		<initialWillRange>3~5</initialWillRange>
+		<initialResistanceRange>6~12</initialResistanceRange>
+		<!-- Dressed like any down-on-her-luck traveller: a cheap, worn outfit from
+		     the basic industrial pool (the beggar/slave pattern), so she looks the
+		     part of an ordinary woman down on her luck rather than a naked oddity.
+		     No weapon (the incident passes no weapon money), no headgear. -->
+		<apparelTags>
+			<li>IndustrialBasic</li>
+		</apparelTags>
+		<apparelMoney>0~350</apparelMoney>
+		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<!-- Dress for the weather like any real traveller: apparelIgnoreSeasons false
+		     lets the generator add a warm layer (parka/jacket) in cold biomes instead
+		     of the beggar pattern's any-weather outfit. -->
+		<apparelIgnoreSeasons>false</apparelIgnoreSeasons>
+		<!-- Her REAL backstories are generated here (and revealed on acceptance): a
+		     full shuffle of childhoods, but adulthoods drawn only from the colonist
+		     pool (Offworld/Outlander/Tribal/ImperialCommon) - she was once an
+		     ordinary woman of the rim, not a wild creature or a pirates' spawn.
+		     The incident masks them with "unknown" placeholders at spawn and
+		     restores these on acceptance. -->
+		<backstoryFilters>
+			<li>
+				<categoriesAdulthood>
+					<li>Offworld</li>
+					<li>Outlander</li>
+					<li>Tribal</li>
+					<li>ImperialCommon</li>
+				</categoriesAdulthood>
+			</li>
+		</backstoryFilters>
+		<xenotypeSet>
+			<xenotypeChances>
+				<Baseliner>100</Baseliner>
+			</xenotypeChances>
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<!--
 		Bubble slime pawn kind, spawned only by the PMM_BubbleSlimeWandersIn incident
 		(polluted maps with caves). Same naked, unarmed wild-creature setup as
 		PMM_SlimeWild, but pinned to the bubble race/xenotype.

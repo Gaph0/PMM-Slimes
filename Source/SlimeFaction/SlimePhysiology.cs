@@ -120,6 +120,14 @@ namespace PMM_SlimeFaction
                 return;
             }
 
+            // A slime carrier is still human flesh and skin under the slime's influence:
+            // let vanilla butchery run (she kept her Human race, so Meat_Human and
+            // Leather_Human fall out of the normal path). No jelly from her, ever.
+            if (SlimeCarrierUtility.IsCarrier(__instance))
+            {
+                return;
+            }
+
             // Yield = MeatAmount stat × butcher efficiency. MeatAmount is base 20 on the
             // slime race (scaled by body size and butcher-yield stat parts), so a healthy
             // adult at full efficiency drops ~20 jelly, and a careless or low-skill

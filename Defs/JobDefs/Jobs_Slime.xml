@@ -14,4 +14,16 @@
 		<playerInterruptible>true</playerInterruptible>
 	</JobDef>
 
+	<!--
+		The "talk to the traveller" job, issued from the right-click float menu on the
+		disguised slime carrier. Mirrors PMM_Job_TalkToNureonago: the driver walks the
+		colonist up to her, then opens the accept/reject dialog.
+	-->
+	<JobDef>
+		<defName>PMM_Job_TalkToCarrierSlime</defName>
+		<driverClass>PMM_SlimeFaction.JobDriver_TalkToCarrierSlime</driverClass>
+		<reportString>talking to the traveller.</reportString>
+		<playerInterruptible>true</playerInterruptible>
+	</JobDef>
+
 </Defs>

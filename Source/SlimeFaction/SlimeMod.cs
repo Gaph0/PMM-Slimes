@@ -62,6 +62,9 @@ namespace PMM_SlimeFaction
         public static ThingDef PMM_SlimeJellyMochi;
         public static HediffDef PMM_Hediff_SeaParalytic;
         public static HediffDef PMM_Hediff_SlimeJellyOozing;
+        public static HediffDef PMM_Hediff_ParasiteCarrier;
+        public static HediffDef PMM_Hediff_ParasiteTakeover;
+        public static ThingDef PMM_ParasiteSlime;
         public static ThingDef PMM_Race_SlimeMomo;
         public static ThingDef PMM_Race_SlimeMomoRed;
         public static ThingDef PMM_Race_SlimeMomoBubble;
@@ -172,7 +175,35 @@ namespace PMM_SlimeFaction
                 }
             }
 
+            // Same preparation for a slime carrier: attach the wait/leave brain, de-guest
+            // her, and carrier-ify her in secret. This also runs for the visit incident
+            // itself (generation routes through this postfix); everything is idempotent.
+            if (__result?.kindDef?.defName == IncidentWorker_CarrierSlimeVisit.CarrierKind)
+            {
+                if (__result.TryGetComp<CarrierSlimeVisitorComp>() == null)
+                {
+                    CarrierSlimeVisitorComp comp = new CarrierSlimeVisitorComp();
+                    comp.parent = __result;
+                    __result.AllComps.Add(comp);
+                }
+                if (__result.guest != null)
+                {
+                    HostFactionRef(__result.guest) = null;
+                }
+                SlimeCarrierUtility.MakeCarrier(__result, revealed: false);
+                // A dev-spawn never runs the incident, so mask her backstories here too
+                // (the incident masks its own right after this postfix runs).
+                CarrierSlimeBackstories.Mask(__result);
+            }
+
             if (__result == null || !Gene_SlimeGel.IsSlime(__result))
+            {
+                return;
+            }
+            // A slime carrier keeps her Human race (human skin and meat when butchered);
+            // belt-and-braces: MakeCarrier normally adds the genes post-generation, so
+            // this postfix never even sees her gel gene.
+            if (SlimeCarrierUtility.IsCarrier(__result))
             {
                 return;
             }
@@ -206,7 +237,11 @@ namespace PMM_SlimeFaction
         public override void PostAdd()
         {
             base.PostAdd();
+            // Slime carriers carry the gel gene but never ooze: the parasite keeps every
+            // drop for its host. MakeCarrier adds the carrier marker BEFORE the genes, so
+            // this guard is already true when the gel gene lands on a carrier-to-be.
             if (pawn?.health != null && !pawn.Dead &&
+                !SlimeCarrierUtility.IsCarrier(pawn) &&
                 pawn.health.hediffSet.GetFirstHediffOfDef(SlimeDefOf.PMM_Hediff_SlimeJellyOozing) == null)
             {
                 pawn.health.AddHediff(SlimeDefOf.PMM_Hediff_SlimeJellyOozing);
@@ -238,7 +273,10 @@ namespace PMM_SlimeFaction
     {
         public static void Postfix(PawnRenderNode __instance, Pawn pawn, ref Color __result)
         {
-            if (__instance is PawnRenderNode_Hair && pawn?.story != null && Gene_SlimeGel.IsSlime(pawn))
+            // Carriers keep their natural hair colour: only the gel body of a true slime
+            // gets the hair=skin gel look.
+            if (__instance is PawnRenderNode_Hair && pawn?.story != null &&
+                Gene_SlimeGel.IsSlime(pawn) && !SlimeCarrierUtility.IsCarrier(pawn))
             {
                 __result = pawn.story.SkinColor;
             }

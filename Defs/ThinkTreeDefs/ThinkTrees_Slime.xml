@@ -162,6 +162,23 @@
                                         </subNodes>
                                 </li>
 
+                                <!-- The disguised slime carrier loiters just outside the colony,
+                                     exactly like the nureonago (NOT a wild man, never tameable).
+                                     JobGiver_CarrierSlimeWait wanders her toward and around the wait
+                                     spot her comp picked at spawn; when her visit time runs out the
+                                     comp clears the spot and the final-backup branch exits her. -->
+                                <li Class="ThinkNode_ConditionalPawnKind">
+                                        <pawnKind>PMM_CarrierSlimeRefugee</pawnKind>
+                                        <subNodes>
+                                                <li Class="ThinkNode_Tagger">
+                                                        <tagToGive>Idle</tagToGive>
+                                                        <subNodes>
+                                                                <li Class="PMM_SlimeFaction.JobGiver_CarrierSlimeWait" />
+                                                        </subNodes>
+                                                </li>
+                                        </subNodes>
+                                </li>
+
                         </subNodes>
                 </thinkRoot>
         </ThinkTreeDef>
