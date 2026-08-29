@@ -25,8 +25,19 @@ if [ -z "$TOKEN" ]; then
   exit 1
 fi
 
-# 1. Build (must succeed before we ship anything)
-./build.sh
+# 1. Build only if the DLL is missing or older than the newest source file
+DLL="Assemblies/PMM_SlimeFaction.dll"
+if [ ! -f "$DLL" ] || [ -n "$(find Source -name '*.cs' -newer "$DLL" -print -quit)" ]; then
+  ./build.sh
+else
+  echo "$DLL is up to date — skipping build"
+fi
+
+# 1b. Ensure the tag exists locally and on GitHub
+if ! git rev-parse -q --verify "refs/tags/$TAG" > /dev/null; then
+  git tag "$TAG"
+fi
+git push -q origin "$TAG"
 
 # 2. Zip the mod folder the way the Steam Workshop layout expects it
 ZIP="$MOD-$TAG.zip"
