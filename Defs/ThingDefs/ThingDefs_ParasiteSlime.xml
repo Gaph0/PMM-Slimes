@@ -58,8 +58,9 @@
 		<thingCategories>
 			<li>AnimalProductRaw</li>
 		</thingCategories>
-		<!-- Exotic-goods traders can stock it; the guaranteed single-blob stock entry
-		     is injected by Patches/Patches_ParasiteSlimeTrader.xml. -->
+		<!-- Exotic-goods traders can stock it: the ExoticMisc tradeTag lets the
+		     vanilla tag-based stock generators roll it sporadically (very rare,
+		     never guaranteed). -->
 		<tradeTags>
 			<li>ExoticMisc</li>
 		</tradeTags>
