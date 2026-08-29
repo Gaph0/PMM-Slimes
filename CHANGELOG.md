@@ -1,4 +1,5 @@
 # Changelog
+- 2026-08-29: ci: add steamcmd workshop upload script
 - 2026-08-29: chore: swap About preview thumbnail to png
 - 2026-08-29: refactor: split event strings out of SlimePsycasts.xml into SlimeEvents.xml
 - 2026-08-29: ci: skip fresh builds and auto-tag in release.sh
