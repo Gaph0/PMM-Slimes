@@ -33,7 +33,7 @@ Let her join the settlement?</PMM_NureonagoDialogue>
 	<!-- Slime carrier turn alert: fires when the hidden ~2-day takeover completes
 	     (the item path's missing alert, and the accepted traveller's turn). -->
 	<PMM_LetterLabelCarrierTurn>The slime within</PMM_LetterLabelCarrierTurn>
-	<PMM_LetterCarrierTurn>The truth slithers into the open: a parasite slime has fused with {PAWN_nameDef}'s body, remaking her from the inside while leaving her face, her hair and her memories eerily intact. She is a slime carrier - outwardly the woman she always was, inwardly a monster.</PMM_LetterCarrierTurn>
+	<PMM_LetterCarrierTurn>The truth slithers into the open: a parasite slime has fused with {PAWN_nameDef}'s body, remaking her from the inside while leaving her body and her memories eerily intact. She is a slime carrier - outwardly the woman she always was, inwardly a monster.</PMM_LetterCarrierTurn>
 
 	<!-- Slime carrier visit event -->
 	<PMM_LetterCarrierArrive>A travelling woman has walked up to the edge of the settlement and is waiting there, smiling warmly. She's called {PAWN_nameDef}. She says she's been on the road a long time and is looking for a place to belong.

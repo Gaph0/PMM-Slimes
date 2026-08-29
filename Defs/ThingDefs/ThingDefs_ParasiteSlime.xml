@@ -15,7 +15,7 @@
 	<ThingDef>
 		<defName>PMM_ParasiteSlime</defName>
 		<label>parasite slime</label>
-		<description>A quivering blob of semiliquid slime, warm to the touch. Unlike its kin it cannot take a woman's shape on its own - instead it infests a human woman who consumes it, melting into her body and remaking her from the inside while leaving her mind, memories and appearance eerily intact.\n\nA woman who eats this will become a slime carrier. Men are unaffected.</description>
+             <description>A quivering blob of semiliquid slime, warm to the touch. Unlike its kin it cannot take a woman's shape on its own - instead it infests a human woman who consumes it, melting into her body and remaking her from the inside while leaving her body and her memories eerily intact.\n\nA woman who eats this will become a slime carrier. Men are unaffected.</description>
 		<thingClass>ThingWithComps</thingClass>
 		<category>Item</category>
 		<drawerType>MapMeshOnly</drawerType>
@@ -83,11 +83,14 @@
 		<description>A parasite slime is fusing with her body. There is no outward sign - yet.</description>
 		<isBad>false</isBad>
 		<everCurableByItem>false</everCurableByItem>
-		<initialSeverity>0.0</initialSeverity>
+		<!-- MUST be > 0: Hediff.ShouldRemove is (Severity <= 0), so a severity-0 hediff
+		     is culled by the health tracker on its first tick, before SeverityPerDay can
+		     ever climb - the exact "never transforms" bug. Start just above zero. -->
+		<initialSeverity>0.01</initialSeverity>
 		<maxSeverity>1.0</maxSeverity>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<!-- 0 -> 1.0 in 2 days. -->
+				<!-- 0.01 -> 1.0 in ~2 days. -->
 				<severityPerDay>0.5</severityPerDay>
 			</li>
 		</comps>
