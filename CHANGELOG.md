@@ -1,6 +1,7 @@
 # Changelog
-- 2026-08-30: fix: incident carrier kept unknown backstories after accept
-- 2026-08-29: fix: slime carrier takeover severity + text tweaks
+- 2026-08-30: changelog: credit slime mob-rank cap (SlimeMobRank.cs)
+- 2026-08-30: feat: cap wild slime spawn rank at E/F in Isekai Leveling (slimes sit at the bottom of the Mamono food chain; still rank up through play)
+- 2026-08-30: fix: incident carrier kept "unknown" backstories after accept - the generation postfix and the incident both called Mask, and the second call re-snapshotted the already-masked "unknown" placeholders over the real ones; Mask is now idempotent
 - 2026-08-29: fix: slime carrier never transformed - takeover hediff had initialSeverity 0 (culled on first tick by Hediff.ShouldRemove) and overrode TickInterval instead of PostTickInterval; now starts at 0.01 and climbs via the SeverityPerDay comp
 - 2026-08-29: Balance: drop guaranteed parasite slime from exotic traders
 - 2026-08-29: feat: parasite slime item and slime carrier (rare ExoticMisc trader roll, never guaranteed; infested women keep race/backstories/hair/genes, gain Momo + slime-gel genes, go sterile, yield human skin/meat)
