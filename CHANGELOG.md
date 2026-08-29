@@ -1,4 +1,6 @@
 # Changelog
+- 2026-08-29: ci: remove workshop upload integration
+- 2026-08-29: feat: parasite slime item and slime carrier (invisible infestation, momo genes, sterile, human butcher yields, carrier visit event)
 - 2026-08-29: ci: add steamcmd workshop upload script
 - 2026-08-29: chore: swap About preview thumbnail to png
 - 2026-08-29: refactor: split event strings out of SlimePsycasts.xml into SlimeEvents.xml
