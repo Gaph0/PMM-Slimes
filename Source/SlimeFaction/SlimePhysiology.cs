@@ -52,10 +52,18 @@ namespace PMM_SlimeFaction
     /// bruise. A prefix on <see cref="Thing.TakeDamage"/> — which Pawn does not override,
     /// so this single point catches all damage before armour and damage workers run —
     /// that rewrites the incoming <see cref="DamageInfo"/> in place for slime targets:
-    /// the damage def becomes Crush (flesh crush = bruise), and hits aimed at solid parts
-    /// (bones are the only solid body parts) are retargeted to the nearest non-solid
-    /// ancestor. Editing in place keeps every other flag (amount, armour penetration,
-    /// instigator, executions, propagation) intact.
+    /// the damage def becomes Blunt, and hits aimed at solid parts (bones are the only
+    /// solid body parts) are retargeted to the nearest non-solid ancestor. Editing in
+    /// place keeps every other flag (amount, armour penetration, instigator, executions,
+    /// propagation) intact.
+    ///
+    /// Why Blunt and not Crush: HealthUtility.GetHediffDefFromDamage picks the wound
+    /// hediff as hediffSkin for skin-covered parts, then hediffSolid for solid parts,
+    /// then the plain hediff as fallback. Vanilla Crush's hediffSkin is Cut (a crushing
+    /// blow tears skin), so converting to Crush made every flesh wound a cut — the exact
+    /// opposite of this rule. Blunt's hediffSkin is Bruise, which is what we want. Blunt
+    /// also brings the vanilla DamageWorker_Blunt extras (stun chance on heavy core-part
+    /// hits, chance of inner-part damage) — the same profile as fists and clubs.
     /// </summary>
     [HarmonyPatch(typeof(Thing), nameof(Thing.TakeDamage))]
     public static class Patch_SlimeTakeDamage
@@ -76,9 +84,11 @@ namespace PMM_SlimeFaction
             }
 
             // Any external violence lands as a bruise: bullets, cuts, burns, bites, all of it.
-            if (dinfo.Def != DamageDefOf.Crush && dinfo.Def.ExternalViolenceFor(pawn))
+            // Blunt, not Crush: GetHediffDefFromDamage prefers hediffSkin on skin-covered
+            // parts, and Crush's hediffSkin is Cut — Blunt's is Bruise.
+            if (dinfo.Def != DamageDefOf.Blunt && dinfo.Def.ExternalViolenceFor(pawn))
             {
-                DefField.SetValueDirect(__makeref(dinfo), DamageDefOf.Crush);
+                DefField.SetValueDirect(__makeref(dinfo), DamageDefOf.Blunt);
             }
 
             // No bones: retarget hits on solid parts (only bones are solid) to flesh.

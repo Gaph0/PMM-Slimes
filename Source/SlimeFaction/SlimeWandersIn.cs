@@ -32,37 +32,20 @@ namespace PMM_SlimeFaction
         /// <summary>The pawn kind this incident spawns. The bubble and taisui variants override this.</summary>
         protected virtual PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_SlimeWild");
 
-        /// <summary>Roof sampling stride: every 8th cell in x and z (~1.5% of the map).</summary>
-        protected const int RoofSampleStride = 8;
-
         /// <summary>
-        /// Thick-roof sample hits needed to count as "has caves". 8 hits at stride 8 is
-        /// ~500 overhead-mountain cells - a modest cave system, not a full mountain.
-        /// </summary>
-        protected const int MinThickRoofSamples = 8;
-
-        /// <summary>
-        /// Cheap cave check: sample the roof grid on a stride and count overhead
-        /// mountain (thick rock roof). A cave system has hundreds of such cells, so a
-        /// coarse sample finds it without scanning the whole map every storyteller tick.
-        /// Shared by the bubble (caves + pollution) and taisui (caves only) wander-ins.
+        /// Cave check: does the world tile GENERATE caves? Uses the game's own
+        /// <see cref="RimWorld.Planet.World.HasCaves"/>, which reports whether the tile
+        /// carries a cave TileMutator (the same check vanilla's cave map generator uses).
+        /// This replaced the roof-grid sampler: that heuristic only counted
+        /// overhead-mountain ROCK on the current map, so any map with a small rocky hill
+        /// (~500 mountain cells) read as "caves" even on a caveless world tile. The world
+        /// mutator answers "does this tile have caves" directly and cannot false-positive
+        /// on incidental rock. Shared by the bubble (caves + pollution) and taisui
+        /// (caves only) wander-ins.
         /// </summary>
         protected static bool HasCaves(Map map)
         {
-            int hits = 0;
-            RoofGrid roofGrid = map.roofGrid;
-            for (int x = 0; x < map.Size.x; x += RoofSampleStride)
-            {
-                for (int z = 0; z < map.Size.z; z += RoofSampleStride)
-                {
-                    if (roofGrid.RoofAt(new IntVec3(x, 0, z)) == RoofDefOf.RoofRockThick &&
-                        ++hits >= MinThickRoofSamples)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return Find.World.HasCaves(map.Tile);
         }
 
         /// <summary>Vanilla checks, plus the climate gate (grassland / warm / humid by default).</summary>
@@ -237,7 +220,7 @@ namespace PMM_SlimeFaction
     /// A bubble slime wanders in. Same wild-man spawn flow as the common slime, but it
     /// only fires on maps that have BOTH caves and toxicity - the dark, filthy places
     /// bubble slimes call home - and always spawns the bubble-only pawn kind.
-    /// Caves = enough overhead-mountain roof on the map; toxicity = world-tile pollution.
+    /// Caves = the world tile generates caves (cave TileMutator); toxicity = world-tile pollution.
     /// </summary>
     public class IncidentWorker_BubbleSlimeWandersIn : IncidentWorker_SlimeWandersIn
     {
@@ -249,7 +232,7 @@ namespace PMM_SlimeFaction
 
         protected override PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_SlimeWildBubble");
 
-        /// <summary>Bubble slime climate gate: a polluted tile with caves on the map.</summary>
+        /// <summary>Bubble slime climate gate: a polluted tile whose world tile generates caves.</summary>
         protected override bool ClimateAcceptable(Map map)
         {
             float pollution = Find.WorldGrid[map.Tile].pollution;
@@ -260,7 +243,7 @@ namespace PMM_SlimeFaction
             }
             if (!HasCaves(map))
             {
-                Log.Message("[PMM_Slime] bubble wander-in blocked: no caves (overhead mountain) on the map");
+                Log.Message("[PMM_Slime] bubble wander-in blocked: world tile has no caves (no cave tile mutator)");
                 return false;
             }
             return true;
@@ -269,7 +252,7 @@ namespace PMM_SlimeFaction
 
     /// <summary>
     /// A taisui wanders in. Same wild-man spawn flow as the common slime, but it only
-    /// fires on maps that have caves (overhead mountain) - the deep underground places
+    /// fires on world tiles that generate caves - the deep underground places
     /// Taisui endlessly circle - and always spawns the taisui-only pawn kind. No biome
     /// or climate gate: Taisui are not tied to surface weather, only to caves.
     /// </summary>
@@ -277,12 +260,12 @@ namespace PMM_SlimeFaction
     {
         protected override PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_SlimeWildTaisui");
 
-        /// <summary>Taisui climate gate: any map that has caves.</summary>
+        /// <summary>Taisui climate gate: any world tile that generates caves.</summary>
         protected override bool ClimateAcceptable(Map map)
         {
             if (!HasCaves(map))
             {
-                Log.Message("[PMM_Slime] taisui wander-in blocked: no caves (overhead mountain) on the map");
+                Log.Message("[PMM_Slime] taisui wander-in blocked: world tile has no caves (no cave tile mutator)");
                 return false;
             }
             return true;
