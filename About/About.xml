@@ -7,15 +7,15 @@
 	</supportedVersions>
 	<packageId>PMM.SlimeFaction</packageId>
 	<description>
-Adds wild slimes for Project Momo: amorphous slime-folk who wander the warm, wet grasslands.
+Adds wild slimes for Project Momo: amorphous slime-folk who wander in from the wilds - warm grasslands, polluted caverns, the deep underground, and the sea.
 
-Slimes only appear in the wild, wandering onto your map like wild men - and like wild men, they can be tamed or captured and convinced to join. They spawn from four slime xenotypes (Biotech): common blue slimes, fierce red slimes, dark slimes, and toxin-eating bubble slimes.
+Seven slime xenotypes: common blue slimes, fierce red slimes, spellcasting dark slimes, toxin-eating bubble slimes, genius taisui, coastal sea slimes, and the devoted nureonago. They spawn only in the wild, like wild men - and like wild men they can be tamed or captured and convinced to join. Some don't wait to be found: disguised as ordinary women, the nureonago and the slime carrier walk up to the colony on their own. And a rare parasite slime, eaten by an unwitting woman, remakes her from the inside while leaving her memories eerily intact.
 
-A small C# assembly gives the slimes their signature physiology: their hair always matches their skin, they can never be tattooed, they shed slime filth wherever they walk, and with no bones and no skin, every wound they suffer is a bruise. Butcher one and you get slime jelly, never skin. Slime jelly nourishes like insect jelly with no poison chance - but women who eat too much of it will find themselves melting into slimes. Living slimes also shed blobs of slime jelly periodically.
+A small C# assembly gives the slimes their signature physiology: hair always matches skin, they can never be tattooed, they shed slime filth wherever they walk, and with no bones and no skin, every wound is a bruise. Butcher one and you get slime jelly, never skin. Slime jelly nourishes like insect jelly with no poison chance - each variant with its own boon - but women who eat too much of it melt into slimes. Living slimes ooze jelly daily; bubble slimes gulp down toxic wastepacks; sea slimes paralyse their prey and occasionally turn up on the end of a fishing line.
 
 Their bodies are as soft as a human's to the weather: any temperature fatal to a naked human is fatal to a slime.
 
-Requires the Biotech and Odyssey expansions, and Harmony.
+Requires the Biotech and Odyssey expansions, Harmony, and Project Momo. Optional: Vanilla Psycasts Expanded (the dark slime's Slime Core path), ISEKAI RPG LEVELING (mob-rank caps), Anomaly (taisui strange chats).
 	</description>
 	<modDependencies>
 		<li>

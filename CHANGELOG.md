@@ -1,4 +1,5 @@
 # Changelog
+- 2026-09-02: docs: cover all seven xenotypes and new mechanics in About/README; drop parasite plan doc
 - 2026-09-02: fix: all-bruises dealt cuts; cave gate false-positived on caveless maps
 - 2026-08-30: fix: cave gate false-positived on caveless maps - the roof-grid sampler counted incidental overhead-mountain rock (~500 cells = a small hill) as "caves", letting bubble/taisui slimes wander in anywhere; replaced with vanilla World.HasCaves(map.Tile), which checks the tile's cave TileMutator directly and cannot false-positive on rock (ported from the Elementals gnome gate)
 - 2026-08-30: fix: "all wounds are bruises" produced only cuts - vanilla Crush's skin-covered hediff (hediffSkin) is Cut, and HealthUtility.GetHediffDefFromDamage prefers hediffSkin over the plain hediff, so every flesh wound on a slime came out as a cut; the TakeDamage prefix now converts incoming damage to Blunt (hediffSkin = Bruise) instead of Crush
