@@ -16,6 +16,7 @@
 
 ## Internal
 
+- 2026-09-20: Removed the post-commit changelog hook, which wrote entries in the old format.
 - 2026-09-20: Changed the README to match the code.
 - 2026-09-19: Changed the build to use MSBuild.
 - 2026-09-02: Changed the About text and README to cover all seven xenotypes and the new mechanics.
