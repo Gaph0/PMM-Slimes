@@ -15,7 +15,7 @@ A small C# assembly gives the slimes their signature physiology: hair always mat
 
 Their bodies are as soft as a human's to the weather: any temperature fatal to a naked human is fatal to a slime.
 
-Requires the Biotech and Odyssey expansions, Harmony, and Project Momo. Optional: Vanilla Psycasts Expanded (the dark slime's Slime Core path), ISEKAI RPG LEVELING (mob-rank caps), Anomaly (taisui strange chats).
+Requires the Biotech and Odyssey expansions, Harmony, Big and Small - Framework, and Project Momo. Optional: Vanilla Psycasts Expanded (the dark slime's Slime Core path), ISEKAI RPG LEVELING (mob-rank caps), Anomaly (taisui strange chats).
 	</description>
 	<modDependencies>
 		<li>
@@ -37,12 +37,18 @@ Requires the Biotech and Odyssey expansions, Harmony, and Project Momo. Optional
 			<displayName>Project Momo</displayName>
 			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3786764047</steamWorkshopUrl>
 		</li>
+		<li>
+			<packageId>RedMattis.BetterPrerequisites</packageId>
+			<displayName>Big and Small - Framework</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2925432336</steamWorkshopUrl>
+		</li>
 	</modDependencies>
 	<loadAfter>
 		<li>brrainz.harmony</li>
 		<li>Ludeon.RimWorld.Biotech</li>
 		<li>Ludeon.RimWorld.Odyssey</li>
 		<li>PMM.Core</li>
+		<li>RedMattis.BetterPrerequisites</li>
 		<li>VanillaExpanded.VPsycastsE</li>
 	</loadAfter>
 </ModMetaData>

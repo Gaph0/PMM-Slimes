@@ -9,8 +9,8 @@
 		A parasite slime instead infests the woman who eats it, turning her into a
 		slime carrier: she keeps her race, xenotype, backstories, name, hair, skin
 		and genes, and gains only the Momo and slime-gel genes.
-		Acquisition: exotic-goods traders (ExoticMisc tag + a Patches stock entry).
-		Graphic: placeholder reusing the vanilla insect jelly texture.
+		Acquisition: exotic-goods traders, by the ExoticMisc trade tag (sporadic, never
+		guaranteed). The item carries its own texture under Textures/Things/Items/Parasite/.
 	-->
 	<ThingDef>
 		<defName>PMM_ParasiteSlime</defName>

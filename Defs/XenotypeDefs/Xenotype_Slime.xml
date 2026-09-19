@@ -8,7 +8,6 @@
 		<combatPowerFactor>1.5</combatPowerFactor>
 		<description>Semi-liquid monsters that wander the warm, wet grasslands. Their blue, half-transparent bodies are flexible, and can change into various forms. They are intelligent enough to speak, but their thoughts are simple, and they instinctively wander around in search of human men who will end up as their prey.\n\nTheir gelatinous bodies seal wounds in moments. Their flowing mass moves slowly, and their simple nerve-web feels little pain. They have no bones to break and no skin to cut - every blow lands as a bruise. Wherever they wander, they leave a slick of slime behind, and their bodies shed blobs of nourishing slime jelly. Like any human, they suffer in the heat and the cold.</description>
 		<descriptionShort>Semi-liquid monsters with blue, half-transparent bodies. They heal fast, move slowly, and feel little pain. With no bones and no skin, all wounds are bruises. They leave a trail of slime and shed slime jelly wherever they go.</descriptionShort>
-		<descriptionShort>Semi-liquid monsters with blue, half-transparent bodies. They heal fast, move slowly, and feel little pain. With no bones and no skin, all wounds are bruises. They leave a trail of slime and shed slime jelly wherever they go.</descriptionShort>
 		<!-- Placeholder icon reusing a vanilla texture. Replace with your own art in Textures/UI/Icons/Xenotypes/ and update this path. -->
 		<iconPath>UI/Icons/Xenotypes/Impid</iconPath>
 		<inheritable>true</inheritable>

@@ -1,22 +1,31 @@
 # Changelog
-- 2026-09-19: Build via dotnet: PMM.SlimeFaction.csproj replaces raw csc
-- 2026-09-19: Slime jelly textures, gene/xenotype def updates, README refresh
-- 2026-09-02: docs: cover all seven xenotypes and new mechanics in About/README; drop parasite plan doc
-- 2026-09-02: fix: all-bruises dealt cuts; cave gate false-positived on caveless maps
-- 2026-08-30: fix: cave gate false-positived on caveless maps - the roof-grid sampler counted incidental overhead-mountain rock (~500 cells = a small hill) as "caves", letting bubble/taisui slimes wander in anywhere; replaced with vanilla World.HasCaves(map.Tile), which checks the tile's cave TileMutator directly and cannot false-positive on rock (ported from the Elementals gnome gate)
-- 2026-08-30: fix: "all wounds are bruises" produced only cuts - vanilla Crush's skin-covered hediff (hediffSkin) is Cut, and HealthUtility.GetHediffDefFromDamage prefers hediffSkin over the plain hediff, so every flesh wound on a slime came out as a cut; the TakeDamage prefix now converts incoming damage to Blunt (hediffSkin = Bruise) instead of Crush
-- 2026-08-30: changelog: credit slime mob-rank cap (SlimeMobRank.cs)
-- 2026-08-30: feat: cap wild slime spawn rank at E/F in Isekai Leveling (slimes sit at the bottom of the Mamono food chain; still rank up through play)
-- 2026-08-30: fix: incident carrier kept "unknown" backstories after accept - the generation postfix and the incident both called Mask, and the second call re-snapshotted the already-masked "unknown" placeholders over the real ones; Mask is now idempotent
-- 2026-08-29: fix: slime carrier never transformed - takeover hediff had initialSeverity 0 (culled on first tick by Hediff.ShouldRemove) and overrode TickInterval instead of PostTickInterval; now starts at 0.01 and climbs via the SeverityPerDay comp
-- 2026-08-29: Balance: drop guaranteed parasite slime from exotic traders
-- 2026-08-29: feat: parasite slime item and slime carrier (rare ExoticMisc trader roll, never guaranteed; infested women keep race/backstories/hair/genes, gain Momo + slime-gel genes, go sterile, yield human skin/meat)
-- 2026-08-29: feat: slime carrier visit event (a travelling woman begs to join; staged secret -> 2-day takeover -> turn, with turn alert; accept reveals her colonist backstories, reject/attack she slips away)
-- 2026-08-29: feat: carrier disguise details (beggar-style season-appropriate clothes, "unknown" backstories masked until accepted)
-- 2026-08-29: ci: add steamcmd workshop upload script
-- 2026-08-29: chore: swap About preview thumbnail to png
-- 2026-08-29: refactor: split event strings out of SlimePsycasts.xml into SlimeEvents.xml
-- 2026-08-29: ci: skip fresh builds and auto-tag in release.sh
-- 2026-08-29: ci: add release.sh for GitHub releases
-- 2026-08-29: build: add build.sh (Roslyn csc), fix CS1738 named args
-- 2026-08-29: feat: git hooks for changelog and push checks
+
+## Player-facing
+
+- 2026-09-19: Added Big and Small - Framework as a required mod.
+- 2026-09-19: Added new slime jelly textures.
+- 2026-08-30: Rebalanced wild slime spawns: they start at rank E or F in Isekai Leveling. They still rank up through play.
+- 2026-08-30: Fixed slime carrier backstories staying "unknown" after you accept her.
+- 2026-08-30: Fixed "all wounds are bruises" giving cuts instead of bruises.
+- 2026-08-30: Fixed the cave gate opening on maps that have no caves.
+- 2026-08-29: Rebalanced exotic traders: a parasite slime is no longer guaranteed.
+- 2026-08-29: Added the parasite slime item and the slime carrier. A rare trader roll, never guaranteed. An infested woman keeps her race, backstories, hair and genes, gains the momo and slime-gel genes, goes sterile, and yields human skin and meat.
+- 2026-08-29: Added the slime carrier visit event. A travelling woman begs to join, then secretly takes her over after two days.
+- 2026-08-29: Added carrier disguise details: season-appropriate beggar clothes, and backstories masked as "unknown" until you accept her.
+- 2026-08-29: Fixed the slime carrier never finishing her takeover.
+
+## Internal
+
+- 2026-09-20: Changed the README to match the code.
+- 2026-09-19: Changed the build to use MSBuild.
+- 2026-09-02: Changed the About text and README to cover all seven xenotypes and the new mechanics.
+- 2026-09-02: Removed the parasite plan doc.
+- 2026-08-29: Added git hooks for the changelog and push checks.
+- 2026-08-29: Changed the event strings to live in SlimeEvents.xml instead of SlimePsycasts.xml.
+- 2026-08-29: Changed the About preview thumbnail to a png.
+- 2026-08-29: Removed the Workshop upload step from the release script.
+- 2026-08-29: Added a SteamCMD Workshop upload script.
+- 2026-08-29: Changed release.sh to skip a fresh build and tag the release.
+- 2026-08-29: Added release.sh for GitHub releases.
+- 2026-08-29: Added build.sh.
+- 2026-08-29: Added the initial Slime Faction mod.

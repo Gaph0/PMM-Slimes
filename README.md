@@ -13,6 +13,8 @@ Hard dependencies (load order handled automatically):
 - **Harmony** (the slime physiology code is a Harmony-patched assembly)
 - **Biotech** (the slime xenotypes and genes)
 - **Odyssey** (the `Grasslands` biome, coastal spawns and fishing)
+- **Big and Small - Framework** (`RedMattis.BetterPrerequisites` — the slime races use the
+  Big & Small race pattern)
 - **Project Momo** (`PMM.Core` — slime xenotypes carry the Momo gene; slime jelly, the
   parasite slime and the dark slime's psycasts all feed its corruption/essence systems)
 
@@ -28,7 +30,7 @@ Optional integrations, detected at runtime:
 
 | File | What it defines |
 |---|---|
-| `About/About.xml` | Mod metadata, Harmony + Biotech + Odyssey + Project Momo dependencies |
+| `About/About.xml` | Mod metadata, Harmony + Biotech + Odyssey + Big and Small - Framework + Project Momo dependencies |
 | `Defs/XenotypeDefs/Xenotype_Slime.xml` | The seven slime xenotypes (blue, red, dark, bubble, taisui, sea, nureonago) |
 | `Defs/GeneDefs/Gene_SlimeGel.xml` | `PMM_Gene_SlimeGel` (slime physiology), sea-foam/wet-pale skin genes, `PMM_Gene_Fastidious` |
 | `Defs/PawnKindDefs/PawnKinds_Slime.xml` | Four wild slime kinds + the two disguised-visitor kinds |
@@ -51,7 +53,7 @@ Physiology and spawning rules enforced by the `PMM_Gene_SlimeGel` gene class and
 Harmony patches (roughly one patch class per rule under `Source/SlimeFaction/`):
 
 1. **Slimes drop filth, not trash.** A replacement prefix on `Pawn_FilthTracker.Notify_EnteredNewCell`
-   keeps the `FilthRate` gate (4x from the gene) but always drops `Filth_Slime` — vanilla's
+   keeps the `FilthRate` gate (5x a human's, from the gene's +4 offset) but always drops `Filth_Slime` — vanilla's
    66% terrain-filth / 34% `Filth_Trash` branches never run for slimes.
 2. **Hair always matches skin; no tattoos.** `Patch_SlimeHairColor` postfixes
    `PawnRenderNode.ColorFor` so slime hair renders in the pawn's own skin colour (blue slime =
@@ -114,10 +116,11 @@ Harmony patches (roughly one patch class per rule under `Source/SlimeFaction/`):
    elsewhere. Sea slimes have a second way in — see "Xenotype mechanics" below.
 8. **Butchered into slime jelly, never skin.** A postfix on `Pawn.ButcherProducts` replaces the
    result for slimes with slime jelly (`MeatAmount` 20 × butcher efficiency, rounded; corpses
-   delegate to the inner pawn, so one patch covers both). Each slime race is deep-merged from
-   Human with the matching jelly as `specificMeatDef` and no leather, so the living slime's
-   info card agrees too: blue → blue slime jelly, red/dark/bubble/taisui/sea → their own
-   jellies, nureonago → mochi jelly. **Slime carriers are the exception**: they butcher as
+   delegate to the inner pawn, so one patch covers both), and butchering gives the
+   colour-matched jelly. The race defs carry a single jelly each as `specificMeatDef` and no
+   leather, so the info card is coarser than the butcher output. The blue race — which also
+   hosts a revealed nureonago — carries the generic slime jelly, so her card names slime jelly
+   while she butchers into mochi. **Slime carriers are the exception**: they butcher as
    ordinary humans (skin and meat, no jelly).
 9. **Slime jelly monsterises women who overeat.** Every jelly is an insect-jelly analogue
    (same nutrition, joy, never rots) with **zero** random food-poison chance and a custom
@@ -306,7 +309,8 @@ assembly's metadata gets corrupted.
 ## Installation
 
 Copy the `Project Momo Slime Faction` folder into your RimWorld `Mods` folder and enable it in
-the mod menu. It loads after Harmony, Biotech, Odyssey and Project Momo automatically.
+the mod menu. It loads after Harmony, Biotech, Odyssey, Big and Small - Framework and Project
+Momo automatically.
 
 **Breaking change from the faction version:** saves that contain the old slime confluence
 faction or its settlements will throw missing-def errors on load. Start a fresh save.
@@ -315,10 +319,9 @@ faction or its settlements will throw missing-def errors on load. Start a fresh 
 
 - **Xenotype icons** are placeholders reusing the vanilla Impid icon. Add textures at
   `Textures/UI/Icons/Xenotypes/<name>.png` and update `iconPath` in `Xenotype_Slime.xml`.
-- **Jelly art** reuses the vanilla insect jelly texture; replace `texPath` in
-  `ThingDefs_SlimeJelly.xml` with your own.
-- **Jelly art** and the **parasite slime** reuse the vanilla insect jelly texture; replace
-  `texPath` in `ThingDefs_SlimeJelly.xml` / `ThingDefs_ParasiteSlime.xml` with your own.
+- **Jelly and parasite art** ship their own textures under `Textures/Things/Items/`. Only the
+  abstract jelly base falls back to the vanilla insect jelly texture. Change a `texPath` in
+  `ThingDefs_SlimeJelly.xml` or `ThingDefs_ParasiteSlime.xml` to swap any of them.
 - **Spawn gates**: edit the checks in each incident worker in `SlimeWandersIn.cs`
   (`MinColdestMonthTemp` / `MinRainfall` for the common slime, pollution for bubble) and
   `allowedBiomes` in `Incidents_Slime.xml`, then rebuild. Cave gates use `World.HasCaves`;
@@ -338,5 +341,5 @@ faction or its settlements will throw missing-def errors on load. Start a fresh 
   rule.
 - **Workshop**: this mod's Steam Workshop item id is `3786764216`, stored in
   `About/PublishedFileId` (the uploader writes this file **with no file extension**). Keep it in
-  `About/` and never delete it — it's what makes workshop updates land on the same page. Add a
-  `Preview.png` (512x512) in `About/` before uploading.
+  `About/` and never delete it — it's what makes workshop updates land on the same page. The
+  preview image already exists as `About/preview.png` (512x512, lower-case name).
