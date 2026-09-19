@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\Project Momo\PMM.Shared.props" />
+
+  <PropertyGroup>
+    <AssemblyName>PMM_SlimeFaction</AssemblyName>
+    <RootNamespace>PMM_SlimeFaction</RootNamespace>
+  </PropertyGroup>
+
+  <!-- All .cs under the project dir are compiled by SDK default (the only
+       sources here are Source/SlimeFaction/*.cs, matching the old build.sh glob). -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\Project Momo\ProjectMomo.csproj">
+      <Private>false</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+
+  <!-- Slime-only references: Vanilla Expanded Framework + ISEKAI RPG LEVELING. -->
+  <ItemGroup>
+    <Reference Include="VEF">
+      <HintPath>$(SteamModContentFolder)/2023507013/1.6/Assemblies/VEF.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="IsekaiLeveling">
+      <HintPath>$(SteamModContentFolder)/3657580708/Assemblies/IsekaiLeveling.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

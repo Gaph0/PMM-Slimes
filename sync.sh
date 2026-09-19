@@ -10,6 +10,9 @@ mkdir -p "$DEST"
 rsync -a --delete \
   --exclude='/.git' \
   --exclude='/Wiki' \
+  --exclude='/bin' \
+  --exclude='/obj' \
+  --exclude='/*.csproj' \
   --exclude='Assemblies/*.bak*' \
   --exclude='*.zip' \
   --exclude='/*_Plan.md' \

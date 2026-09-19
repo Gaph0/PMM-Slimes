@@ -16,3 +16,7 @@ Thumbs.db
 # Logs
 *.log
 *.zip
+
+# dotnet build output
+bin/
+obj/

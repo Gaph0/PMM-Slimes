@@ -1,4 +1,5 @@
 # Changelog
+- 2026-09-19: Build via dotnet: PMM.SlimeFaction.csproj replaces raw csc
 - 2026-09-19: Slime jelly textures, gene/xenotype def updates, README refresh
 - 2026-09-02: docs: cover all seven xenotypes and new mechanics in About/README; drop parasite plan doc
 - 2026-09-02: fix: all-bruises dealt cuts; cave gate false-positived on caveless maps
