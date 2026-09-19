@@ -26,7 +26,7 @@
 		     robust digestion, robust, superfast healing, reduced pain). All defNames
 		     verified against Biotech 1.6; no exclusion-tag conflicts in this set. -->
 		<genes>
-			<li>Skin_Blue</li>
+			<li>PMM_Skin_Blue</li>
 			<li>WoundHealing_SuperFast</li>
 			<li>PsychicAbility_Dull</li>
 			<li>MoveSpeed_Slow</li>
@@ -64,7 +64,7 @@
 		     and hits normally but is otherwise just as simple-minded. All defNames
 		     verified against Biotech 1.6; no exclusion-tag conflicts in this set. -->
 		<genes>
-			<li>Skin_DeepRed</li>
+			<li>PMM_Skin_DeepRed</li>
 			<li>WoundHealing_SuperFast</li>
 			<li>PsychicAbility_Dull</li>
 			<li>Mood_Optimist</li>
@@ -96,20 +96,19 @@
 		<chanceToUseNameMaker>1</chanceToUseNameMaker>
 		<!-- Optional VPE integration: the dark slime's succubus-like power makes it the
 		     strongest caster of the four (its PsychicAbility_Enhanced gene agrees). She
-		     channels it through her own custom path (PsycastDefs/Psycasts_SlimeCore.xml),
-		     with VPE's Nightstalker as an occasional fallback. -->
+		     always channels it through her own custom path
+		     (PsycastDefs/Psycasts_SlimeCore.xml) — the only path she can unlock. -->
 		<modExtensions>
 			<li Class="ProjectMomo.MomoPsycastExtension">
 				<pathDefNames>
 					<li>PMM_Path_SlimeCore</li>
-					<li>VPE_Nightstalker</li>
 				</pathDefNames>
 				<initialAbilities>2~3</initialAbilities>
 				<statUpgradePoints>2~4</statUpgradePoints>
 			</li>
 		</modExtensions>
 		<genes>
-			<li>Skin_Purple</li>
+			<li>PMM_Skin_Purple</li>
 			<li>WoundHealing_SuperFast</li>
 			<li>MoveSpeed_Slow</li>
 			<li>Pain_Reduced</li>
@@ -141,7 +140,7 @@
 		     toxic immunity (ToxResist_Total) for the sewer/cave toxin-eater identity.
 		     All defNames verified against Biotech 1.6; no exclusion-tag conflicts. -->
 		<genes>
-			<li>Skin_SlateGray</li>
+			<li>PMM_Skin_SlateGray</li>
 			<li>WoundHealing_SuperFast</li>
 			<li>PsychicAbility_Dull</li>
 			<li>MoveSpeed_Slow</li>
@@ -184,7 +183,7 @@ They share the same gelatinous physiology as other slimes: they heal fast, feel 
 		     kept from the base slime. All defNames verified against Biotech 1.6; no
 		     exclusion-tag conflicts in this set. -->
 		<genes>
-			<li>Skin_PaleYellow</li>
+			<li>PMM_Skin_PaleYellow</li>
 			<li>WoundHealing_SuperFast</li>
 			<li>PsychicAbility_Dull</li>
 			<li>MoveSpeed_Slow</li>

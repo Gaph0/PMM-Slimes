@@ -32,12 +32,9 @@
 		<rotatable>false</rotatable>
 		<pathCost>14</pathCost>
 		<graphicData>
-			<!-- Placeholder art reusing the vanilla insect jelly texture. Must be
-			     Graphic_StackCount (as on the jelly defs and vanilla InsectJelly):
-			     the files on disk are InsectJelly_a/_b/_c, so Graphic_Single's
-			     as-is load of this path finds nothing. -->
-			<texPath>Things/Item/Resource/AnimalProductRaw/InsectJelly</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
+			<!-- Single blob art; stackLimit 1, so Graphic_Single (no _a/_b/_c variants). -->
+			<texPath>Things/Items/Parasite/parasite_slime</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<socialPropernessMatters>true</socialPropernessMatters>
 		<statBases>

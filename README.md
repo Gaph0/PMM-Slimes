@@ -218,7 +218,7 @@ Anomaly's own DisturbingChat). Without Anomaly the patch is inert.
 ### Dark slime: the Path of the Slime Core (VPE)
 
 With Vanilla Psycasts Expanded loaded, spawned dark slimes unlock the mod's custom
-psycaster path (`PMM_Path_SlimeCore`, with VPE's Nightstalker as an occasional fallback).
+psycaster path (`PMM_Path_SlimeCore` — the only path she can unlock).
 The whole tree feeds Project Momo's economies: tease damage erodes willpower, drained
 essence refills the caster's Mana, and female victims accrue **hidden mamono corruption**
 imprinted with the dark slime xenotype (requires Project Momo's Corruption setting):

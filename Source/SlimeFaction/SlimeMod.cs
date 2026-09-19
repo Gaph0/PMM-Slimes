@@ -261,6 +261,30 @@ namespace PMM_SlimeFaction
     }
 
     /// <summary>
+    /// Restores the slime's translucent alpha. The slime skin genes declare a 0.75 alpha
+    /// (the 4th component of skinColorOverride), but vanilla applies gene skin colours
+    /// through GenColor.ClampToValueRange, which converts to HSV and back via
+    /// Color.HSVToRGB - and HSVToRGB always returns alpha 1, silently destroying the
+    /// declared transparency. This postfix re-applies the slime alpha to every SkinColor
+    /// read for a true slime (not a carrier), so the gel body and (via Patch_SlimeHairColor)
+    /// the hair render semi-transparent. RGB is left untouched.
+    /// </summary>
+    [HarmonyPatch(typeof(Pawn_StoryTracker), nameof(Pawn_StoryTracker.SkinColor), MethodType.Getter)]
+    public static class Patch_SlimeSkinAlpha
+    {
+        /// <summary>Slime gel opacity: 0.75 transparency = 75% opaque.</summary>
+        private const float SlimeAlpha = 0.75f;
+
+        public static void Postfix(Pawn_StoryTracker __instance, Pawn ___pawn, ref Color __result)
+        {
+            if (Gene_SlimeGel.IsSlime(___pawn) && !SlimeCarrierUtility.IsCarrier(___pawn))
+            {
+                __result.a = SlimeAlpha;
+            }
+        }
+    }
+
+    /// <summary>
     /// Makes slime hair render in the pawn's skin colour, so a slime's hair always
     /// matches its gel body (blue slime = blue hair, red slime = red hair, ...).
     /// A postfix on the render node's colour lookup means it holds no matter how the

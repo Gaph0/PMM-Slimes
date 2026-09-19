@@ -32,7 +32,9 @@
 		<pathCost>14</pathCost>
 		<possessionCount>10</possessionCount>
 		<graphicData>
-			<!-- Placeholder art reusing the vanilla insect jelly texture. Replace with your own and update this path. -->
+			<!-- Fallback art (vanilla insect jelly). Every concrete jelly below overrides this
+			     graphicData with its own texture under Textures/Things/Items/ (folder names
+			     are space-free: RimWorld's loader cannot resolve texture paths with spaces). -->
 			<texPath>Things/Item/Resource/AnimalProductRaw/InsectJelly</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
@@ -75,6 +77,11 @@
 		<defName>PMM_SlimeJelly</defName>
 		<label>slime jelly</label>
 		<description>A shimmering blob of semi-liquid slime, thick with mana. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nWomen who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<graphicData>
+			<!-- Doubles as the blue (default) slime jelly, so it uses the blue slime art. -->
+			<texPath>Things/Items/BlueSlimes/Insect_jelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
 	</ThingDef>
 
 	<!-- Blue slime jelly: identical to the generic jelly, but properly named so blue
@@ -85,6 +92,10 @@
 		<defName>PMM_SlimeJellyBlue</defName>
 		<label>blue slime jelly</label>
 		<description>A shimmering blue blob of semi-liquid slime, thick with mana. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nWomen who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<graphicData>
+			<texPath>Things/Items/BlueSlimes/Insect_jelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
 	</ThingDef>
 
 	<!-- Bubble slime. Tainted with the slime's toxins: guaranteed food poisoning for
@@ -96,6 +107,10 @@
 		<defName>PMM_SlimeJellyBubble</defName>
 		<label>bubble slime jelly</label>
 		<description>A light, airy blob of jelly from a bubble slime, fizzing softly. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nIt is tainted with the slime's toxins - anyone who eats it gets food poisoning, unless they have bonded to a bubble slime. In exchange, the slime's antitoxins flush all toxic buildup from the eater's body and grant partial toxic resistance for a few hours. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<graphicData>
+			<texPath>Things/Items/BubbleSlime/Insect_jelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
 		<statBases>
 			<MarketValue>12.0</MarketValue>
 		</statBases>
@@ -154,6 +169,10 @@
 		<defName>PMM_SlimeJellyRed</defName>
 		<label>red slime jelly</label>
 		<description>A warm, ruby blob of jelly from a red slime. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nA rush of red-slime vigour quickens the eater's step for a while. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<graphicData>
+			<texPath>Things/Items/RedSlime/Insect_jelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
 		<statBases>
 			<MarketValue>15.0</MarketValue>
 		</statBases>
@@ -203,6 +222,11 @@
 		<defName>PMM_SlimeJellyDark</defName>
 		<label>dark slime jelly</label>
 		<description>A deep, near-black blob of jelly from a dark slime, thick with mana. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nThe dark slime's stored psy-power brushes the eater's mind, sharpening their psychic focus for a while. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<graphicData>
+			<!-- Dark slimes are the purple-bodied variant. -->
+			<texPath>Things/Items/PurpleSlime/Insect_jelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
 		<statBases>
 			<MarketValue>20.0</MarketValue>
 		</statBases>
@@ -260,6 +284,10 @@
 		<defName>PMM_SlimeJellyTaisui</defName>
 		<label>taisui jelly</label>
 		<description>A pale, faintly glowing blob of jelly from a Taisui. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nIt is the legendary elixir - eating it sharpens the mind, quickening research and learning for a time. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<graphicData>
+			<texPath>Things/Items/Taisui/Insect_jelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
 		<statBases>
 			<MarketValue>25.0</MarketValue>
 		</statBases>
@@ -308,6 +336,11 @@
 		<defName>PMM_SlimeJellySea</defName>
 		<label>sea slime jelly</label>
 		<description>A cool, sea-green blob of jelly from a sea slime, faintly briny. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nA bracing surge washes through the eater, refreshing body and mind for a short while. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<graphicData>
+			<!-- No dedicated art yet: reuses the nureonago jelly textures. -->
+			<texPath>Things/Items/Nureonago/Insect_jelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
 		<statBases>
 			<MarketValue>12.0</MarketValue>
 		</statBases>
@@ -361,6 +394,10 @@
 		<defName>PMM_SlimeJellyMochi</defName>
 		<label>mochi slime jelly</label>
 		<description>A soft, pillowy blob of jelly from a nureonago, with the gentle sweetness of fresh rice cakes. It is smooth, rich, and fulfills the recreation need of those who consume it. It can nourish almost any creature and never rots.\n\nA warm, comforting fullness settles over the eater, lifting the spirits for a good while. Women who eat too much of it find their bodies slowly melting into something... gooier.</description>
+		<graphicData>
+			<texPath>Things/Items/Nureonago/Insect_jelly</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
 		<statBases>
 			<MarketValue>12.0</MarketValue>
 		</statBases>

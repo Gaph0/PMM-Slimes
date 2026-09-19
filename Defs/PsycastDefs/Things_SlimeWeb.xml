@@ -23,9 +23,9 @@
 		<selectable>false</selectable>
 		<neverMultiSelect>true</neverMultiSelect>
 		<graphicData>
-			<!-- Placeholder: vanilla corpse-bile goo. Replace with your own art in
-			     Textures/Things/PMM_SlimeWeb/ and update this path. -->
-			<texPath>Things/Filth/CorpseBile</texPath>
+			<!-- Random variants (web_a/_b/_c) share the PurpleSlime folder: the web
+			     is spun by the dark slime, which is purple-bodied. -->
+			<texPath>Things/Items/PurpleSlime/web</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
 			<drawSize>1.2</drawSize>
 		</graphicData>

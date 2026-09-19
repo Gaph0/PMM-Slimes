@@ -1,4 +1,5 @@
 # Changelog
+- 2026-09-19: Slime jelly textures, gene/xenotype def updates, README refresh
 - 2026-09-02: docs: cover all seven xenotypes and new mechanics in About/README; drop parasite plan doc
 - 2026-09-02: fix: all-bruises dealt cuts; cave gate false-positived on caveless maps
 - 2026-08-30: fix: cave gate false-positived on caveless maps - the roof-grid sampler counted incidental overhead-mountain rock (~500 cells = a small hill) as "caves", letting bubble/taisui slimes wander in anywhere; replaced with vanilla World.HasCaves(map.Tile), which checks the tile's cave TileMutator directly and cannot false-positive on rock (ported from the Elementals gnome gate)
