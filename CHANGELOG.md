@@ -2,6 +2,9 @@
 
 ## Player-facing
 
+- 2026-09-20: Changed the notes about a refused wander-in to appear only in development mode.
+- 2026-09-20: Added a "momo corpses" line in the butcher menu, holding all six slime momo corpses.
+- 2026-09-20: Fixed a woman corrupted into a slime keeping a human body. She now becomes the slime's own race, so her colour and body match the slime that made her.
 - 2026-09-19: Added Big and Small - Framework as a required mod.
 - 2026-09-19: Added new slime jelly textures.
 - 2026-08-30: Rebalanced wild slime spawns: they start at rank E or F in Isekai Leveling. They still rank up through play.
@@ -16,6 +19,11 @@
 
 ## Internal
 
+- 2026-09-20: Changed the wander-in messages to go through core's `PMMLog`, so they only appear in development mode.
+- 2026-09-20: Added the six slime races to the shared momo corpses line in the core mod.
+- 2026-09-20: Changed the slime pawnkind and xenotype names to sort together in the dev spawner.
+- 2026-09-20: Fixed stale comments that described the slime xenotype roll and what a dev-spawned nureonago looks like.
+- 2026-09-20: Changed the six slime race clones to Human-based races with a Big & Small race tracker.
 - 2026-09-20: Removed the post-commit changelog hook, which wrote entries in the old format.
 - 2026-09-20: Changed the README to match the code.
 - 2026-09-19: Changed the build to use MSBuild.

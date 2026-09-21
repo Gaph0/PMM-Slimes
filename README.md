@@ -82,7 +82,7 @@ Harmony patches (roughly one patch class per rule under `Source/SlimeFaction/`):
 6. **Wild men, no factions.** There are no slime factions and no settlements. Slimes enter the
    map only through their own events, factionless. Vanilla hardcodes `WildManUtility.IsWildMan`
    to the WildMan kind; `Patch_SlimeIsWildMan` extends it to the four wild slime kinds
-   (`PMM_SlimeWild`, `PMM_SlimeWildBubble`, `PMM_SlimeWildTaisui`, `PMM_SlimeWildSea`), which
+   (`PMM_Slime_Wild`, `PMM_Slime_Bubble`, `PMM_Slime_Taisui`, `PMM_Slime_Sea`), which
    gives taming (Animals → Tame), arrest, wander-off behaviour and wild-man labels for free.
 
    **Staying on the map is a think-tree problem, not a `WildManShouldReachOutsideNow` one.** The
@@ -105,10 +105,10 @@ Harmony patches (roughly one patch class per rule under `Source/SlimeFaction/`):
 
    | Incident | Pawn kind | Base chance | Gate |
    |---|---|---|---|
-   | `PMM_SlimeWandersIn` | `PMM_SlimeWild` (blue 100 / red 15 / dark 5) | 1.0 | Odyssey `Grasslands` biome (also the def's `allowedBiomes`), coldest month (`GenTemperature.MinTemperatureAtTile`) ≥ **18 °C**, rainfall ≥ **1500 mm** |
-   | `PMM_BubbleSlimeWandersIn` | `PMM_SlimeWildBubble` | 1.6 | World tile pollution ≥ 5% **and** caves on the tile |
-   | `PMM_TaisuiWandersIn` | `PMM_SlimeWildTaisui` | 0.05 | Caves on the tile — no biome/climate gate; about as rare as a dark slime |
-   | `PMM_SeaSlimeWandersIn` | `PMM_SlimeWildSea` | 1.0 | Coastal world tile bordering an ocean |
+   | `PMM_SlimeWandersIn` | `PMM_Slime_Wild` (blue 100 / red 15 / dark 5) | 1.0 | Odyssey `Grasslands` biome (also the def's `allowedBiomes`), coldest month (`GenTemperature.MinTemperatureAtTile`) ≥ **18 °C**, rainfall ≥ **1500 mm** |
+   | `PMM_BubbleSlimeWandersIn` | `PMM_Slime_Bubble` | 1.6 | World tile pollution ≥ 5% **and** caves on the tile |
+   | `PMM_TaisuiWandersIn` | `PMM_Slime_Taisui` | 0.05 | Caves on the tile — no biome/climate gate; about as rare as a dark slime |
+   | `PMM_SeaSlimeWandersIn` | `PMM_Slime_Sea` | 1.0 | Coastal world tile bordering an ocean |
 
    The cave gate reads the tile's cave TileMutator via `World.HasCaves` (an earlier roof-grid
    sampler false-positived on ordinary mountain rock). Slime xenotypes also have
@@ -146,29 +146,29 @@ Seven xenotypes — all inheritable, all female (`ProjectMomo_Momo`), all gelati
 (`PMM_Gene_SlimeGel`), none ever spawning as ordinary refugees or wanderers
 (`factionlessGenerationWeight` 0):
 
-- **Slime (`PMM_Slime`)** — the common blue slime (15 genes): `Skin_Blue`,
+- **Slime (`PMM_Slime_Blue`)** — the common blue slime (15 genes): `Skin_Blue`,
   `WoundHealing_SuperFast`, `PsychicAbility_Dull`, `MoveSpeed_Slow`, `Mood_Optimist`,
   `MeleeDamage_Weak`, `Sleepy`, `Robust`, `Pain_Reduced`, `Learning_Slow`,
   `AptitudePoor_Intellectual`, `AptitudePoor_Social`, `RobustDigestion`, plus the Momo and
   slime-gel genes. A deliberately weak, cheap-to-keep mix.
-- **Red Slime (`PMM_SlimeRed`)** — rarer, fiercer: the blue set minus the movement/melee
+- **Red Slime (`PMM_Slime_Red`)** — rarer, fiercer: the blue set minus the movement/melee
   penalties (`Skin_DeepRed`; no `MoveSpeed_Slow`/`MeleeDamage_Weak`).
-- **Dark Slime (`PMM_SlimeDark`)** — rarest of the grassland mix: `Skin_Purple`,
+- **Dark Slime (`PMM_Slime_Dark`)** — rarest of the grassland mix: `Skin_Purple`,
   `PsychicAbility_Enhanced` and a trimmed gene set; the only slime with the VPE psycast
   opt-in (Slime Core path, 2–3 initial abilities, 2–4 stat upgrade points).
-- **Bubble Slime (`PMM_SlimeBubble`)** — sewer/cave toxin-eater: the blue set with
+- **Bubble Slime (`PMM_Slime_Bubble`)** — sewer/cave toxin-eater: the blue set with
   `Skin_SlateGray` plus `ToxResist_Total`.
-- **Taisui (`PMM_SlimeTaisui`)** — cave-dweller of legendary intellect: the blue set with
+- **Taisui (`PMM_Slime_Taisui`)** — cave-dweller of legendary intellect: the blue set with
   `Skin_PaleYellow`, `AptitudeRemarkable_Intellectual`, `AptitudeTerrible_Social`, and no
   `Learning_Slow`.
-- **Sea Slime (`PMM_SlimeSea`)** — coastal drifter: the blue set with pale sea-foam skin;
+- **Sea Slime (`PMM_Slime_Sea`)** — coastal drifter: the blue set with pale sea-foam skin;
   her pawn kind adds a 2.5× Water terrain move factor, and her backstory carries
   Animals +4 (which drives the Odyssey fishing stats).
-- **Nureonago (`PMM_SlimeNureonago`)** — the devoted-housewife slime: the blue set with
+- **Nureonago (`PMM_Slime_Nureonago`)** — the devoted-housewife slime: the blue set with
   wet-pale skin, the `KindInstinct` gene and `PMM_Gene_Fastidious` (80% less filth, 50%
   faster cleaning). Only enters via her rain visit event.
 
-Spawn mix (on `PMM_SlimeWild`'s `xenotypeSet`): slime 100 / red 15 / dark 5 — weights sum
+Spawn mix (on `PMM_Slime_Wild`'s `xenotypeSet`): slime 100 / red 15 / dark 5 — weights sum
 past 100%, so no baseliner is ever rolled. Bubble, taisui, sea and nureonago are excluded:
 each spawns only from its own gated incident.
 
