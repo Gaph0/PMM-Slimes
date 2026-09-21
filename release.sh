@@ -42,7 +42,9 @@ git push -q origin "$TAG"
 # 2. Zip the mod folder the way the Steam Workshop layout expects it
 ZIP="$MOD-$TAG.zip"
 rm -f "$ZIP"
-for d in About Assemblies Defs Languages Patches Settings Textures Sounds News README.md; do
+# Same list as sync.sh, so the zip and the deployed folder hold the same files.
+# Missing entries are skipped, so a mod without Sounds/ or News/ is fine.
+for d in About Assemblies Defs Patches Languages Textures Sounds News Settings LoadFolders.xml CHANGELOG.md README.md; do
   [ -e "$d" ] && zip -qr "$ZIP" "$d" -x "Assemblies/*.bak*"
 done
 
