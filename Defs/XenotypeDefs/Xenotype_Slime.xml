@@ -3,7 +3,7 @@
 
 	<!-- All gene defNames verified against Biotech 1.6 GeneDefs. No exclusion-tag conflicts in this set. -->
 	<XenotypeDef>
-		<defName>PMM_Slime</defName>
+		<defName>PMM_Slime_Blue</defName>
 		<label>slime</label>
 		<combatPowerFactor>1.5</combatPowerFactor>
 		<description>Semi-liquid monsters that wander the warm, wet grasslands. Their blue, half-transparent bodies are flexible, and can change into various forms. They are intelligent enough to speak, but their thoughts are simple, and they instinctively wander around in search of human men who will end up as their prey.\n\nTheir gelatinous bodies seal wounds in moments. Their flowing mass moves slowly, and their simple nerve-web feels little pain. They have no bones to break and no skin to cut - every blow lands as a bruise. Wherever they wander, they leave a slick of slime behind, and their bodies shed blobs of nourishing slime jelly. Like any human, they suffer in the heat and the cold.</description>
@@ -17,7 +17,7 @@
 		<nameMaker>NamerPersonSlime</nameMaker>
 		<nameMakerFemale>NamerPersonSlime</nameMakerFemale>
 		<chanceToUseNameMaker>1</chanceToUseNameMaker>
-		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_SlimeDark).
+		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_Slime_Dark).
 		     Blue slimes are psychically dull anyway, so a psylink would be wasted. -->
 		<!-- Reworked gene set. A deliberately weak, low-metabolism mix (poor intellect,
 		     slow study, slow move, weak melee, sleepy, psychically dull) makes blue slimes
@@ -41,11 +41,17 @@
 			<li>ProjectMomo_Momo</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
+		<modExtensions>
+			<li Class="BigAndSmall.XenotypeExtension">
+				<setRace>PMM_Race_SlimeMomo</setRace>
+				<forceRace>true</forceRace>
+			</li>
+		</modExtensions>
 	</XenotypeDef>
 
 	<!-- Red Slime: a rarer, fiercer, more advanced slime variant. All gene defNames verified against Biotech 1.6. -->
 	<XenotypeDef>
-		<defName>PMM_SlimeRed</defName>
+		<defName>PMM_Slime_Red</defName>
 		<label>red slime</label>
 		<combatPowerFactor>1.8</combatPowerFactor>
 		<description>A higher type of slime that possesses a body of flexible red liquid. Compared with the "Slime", they are fewer in number. They live in places near human settlements like swamps, rainforests, etc. They live amongst regular slimes that inhabit the same kinds of areas.\n\nThey are physically and mentally more advanced than slimes, especially emotionally. There are even some that exist that have emotions that are almost entirely human. Compared with the slimes that mostly move based on instinct, they are a bit rational, and can easily convey their intentions. However, their diet is the same as a slime's, and they are actually a bit more fierce. When they find a man, they aggressively assault him. Even though they're a bit smart, it doesn't change the fact that they're slimes whose bodies and minds are driven by instinct.\n\nFaster and more aggressive than their blue kin, red slimes share the same gelatinous physiology: they heal quickly, feel little pain, and with no bones and no skin, every wound is a bruise. They leave a slick of slime behind them, and like any human they suffer in the heat and the cold.</description>
@@ -57,7 +63,7 @@
 		<nameMaker>NamerPersonSlime</nameMaker>
 		<nameMakerFemale>NamerPersonSlime</nameMakerFemale>
 		<chanceToUseNameMaker>1</chanceToUseNameMaker>
-		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_SlimeDark). -->
+		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_Slime_Dark). -->
 		<!-- Same base set as the blue slime, minus the movement and melee penalties
 		     (no MoveSpeed_Slow / MeleeDamage_Weak): a higher, fiercer slime that moves
 		     and hits normally but is otherwise just as simple-minded. All defNames
@@ -77,11 +83,17 @@
 			<li>ProjectMomo_Momo</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
+		<modExtensions>
+			<li Class="BigAndSmall.XenotypeExtension">
+				<setRace>PMM_Race_SlimeMomoRed</setRace>
+				<forceRace>true</forceRace>
+			</li>
+		</modExtensions>
 	</XenotypeDef>
 
 	<!-- Dark Slime: a purple-bodied slime with a Slime Core and the power of a succubus. All gene defNames verified against Biotech 1.6. -->
 	<XenotypeDef>
-		<defName>PMM_SlimeDark</defName>
+		<defName>PMM_Slime_Dark</defName>
 		<label>dark slime</label>
 		<combatPowerFactor>2.2</combatPowerFactor>
 		<description>A type of upper rank slime with a purple body that lives throughout the Mamono Realms. They have the power of a succubus and the Mamono Realm stored up in their bodies, so they have much more magical power compared to regular slimes. Also, they have an orb called a "Slime Core" inside of their bodies. Just as the name suggests, it is their core. Because of this, compared to the ordinary slimes, they have high thinking ability and are able to cast spells.\n\nDespite their dark power, they are still slimes at heart - slow of body and slow of thought. They share the same gelatinous physiology as other slimes: they heal quickly, feel little pain, and with no bones and no skin, every wound is a bruise. They leave a slick of slime behind them.</description>
@@ -105,6 +117,10 @@
 				<initialAbilities>2~3</initialAbilities>
 				<statUpgradePoints>2~4</statUpgradePoints>
 			</li>
+			<li Class="BigAndSmall.XenotypeExtension">
+				<setRace>PMM_Race_SlimeMomoDark</setRace>
+				<forceRace>true</forceRace>
+			</li>
 		</modExtensions>
 		<genes>
 			<li>PMM_Skin_Purple</li>
@@ -122,7 +138,7 @@
 
 	<!-- Bubble Slime: a sewer/cave-dwelling slime with a toxin-processing, pollution-loving body. All gene defNames verified against Biotech 1.6. -->
 	<XenotypeDef>
-		<defName>PMM_SlimeBubble</defName>
+		<defName>PMM_Slime_Bubble</defName>
 		<label>bubble slime</label>
 		<combatPowerFactor>1.5</combatPowerFactor>
 		<description>A type of slime that lives in dark, wet places like sewers and caves. They are intelligent enough to speak human words, but their thinking processes are extremely simple. Guided by instinct, they wander in search of prey.\n\nThey produce a strong odor from their liquid bodies, so one will likely know right away when they're close by. Their bodies are always carrying out chemical reactions, which cause pieces of them to be released into the air as bubbles. Perhaps due to this they need to eat a lot more than an ordinary slime to sustain their bodies, and in turn are extremely greedy.\n\nAlso, it's said that they produce an offensive odor because they live in terrible environments. Their bodies take in toxins, convert them into harmless substances, and release it. For that reason, if you take them out of the sewers or other such areas, and live in a clean place for a while, their foul odor will completely disappear. Once the foul odor is gone, they release a good scent that's surprisingly distinct.\n\nTheir bodies are wholly immune to toxic buildup, and they can gulp down toxic wastepacks, the reaction bubbling off as a small cloud of toxic gas. Their jelly is tainted - anyone who eats it gets food poisoning, unless they have bonded to a bubble slime.</description>
@@ -134,7 +150,7 @@
 		<nameMaker>NamerPersonSlime</nameMaker>
 		<nameMakerFemale>NamerPersonSlime</nameMakerFemale>
 		<chanceToUseNameMaker>1</chanceToUseNameMaker>
-		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_SlimeDark). -->
+		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_Slime_Dark). -->
 		<!-- Same gene set as the blue slime (keeping the slate-gray skin), plus total
 		     toxic immunity (ToxResist_Total) for the sewer/cave toxin-eater identity.
 		     All defNames verified against Biotech 1.6; no exclusion-tag conflicts. -->
@@ -156,12 +172,18 @@
 			<li>ProjectMomo_Momo</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
+		<modExtensions>
+			<li Class="BigAndSmall.XenotypeExtension">
+				<setRace>PMM_Race_SlimeMomoBubble</setRace>
+				<forceRace>true</forceRace>
+			</li>
+		</modExtensions>
 	</XenotypeDef>
 
 	<!-- Taisui: a rare cave-dwelling slime of legendary intellect, kin to the common slime.
 		 All gene defNames verified against Biotech 1.6. -->
 	<XenotypeDef>
-		<defName>PMM_SlimeTaisui</defName>
+		<defName>PMM_Slime_Taisui</defName>
 		<label>taisui</label>
 		<combatPowerFactor>1.5</combatPowerFactor>
 		<description>A bizarre race of slime said to dwell deep in caverns and underground, endlessly circling along set paths. Their bodies are dotted with eyeball-like organs, and their flesh is prized as an elixir that grants superhuman intelligence. Whether they are truly slimes is debated - but there is no doubt they are highly intelligent. It is said that if you could correctly understand a Taisui's words, you could uncover the fundamental truths of the world. Unfortunately their words and expressions are almost always incomprehensible - probably too advanced for an ordinary person.
@@ -175,7 +197,7 @@ They share the same gelatinous physiology as other slimes: they heal fast, feel 
 		<nameMaker>NamerPersonSlime</nameMaker>
 		<nameMakerFemale>NamerPersonSlime</nameMakerFemale>
 		<chanceToUseNameMaker>1</chanceToUseNameMaker>
-		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_SlimeDark). -->
+		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_Slime_Dark). -->
 		<!-- Blue slime gene set with the intellect/social upgrades: AptitudePoor_Intellectual
 		     becomes AptitudeRemarkable_Intellectual, AptitudePoor_Social becomes
 		     AptitudeTerrible_Social, and Learning_Slow is dropped. PsychicAbility_Dull is
@@ -197,12 +219,18 @@ They share the same gelatinous physiology as other slimes: they heal fast, feel 
 			<li>ProjectMomo_Momo</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
+		<modExtensions>
+			<li Class="BigAndSmall.XenotypeExtension">
+				<setRace>PMM_Race_SlimeMomoTaisui</setRace>
+				<forceRace>true</forceRace>
+			</li>
+		</modExtensions>
 	</XenotypeDef>
 
 	<!-- Sea Slime: a coastal blue slime at home in the surf. All gene defNames verified
 		 against Biotech 1.6. -->
 	<XenotypeDef>
-		<defName>PMM_SlimeSea</defName>
+		<defName>PMM_Slime_Sea</defName>
 		<label>sea slime</label>
 		<combatPowerFactor>1.5</combatPowerFactor>
 		<description>A variety of slime adapted to life in the sea. Unlike other slimes, her form is fixed - shaped into a skirt-like bell so her body won't be washed away - and she prefers to drift about underwater, letting the current carry her. She slips through the water far faster than any person can wade, and draws a steady catch from the shallows.
@@ -216,7 +244,7 @@ Gentle and simple-minded, she seldom chases her prey. But should a man give in t
 		<nameMaker>NamerPersonSlime</nameMaker>
 		<nameMakerFemale>NamerPersonSlime</nameMakerFemale>
 		<chanceToUseNameMaker>1</chanceToUseNameMaker>
-		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_SlimeDark). -->
+		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_Slime_Dark). -->
 		<!-- Blue slime gene set with a light-blue PMM_Skin_SeaFoam skin. MoveSpeed_Slow
 		     is kept - the water speed comes from the pawn kind's Water terrain factor, not
 		     a gene. The fishing skill comes from the sea slime's adulthood backstory
@@ -239,12 +267,18 @@ Gentle and simple-minded, she seldom chases her prey. But should a man give in t
 			<li>ProjectMomo_Momo</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
+		<modExtensions>
+			<li Class="BigAndSmall.XenotypeExtension">
+				<setRace>PMM_Race_SlimeMomoSea</setRace>
+				<forceRace>true</forceRace>
+			</li>
+		</modExtensions>
 	</XenotypeDef>
 
 	<!-- Nureonago: a Zipangu slime that mimics human women, but her disguise is always
 		 damp, so she only shows herself on rainy days. The devoted-housewife slime. -->
 	<XenotypeDef>
-		<defName>PMM_SlimeNureonago</defName>
+		<defName>PMM_Slime_Nureonago</defName>
 		<label>nureonago</label>
 		<combatPowerFactor>1.5</combatPowerFactor>
 		<description>A kind of slime native to the Zipangu Region. Like all slimes her body is flexible and can change into various forms, but nureonago are especially skilled at mimicry - they can form clothes that look and feel almost real, and pass themselves off as human women. The disguise is always damp, though, so it is easy to see through. For that reason they only show themselves on rainy days, standing dimly in the rain near settlements and highways, gently smiling at men who pass by. If a man returns the smile and calls out, the nureonago claims him as her husband and follows him for the rest of his life.\n\nThough their bodies are always wet, they control the moisture they release, so they are capable of cooking and laundry. The knowledge needed to keep house as a man's wife is imprinted in their instinct, and they take care of their husbands skilfully and briskly. Like other slimes they are semi-liquid at heart: they heal fast, feel little pain, and with no bones and no skin, every wound is a bruise. They leave a slick of slime wherever they go.</description>
@@ -256,7 +290,7 @@ Gentle and simple-minded, she seldom chases her prey. But should a man give in t
 		<nameMaker>NamerPersonSlime</nameMaker>
 		<nameMakerFemale>NamerPersonSlime</nameMakerFemale>
 		<chanceToUseNameMaker>1</chanceToUseNameMaker>
-		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_SlimeDark). -->
+		<!-- No psycast opt-in: only dark slimes spawn with a psylink (see PMM_Slime_Dark). -->
 		<!-- Blue slime gene set with a pale-blue PMM_Skin_WetPale skin, the vanilla Kind
 		     gene, and PMM_Gene_Fastidious (low filth, fast cleaning - the devoted
 		     housekeeper). MoveSpeed_Slow is kept: she is still a slime. All defNames
@@ -280,6 +314,15 @@ Gentle and simple-minded, she seldom chases her prey. But should a man give in t
 			<li>ProjectMomo_Momo</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
+		<modExtensions>
+			<!-- The nureonago reveals as the base slime race: see NureonagoVisit.cs,
+			     which sets pawn.def = PMM_Race_SlimeMomo, and SlimeRaces.RaceFor,
+			     which falls back to the blue slime for her xenotype. -->
+			<li Class="BigAndSmall.XenotypeExtension">
+				<setRace>PMM_Race_SlimeMomo</setRace>
+				<forceRace>true</forceRace>
+			</li>
+		</modExtensions>
 	</XenotypeDef>
 
 </Defs>

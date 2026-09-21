@@ -3,7 +3,8 @@
 
 	<!--
 		The one and only slime pawn kind. Variety now comes entirely from the xenotype roll
-		below (blue / bubble / red / dark), not from separate pawn kinds.
+		below (blue / red / dark) plus the separate bubble / taisui / sea kinds further
+		down, not from one kind per colour.
 
 		Slimes spawn with NO weapons and NO apparel: gear generation only runs when
 		weaponTags/weaponMoney/apparelTags/apparelMoney/apparelRequired are set
@@ -11,7 +12,7 @@
 		They fight with fists and their gel body alone.
 	-->
 	<PawnKindDef>
-		<defName>PMM_SlimeWild</defName>
+		<defName>PMM_Slime_Wild</defName>
 		<label>slime</label>
 		<!-- Custom race (deep-merged from Human): the info card shows slime jelly instead of
 		     human meat and no leather, and the vanilla butcher path agrees with our patch. -->
@@ -34,15 +35,21 @@
 				</categories>
 			</li>
 		</backstoryFilters>
-		<!-- Slime colour mix for the regular wander-in: blue / red / dark. The weights sum
-		     to 120, i.e. >= 100%, so no baseliner can be rolled. Bubble slimes are NOT in
-		     this mix: they only wander into polluted maps with caves, via their own
-		     PMM_BubbleSlimeWandersIn incident and the PMM_SlimeWildBubble kind below. -->
+		<!-- Slime colour mix for the regular wander-in: blue / red / dark. These numbers are
+		     relative weights, not percentages. The engine collects the entries listed here and
+		     then adds a Baseliner entry of its own ONLY if the total is below 1 - so a total
+		     above 1 (120 here) rules baseliner out completely. That matters more than it
+		     looks: a factionless pawn has its rolled xenotype discarded and re-rolled from
+		     every XenotypeDef.factionlessGenerationWeight, so a baseliner roll on a slime
+		     race would come back as an ordinary vanilla xenotype.
+		     Bubble slimes are NOT in this mix: they only wander into polluted maps with
+		     caves, via their own PMM_BubbleSlimeWandersIn incident and the PMM_Slime_Bubble
+		     kind below. -->
 		<xenotypeSet>
 			<xenotypeChances>
-				<PMM_Slime>100</PMM_Slime>
-				<PMM_SlimeRed>15</PMM_SlimeRed>
-				<PMM_SlimeDark>5</PMM_SlimeDark>
+				<PMM_Slime_Blue>100</PMM_Slime_Blue>
+				<PMM_Slime_Red>15</PMM_Slime_Red>
+				<PMM_Slime_Dark>5</PMM_Slime_Dark>
 			</xenotypeChances>
 		</xenotypeSet>
 	</PawnKindDef>
@@ -52,13 +59,14 @@
 		Spawned only by the PMM_NureonagoVisit incident. Deliberately a plain Human-race
 		baseliner with no gear and no slime genes - the whole point is that nothing about
 		her reads as a monster until the reveal (the incident then swaps her xenotype to
-		PMM_SlimeNureonago and her race to the slime race). Pinned female: nureonago are
+		PMM_Slime_Nureonago and her race to the slime race). Pinned female: nureonago are
 		always women. No wild-man backstory filter and no WildMan flag: she behaves like a
 		visitor, not a wild creature, and her "unknown" backstories are assigned by the
-		incident at spawn.
+		incident at spawn. "Baseliner" only holds while the generation request carries a
+		faction - see the note on her xenotypeSet below.
 	-->
 	<PawnKindDef>
-		<defName>PMM_NureonagoRefugee</defName>
+		<defName>PMM_Slime_Nureonago</defName>
 		<label>strange woman</label>
 		<race>Human</race>
 		<fixedGender>Female</fixedGender>
@@ -68,6 +76,12 @@
 		<combatPower>35</combatPower>
 		<initialWillRange>3~5</initialWillRange>
 		<initialResistanceRange>6~12</initialResistanceRange>
+		<!-- The <Baseliner> line below is inert: the engine skips baseliner entries in
+		     xenotypeChances and only appends one of its own when the other entries total
+		     less than 1. With nothing else listed the leftover is 1, so Baseliner is
+		     guaranteed - while the request carries a faction, which the visit incident
+		     does (Faction.OfPlayer). A factionless dev or wild spawn has the rolled
+		     xenotype thrown away and re-rolled from factionlessGenerationWeight. -->
 		<xenotypeSet>
 			<xenotypeChances>
 				<Baseliner>100</Baseliner>
@@ -85,7 +99,7 @@
 		hidden carrier hediff), so nothing about her reads as a monster until the reveal.
 	-->
 	<PawnKindDef>
-		<defName>PMM_CarrierSlimeRefugee</defName>
+		<defName>PMM_Slime_Carrier</defName>
 		<label>travelling woman</label>
 		<race>Human</race>
 		<fixedGender>Female</fixedGender>
@@ -124,6 +138,9 @@
 				</categoriesAdulthood>
 			</li>
 		</backstoryFilters>
+		<!-- Same inert <Baseliner> entry as above: baseliner comes from the leftover
+		     weight, and needs a faction on the request - the carrier visit also passes
+		     Faction.OfPlayer. -->
 		<xenotypeSet>
 			<xenotypeChances>
 				<Baseliner>100</Baseliner>
@@ -134,10 +151,10 @@
 	<!--
 		Bubble slime pawn kind, spawned only by the PMM_BubbleSlimeWandersIn incident
 		(polluted maps with caves). Same naked, unarmed wild-creature setup as
-		PMM_SlimeWild, but pinned to the bubble race/xenotype.
+		PMM_Slime_Wild, but pinned to the bubble race/xenotype.
 	-->
 	<PawnKindDef>
-		<defName>PMM_SlimeWildBubble</defName>
+		<defName>PMM_Slime_Bubble</defName>
 		<label>bubble slime</label>
 		<race>PMM_Race_SlimeMomoBubble</race>
 		<maxGenerationAge>60</maxGenerationAge>
@@ -155,7 +172,7 @@
 		</backstoryFilters>
 		<xenotypeSet>
 			<xenotypeChances>
-				<PMM_SlimeBubble>100</PMM_SlimeBubble>
+				<PMM_Slime_Bubble>100</PMM_Slime_Bubble>
 			</xenotypeChances>
 		</xenotypeSet>
 	</PawnKindDef>
@@ -166,7 +183,7 @@
 		to the taisui race/xenotype.
 	-->
 	<PawnKindDef>
-		<defName>PMM_SlimeWildTaisui</defName>
+		<defName>PMM_Slime_Taisui</defName>
 		<label>taisui</label>
 		<race>PMM_Race_SlimeMomoTaisui</race>
 		<maxGenerationAge>60</maxGenerationAge>
@@ -184,7 +201,7 @@
 		</backstoryFilters>
 		<xenotypeSet>
 			<xenotypeChances>
-				<PMM_SlimeTaisui>100</PMM_SlimeTaisui>
+				<PMM_Slime_Taisui>100</PMM_Slime_Taisui>
 			</xenotypeChances>
 		</xenotypeSet>
 	</PawnKindDef>
@@ -198,7 +215,7 @@
 		AptitudeStrong_Animals gene).
 	-->
 	<PawnKindDef>
-		<defName>PMM_SlimeWildSea</defName>
+		<defName>PMM_Slime_Sea</defName>
 		<label>sea slime</label>
 		<race>PMM_Race_SlimeMomoSea</race>
 		<maxGenerationAge>60</maxGenerationAge>
@@ -229,7 +246,7 @@
 		</moveSpeedFactorByTerrainTag>
 		<xenotypeSet>
 			<xenotypeChances>
-				<PMM_SlimeSea>100</PMM_SlimeSea>
+				<PMM_Slime_Sea>100</PMM_Slime_Sea>
 			</xenotypeChances>
 		</xenotypeSet>
 	</PawnKindDef>

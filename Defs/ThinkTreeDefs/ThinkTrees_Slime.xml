@@ -13,12 +13,12 @@
                 pawn's kindDef exactly (it does NOT follow pawn.def / the race, so our
                 race-by-xenotype swap is irrelevant here). Every slime kind must be listed or it
                 will walk straight off the map.
-                PMM_SlimeWild        = the common wander-in (blue / red / dark mix)
-                PMM_SlimeWildBubble  = the bubble-only polluted-caves wander-in
-                PMM_SlimeWildTaisui  = the taisui-only caves wander-in
-                PMM_SlimeWildSea     = the sea-only coastal wander-in
+                PMM_Slime_Wild        = the common wander-in (blue / red / dark mix)
+                PMM_Slime_Bubble  = the bubble-only polluted-caves wander-in
+                PMM_Slime_Taisui  = the taisui-only caves wander-in
+                PMM_Slime_Sea     = the sea-only coastal wander-in
 
-                PMM_NureonagoRefugee is deliberately NOT given the wild-man subtree: she is a
+                PMM_Slime_Nureonago is deliberately NOT given the wild-man subtree: she is a
                 visitor, not a wild creature, and must never become a tameable wild man. She
                 only gets an idle/wait branch (in the idle tree below) so that a dev-spawned
                 nureonago waits in place instead of falling through to the guest exit. Her real
@@ -32,7 +32,7 @@
                         <subNodes>
 
                                 <li Class="ThinkNode_ConditionalPawnKind">
-                                        <pawnKind>PMM_SlimeWild</pawnKind>
+                                        <pawnKind>PMM_Slime_Wild</pawnKind>
                                         <subNodes>
                                                 <li Class="ThinkNode_Subtree">
                                                         <treeDef>MainWildManBehaviorCore</treeDef>
@@ -42,7 +42,7 @@
                                 </li>
 
                                 <li Class="ThinkNode_ConditionalPawnKind">
-                                        <pawnKind>PMM_SlimeWildBubble</pawnKind>
+                                        <pawnKind>PMM_Slime_Bubble</pawnKind>
                                         <subNodes>
                                                 <li Class="ThinkNode_Subtree">
                                                         <treeDef>MainWildManBehaviorCore</treeDef>
@@ -52,7 +52,7 @@
                                 </li>
 
                                 <li Class="ThinkNode_ConditionalPawnKind">
-                                        <pawnKind>PMM_SlimeWildTaisui</pawnKind>
+                                        <pawnKind>PMM_Slime_Taisui</pawnKind>
                                         <subNodes>
                                                 <li Class="ThinkNode_Subtree">
                                                         <treeDef>MainWildManBehaviorCore</treeDef>
@@ -62,7 +62,7 @@
                                 </li>
 
                                 <li Class="ThinkNode_ConditionalPawnKind">
-                                        <pawnKind>PMM_SlimeWildSea</pawnKind>
+                                        <pawnKind>PMM_Slime_Sea</pawnKind>
                                         <subNodes>
                                                 <li Class="ThinkNode_Subtree">
                                                         <treeDef>MainWildManBehaviorCore</treeDef>
@@ -84,7 +84,7 @@
 			<subNodes>
 
 				<li Class="ThinkNode_ConditionalPawnKind">
-					<pawnKind>PMM_SlimeWild</pawnKind>
+					<pawnKind>PMM_Slime_Wild</pawnKind>
 					<subNodes>
 						<li Class="ThinkNode_Tagger">
 							<tagToGive>Idle</tagToGive>
@@ -99,7 +99,7 @@
 				</li>
 
                                 <li Class="ThinkNode_ConditionalPawnKind">
-                                        <pawnKind>PMM_SlimeWildBubble</pawnKind>
+                                        <pawnKind>PMM_Slime_Bubble</pawnKind>
                                         <subNodes>
                                                 <li Class="ThinkNode_Tagger">
                                                         <tagToGive>Idle</tagToGive>
@@ -114,7 +114,7 @@
                                 </li>
 
                                 <li Class="ThinkNode_ConditionalPawnKind">
-                                        <pawnKind>PMM_SlimeWildTaisui</pawnKind>
+                                        <pawnKind>PMM_Slime_Taisui</pawnKind>
                                         <subNodes>
                                                 <li Class="ThinkNode_Tagger">
                                                         <tagToGive>Idle</tagToGive>
@@ -129,7 +129,7 @@
                                 </li>
 
                                 <li Class="ThinkNode_ConditionalPawnKind">
-                                        <pawnKind>PMM_SlimeWildSea</pawnKind>
+                                        <pawnKind>PMM_Slime_Sea</pawnKind>
                                         <subNodes>
                                                 <li Class="ThinkNode_Tagger">
                                                         <tagToGive>Idle</tagToGive>
@@ -151,7 +151,7 @@
                                      lord/duty. When the rain stops the comp clears the spot, this giver
                                      yields nothing, and the final-backup branch exits her off the map. -->
                                 <li Class="ThinkNode_ConditionalPawnKind">
-                                        <pawnKind>PMM_NureonagoRefugee</pawnKind>
+                                        <pawnKind>PMM_Slime_Nureonago</pawnKind>
                                         <subNodes>
                                                 <li Class="ThinkNode_Tagger">
                                                         <tagToGive>Idle</tagToGive>
@@ -168,7 +168,7 @@
                                      spot her comp picked at spawn; when her visit time runs out the
                                      comp clears the spot and the final-backup branch exits her. -->
                                 <li Class="ThinkNode_ConditionalPawnKind">
-                                        <pawnKind>PMM_CarrierSlimeRefugee</pawnKind>
+                                        <pawnKind>PMM_Slime_Carrier</pawnKind>
                                         <subNodes>
                                                 <li Class="ThinkNode_Tagger">
                                                         <tagToGive>Idle</tagToGive>

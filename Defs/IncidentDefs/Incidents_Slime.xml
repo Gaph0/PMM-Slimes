@@ -29,7 +29,7 @@
 		A bubble slime wanders in. Same wild-man flow as PMM_SlimeWandersIn, but the
 		worker (IncidentWorker_BubbleSlimeWandersIn) only fires on maps that have both
 		caves (overhead mountain) and world-tile pollution - the dark, filthy places
-		bubble slimes call home. Always spawns the bubble-only PMM_SlimeWildBubble kind.
+		bubble slimes call home. Always spawns the bubble-only PMM_Slime_Bubble kind.
 		No biome gate: pollution and caves can turn up anywhere.
 	-->
 	<IncidentDef>
@@ -51,7 +51,7 @@
 		A taisui wanders in. Same wild-man flow as the common slime, but the worker
 		(IncidentWorker_TaisuiWandersIn) only fires on maps that have caves (overhead
 		mountain) - the deep underground places Taisui endlessly circle. Always spawns
-		the taisui-only PMM_SlimeWildTaisui kind. No biome or climate gate: Taisui are
+		the taisui-only PMM_Slime_Taisui kind. No biome or climate gate: Taisui are
 		not tied to surface weather, only to caves. baseChance 0.05 matches the dark
 		slime's rarity (5 in 120 inside the base-1.0 slime incident), so a taisui turns
 		up about as often as a dark slime - but only on maps that have caves.
@@ -119,7 +119,7 @@
 	<!--
 		A sea slime wanders in. Same wild-man flow as the common slime, but the worker
 		(IncidentWorker_SeaSlimeWandersIn) only fires on coastal tiles that border an
-		ocean. Always spawns the sea-only PMM_SlimeWildSea kind. No biome or climate
+		ocean. Always spawns the sea-only PMM_Slime_Sea kind. No biome or climate
 		gate: sea slimes are tied to the sea, not to surface weather. baseChance 1.0
 		matches the common slime's wander-in, but restricted to coastal maps.
 	-->

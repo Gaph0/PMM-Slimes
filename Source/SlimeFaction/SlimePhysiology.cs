@@ -200,8 +200,8 @@ namespace PMM_SlimeFaction
     {
         public static bool IsSlimeKind(PawnKindDef kind)
         {
-            return kind?.defName == "PMM_SlimeWild" || kind?.defName == "PMM_SlimeWildBubble" ||
-                   kind?.defName == "PMM_SlimeWildTaisui" || kind?.defName == "PMM_SlimeWildSea";
+            return kind?.defName == "PMM_Slime_Wild" || kind?.defName == "PMM_Slime_Bubble" ||
+                   kind?.defName == "PMM_Slime_Taisui" || kind?.defName == "PMM_Slime_Sea";
         }
     }
 
@@ -273,7 +273,7 @@ namespace PMM_SlimeFaction
             // them natural fishers); every other slime gets the generic wandering adulthood.
             // Read the xenotype from the pawn KIND's set (the pawn's own genes aren't
             // applied yet, so genes.Xenotype is still null here).
-            string adulthoodName = pawn.kindDef?.defName == "PMM_SlimeWildSea"
+            string adulthoodName = pawn.kindDef?.defName == "PMM_Slime_Sea"
                 ? "PMM_SlimeSeaAdult"
                 : "PMM_SlimeAdult";
             BackstoryDef adulthood = DefDatabase<BackstoryDef>.GetNamedSilentFail(adulthoodName);

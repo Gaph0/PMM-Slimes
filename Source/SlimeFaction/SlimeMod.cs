@@ -90,11 +90,11 @@ namespace PMM_SlimeFaction
         {
             switch (xenotypeDefName)
             {
-                case "PMM_SlimeRed": return SlimeDefOf.PMM_Race_SlimeMomoRed;
-                case "PMM_SlimeBubble": return SlimeDefOf.PMM_Race_SlimeMomoBubble;
-                case "PMM_SlimeDark": return SlimeDefOf.PMM_Race_SlimeMomoDark;
-                case "PMM_SlimeTaisui": return SlimeDefOf.PMM_Race_SlimeMomoTaisui;
-                case "PMM_SlimeSea": return SlimeDefOf.PMM_Race_SlimeMomoSea;
+                case "PMM_Slime_Red": return SlimeDefOf.PMM_Race_SlimeMomoRed;
+                case "PMM_Slime_Bubble": return SlimeDefOf.PMM_Race_SlimeMomoBubble;
+                case "PMM_Slime_Dark": return SlimeDefOf.PMM_Race_SlimeMomoDark;
+                case "PMM_Slime_Taisui": return SlimeDefOf.PMM_Race_SlimeMomoTaisui;
+                case "PMM_Slime_Sea": return SlimeDefOf.PMM_Race_SlimeMomoSea;
                 default: return SlimeDefOf.PMM_Race_SlimeMomo;
             }
         }
@@ -106,13 +106,13 @@ namespace PMM_SlimeFaction
         {
             switch (xenotypeDefName)
             {
-                case "PMM_Slime": return SlimeDefOf.PMM_SlimeJellyBlue;
-                case "PMM_SlimeRed": return SlimeDefOf.PMM_SlimeJellyRed;
-                case "PMM_SlimeBubble": return SlimeDefOf.PMM_SlimeJellyBubble;
-                case "PMM_SlimeDark": return SlimeDefOf.PMM_SlimeJellyDark;
-                case "PMM_SlimeTaisui": return SlimeDefOf.PMM_SlimeJellyTaisui;
-                case "PMM_SlimeSea": return SlimeDefOf.PMM_SlimeJellySea;
-                case "PMM_SlimeNureonago": return SlimeDefOf.PMM_SlimeJellyMochi;
+                case "PMM_Slime_Blue": return SlimeDefOf.PMM_SlimeJellyBlue;
+                case "PMM_Slime_Red": return SlimeDefOf.PMM_SlimeJellyRed;
+                case "PMM_Slime_Bubble": return SlimeDefOf.PMM_SlimeJellyBubble;
+                case "PMM_Slime_Dark": return SlimeDefOf.PMM_SlimeJellyDark;
+                case "PMM_Slime_Taisui": return SlimeDefOf.PMM_SlimeJellyTaisui;
+                case "PMM_Slime_Sea": return SlimeDefOf.PMM_SlimeJellySea;
+                case "PMM_Slime_Nureonago": return SlimeDefOf.PMM_SlimeJellyMochi;
                 default: return SlimeDefOf.PMM_SlimeJelly;
             }
         }
@@ -122,15 +122,15 @@ namespace PMM_SlimeFaction
         /// melts a woman into that slime's own colour.</summary>
         public static string XenotypeFor(ThingDef jelly)
         {
-            if (jelly == SlimeDefOf.PMM_SlimeJellyRed) return "PMM_SlimeRed";
-            if (jelly == SlimeDefOf.PMM_SlimeJellyBubble) return "PMM_SlimeBubble";
-            if (jelly == SlimeDefOf.PMM_SlimeJellyDark) return "PMM_SlimeDark";
-            if (jelly == SlimeDefOf.PMM_SlimeJellyTaisui) return "PMM_SlimeTaisui";
-            if (jelly == SlimeDefOf.PMM_SlimeJellySea) return "PMM_SlimeSea";
-            if (jelly == SlimeDefOf.PMM_SlimeJellyMochi) return "PMM_SlimeNureonago";
+            if (jelly == SlimeDefOf.PMM_SlimeJellyRed) return "PMM_Slime_Red";
+            if (jelly == SlimeDefOf.PMM_SlimeJellyBubble) return "PMM_Slime_Bubble";
+            if (jelly == SlimeDefOf.PMM_SlimeJellyDark) return "PMM_Slime_Dark";
+            if (jelly == SlimeDefOf.PMM_SlimeJellyTaisui) return "PMM_Slime_Taisui";
+            if (jelly == SlimeDefOf.PMM_SlimeJellySea) return "PMM_Slime_Sea";
+            if (jelly == SlimeDefOf.PMM_SlimeJellyMochi) return "PMM_Slime_Nureonago";
             // Blue slime jelly, the generic slime jelly, and any unrecognised jelly all
             // monsterise a woman into a blue (default) slime.
-            return "PMM_Slime";
+            return "PMM_Slime_Blue";
         }
     }
 
@@ -154,7 +154,12 @@ namespace PMM_SlimeFaction
             // A dev-spawned (or otherwise non-incident) nureonago never passes through the
             // visit incident, so prepare her here too. PawnKindDef has no comps field, so
             // the visitor comp cannot be declared in XML; it is added here and by the incident.
-            if (__result?.kindDef?.defName == "PMM_NureonagoRefugee")
+            // She is also NOT a baseliner when she is dev spawned: dev spawning makes a
+            // factionless pawn, and PawnGenerator throws away the rolled xenotype of a
+            // factionless baseliner and re-rolls it from XenotypeDef.factionlessGenerationWeight
+            // (so she can come out Yttakin or any other random xenotype). The visit incident
+            // passes Faction.OfPlayer, so the real event still gets her as a baseliner.
+            if (__result?.kindDef?.defName == "PMM_Slime_Nureonago")
             {
                 // Attach the wait/leave brain (idempotent: the incident may have added one).
                 if (__result.TryGetComp<NureonagoVisitorComp>() == null)

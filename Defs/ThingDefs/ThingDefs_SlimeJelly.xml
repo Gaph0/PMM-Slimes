@@ -68,7 +68,7 @@
 		<allowedArchonexusCount>150</allowedArchonexusCount>
 	</ThingDef>
 
-	<!-- Generic slime jelly (the default PMM_Slime xenotype's fallback). Keeps its
+	<!-- Generic slime jelly (the default PMM_Slime_Blue xenotype's fallback). Keeps its
 	     defName, generic label and description for save compatibility: it is still the
 	     race's meatDef, the generic jelly on the race info card, and the fallback any
 	     code drops for an unrecognised xenotype.
@@ -86,7 +86,7 @@
 
 	<!-- Blue slime jelly: identical to the generic jelly, but properly named so blue
 	     slimes drop a jelly that matches them. Still monsterises women into blue slimes
-	     (the doer's per-jelly imprint falls back to PMM_Slime for any jelly it does not
+	     (the doer's per-jelly imprint falls back to PMM_Slime_Blue for any jelly it does not
 	     specifically recognise). -->
 	<ThingDef ParentName="PMM_SlimeJellyBase">
 		<defName>PMM_SlimeJellyBlue</defName>
