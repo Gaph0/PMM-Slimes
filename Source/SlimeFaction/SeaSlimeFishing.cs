@@ -72,14 +72,14 @@ namespace PMM_SlimeFaction
             }
             catch (System.Exception e)
             {
-                Log.ErrorOnce($"[PMM_Slime] sea slime fishing catch failed: {e}", 94108372);
+                Log.ErrorOnce($"[PMM_Slime_Blue] sea slime fishing catch failed: {e}", 94108372);
             }
         }
 
         /// <summary>Generate the sea slime and drop her at the fished water cell.</summary>
         private static void SpawnSeaSlime(Pawn fisher, Map map, Job job)
         {
-            PawnKindDef kind = DefDatabase<PawnKindDef>.GetNamedSilentFail("PMM_SlimeWildSea");
+            PawnKindDef kind = DefDatabase<PawnKindDef>.GetNamedSilentFail("PMM_Slime_Sea");
             if (kind == null)
             {
                 return;

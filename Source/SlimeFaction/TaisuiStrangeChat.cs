@@ -34,7 +34,7 @@ namespace PMM_SlimeFaction
             // Only widen false -> true for a taisui; never disturb a pawn that is
             // already disturbing (leave __result true), and never act without Anomaly.
             if (!__result && ModsConfig.AnomalyActive &&
-                ___pawn?.genes?.Xenotype?.defName == "PMM_SlimeTaisui" &&
+                ___pawn?.genes?.Xenotype?.defName == "PMM_Slime_Taisui" &&
                 Rand.Value < StrangeChatChance)
             {
                 __result = true;

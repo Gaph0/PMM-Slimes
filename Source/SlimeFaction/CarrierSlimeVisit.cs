@@ -27,7 +27,7 @@ namespace PMM_SlimeFaction
     public class IncidentWorker_CarrierSlimeVisit : IncidentWorker
     {
         /// <summary>The pawn kind she spawns as: a disguised human woman.</summary>
-        public const string CarrierKind = "PMM_CarrierSlimeRefugee";
+        public const string CarrierKind = "PMM_Slime_Carrier";
 
         /// <summary>How often the visitor comp re-checks her wait/walk/leave state.</summary>
         public const int WaitCheckInterval = 250;

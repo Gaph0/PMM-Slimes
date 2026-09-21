@@ -21,7 +21,7 @@ namespace PMM_SlimeFaction
                 return false;
             }
             return pawn.def == SlimeDefOf.PMM_Race_SlimeMomoBubble ||
-                   pawn.genes?.Xenotype?.defName == "PMM_SlimeBubble";
+                   pawn.genes?.Xenotype?.defName == "PMM_Slime_Bubble";
         }
 
         /// <summary>

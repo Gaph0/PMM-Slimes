@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ProjectMomo;
 using RimWorld;
 using Verse;
 
@@ -30,7 +31,7 @@ namespace PMM_SlimeFaction
         private const float MinRainfall = 1500f;
 
         /// <summary>The pawn kind this incident spawns. The bubble and taisui variants override this.</summary>
-        protected virtual PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_SlimeWild");
+        protected virtual PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_Slime_Wild");
 
         /// <summary>
         /// Cave check: does the world tile GENERATE caves? Uses the game's own
@@ -62,7 +63,7 @@ namespace PMM_SlimeFaction
 
             if (!(parms.target is Map map))
             {
-                Log.Message("[PMM_Slime] wander-in blocked: target is not a map");
+                PMMLog.Message("[PMM_Slime_Blue] wander-in blocked: target is not a map");
                 return false;
             }
             if (!ClimateAcceptable(map))
@@ -71,7 +72,7 @@ namespace PMM_SlimeFaction
             }
             if (!TryFindEntryCell(map, out _))
             {
-                Log.Message("[PMM_Slime] wander-in blocked: no edge cell can reach the colony");
+                PMMLog.Message("[PMM_Slime_Blue] wander-in blocked: no edge cell can reach the colony");
                 return false;
             }
             return true;
@@ -86,17 +87,17 @@ namespace PMM_SlimeFaction
             RimWorld.Planet.Tile tile = Find.WorldGrid[map.Tile];
             if (tile?.PrimaryBiome == null || tile.PrimaryBiome.defName != GrasslandBiome)
             {
-                Log.Message($"[PMM_Slime] wander-in blocked: biome is {tile?.PrimaryBiome?.defName ?? "null"}, need {GrasslandBiome}");
+                PMMLog.Message($"[PMM_Slime_Blue] wander-in blocked: biome is {tile?.PrimaryBiome?.defName ?? "null"}, need {GrasslandBiome}");
                 return false;
             }
             if (GenTemperature.MinTemperatureAtTile(map.Tile) < MinColdestMonthTemp)
             {
-                Log.Message($"[PMM_Slime] wander-in blocked: coldest month {GenTemperature.MinTemperatureAtTile(map.Tile):F1}C < {MinColdestMonthTemp}C");
+                PMMLog.Message($"[PMM_Slime_Blue] wander-in blocked: coldest month {GenTemperature.MinTemperatureAtTile(map.Tile):F1}C < {MinColdestMonthTemp}C");
                 return false; // too cold: coldest month dips below the habitable threshold
             }
             if (tile.rainfall < MinRainfall)
             {
-                Log.Message($"[PMM_Slime] wander-in blocked: rainfall {tile.rainfall:F0}mm < {MinRainfall}mm");
+                PMMLog.Message($"[PMM_Slime_Blue] wander-in blocked: rainfall {tile.rainfall:F0}mm < {MinRainfall}mm");
                 return false; // too dry: slimes need humid grasslands
             }
             return true;
@@ -112,17 +113,17 @@ namespace PMM_SlimeFaction
         {
             if (!(parms.target is Map map))
             {
-                Log.Message("[PMM_Slime] wander-in blocked: target is not a map");
+                PMMLog.Message("[PMM_Slime_Blue] wander-in blocked: target is not a map");
                 return false;
             }
             if (map.GameConditionManager.ConditionIsActive(GameConditionDefOf.ToxicFallout))
             {
-                Log.Message("[PMM_Slime] wander-in blocked: toxic fallout active");
+                PMMLog.Message("[PMM_Slime_Blue] wander-in blocked: toxic fallout active");
                 return false;
             }
             if (ModsConfig.BiotechActive && map.GameConditionManager.ConditionIsActive(GameConditionDefOf.NoxiousHaze))
             {
-                Log.Message("[PMM_Slime] wander-in blocked: noxious haze active");
+                PMMLog.Message("[PMM_Slime_Blue] wander-in blocked: noxious haze active");
                 return false;
             }
             return true;
@@ -230,7 +231,7 @@ namespace PMM_SlimeFaction
         /// </summary>
         private const float MinTilePollution = 0.05f;
 
-        protected override PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_SlimeWildBubble");
+        protected override PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_Slime_Bubble");
 
         /// <summary>Bubble slime climate gate: a polluted tile whose world tile generates caves.</summary>
         protected override bool ClimateAcceptable(Map map)
@@ -238,12 +239,12 @@ namespace PMM_SlimeFaction
             float pollution = Find.WorldGrid[map.Tile].pollution;
             if (pollution < MinTilePollution)
             {
-                Log.Message($"[PMM_Slime] bubble wander-in blocked: tile pollution {pollution:F2} < {MinTilePollution:F2}");
+                PMMLog.Message($"[PMM_Slime_Blue] bubble wander-in blocked: tile pollution {pollution:F2} < {MinTilePollution:F2}");
                 return false; // too clean: bubble slimes want filth
             }
             if (!HasCaves(map))
             {
-                Log.Message("[PMM_Slime] bubble wander-in blocked: world tile has no caves (no cave tile mutator)");
+                PMMLog.Message("[PMM_Slime_Blue] bubble wander-in blocked: world tile has no caves (no cave tile mutator)");
                 return false;
             }
             return true;
@@ -258,14 +259,14 @@ namespace PMM_SlimeFaction
     /// </summary>
     public class IncidentWorker_TaisuiWandersIn : IncidentWorker_SlimeWandersIn
     {
-        protected override PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_SlimeWildTaisui");
+        protected override PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_Slime_Taisui");
 
         /// <summary>Taisui climate gate: any world tile that generates caves.</summary>
         protected override bool ClimateAcceptable(Map map)
         {
             if (!HasCaves(map))
             {
-                Log.Message("[PMM_Slime] taisui wander-in blocked: world tile has no caves (no cave tile mutator)");
+                PMMLog.Message("[PMM_Slime_Blue] taisui wander-in blocked: world tile has no caves (no cave tile mutator)");
                 return false;
             }
             return true;
@@ -280,14 +281,14 @@ namespace PMM_SlimeFaction
     /// </summary>
     public class IncidentWorker_SeaSlimeWandersIn : IncidentWorker_SlimeWandersIn
     {
-        protected override PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_SlimeWildSea");
+        protected override PawnKindDef PawnKindToSpawn => DefDatabase<PawnKindDef>.GetNamed("PMM_Slime_Sea");
 
         /// <summary>Sea slime climate gate: the world tile must border an ocean.</summary>
         protected override bool ClimateAcceptable(Map map)
         {
             if (!Find.WorldGrid[map.Tile].IsCoastal)
             {
-                Log.Message("[PMM_Slime] sea slime wander-in blocked: tile is not coastal (does not border an ocean)");
+                PMMLog.Message("[PMM_Slime_Blue] sea slime wander-in blocked: tile is not coastal (does not border an ocean)");
                 return false;
             }
             return true;

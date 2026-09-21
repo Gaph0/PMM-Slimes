@@ -28,7 +28,7 @@ namespace PMM_SlimeFaction
     public class IncidentWorker_NureonagoVisit : IncidentWorker
     {
         /// <summary>The pawn kind she spawns as: a disguised human woman.</summary>
-        private const string RefugeeKind = "PMM_NureonagoRefugee";
+        private const string RefugeeKind = "PMM_Slime_Nureonago";
 
         /// <summary>How often the visitor comp re-checks her wait/walk/leave state.</summary>
         public const int WaitCheckInterval = 250;
@@ -113,7 +113,7 @@ namespace PMM_SlimeFaction
             return false;
         }
 
-        public const string NureonagoXenotype = "PMM_SlimeNureonago";
+        public const string NureonagoXenotype = "PMM_Slime_Nureonago";
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
@@ -226,7 +226,7 @@ namespace PMM_SlimeFaction
 
         public static bool IsDisguised(Pawn pawn)
         {
-            return pawn != null && pawn.kindDef?.defName == "PMM_NureonagoRefugee" &&
+            return pawn != null && pawn.kindDef?.defName == "PMM_Slime_Nureonago" &&
                    pawn.genes?.Xenotype?.defName != IncidentWorker_NureonagoVisit.NureonagoXenotype;
         }
 
