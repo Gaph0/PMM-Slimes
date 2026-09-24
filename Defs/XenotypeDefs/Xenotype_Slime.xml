@@ -108,7 +108,7 @@
 		<!-- Optional VPE integration: the dark slime's succubus-like power makes it the
 		     strongest caster of the four (its PsychicAbility_Enhanced gene agrees). She
 		     always channels it through her own custom path
-		     (PsycastDefs/Psycasts_SlimeCore.xml) — the only path she can unlock. -->
+		     (PsycastDefs/Psycasts_SlimeCore.xml) - the only path she can unlock. -->
 		<modExtensions>
 			<li Class="ProjectMomo.MomoPsycastExtension">
 				<pathDefNames>

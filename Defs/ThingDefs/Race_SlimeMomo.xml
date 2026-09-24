@@ -3,7 +3,7 @@
 
 	<!--
 		Slime momo race. Inherits everything from Human via XML deep merge (body, tools,
-		think tree, stat bases, ...), so slimes remain fully humanlike — but their body is
+		think tree, stat bases, ...), so slimes remain fully humanlike - but their body is
 		living gel: butchering yields slime jelly instead of human meat, and there is no
 		skin to tan into leather.
 
@@ -24,7 +24,7 @@
 	<!--
 		Abstract base for every slime momo race. Inherits the full human body/stats from
 		Human (deep merge) and adds the shared slime overrides. Concrete colour races below
-		parent off THIS (abstract defs are the only valid ParentName targets — a concrete
+		parent off THIS (abstract defs are the only valid ParentName targets - a concrete
 		def like the blue race cannot be a ParentName and throws "Could not find parent
 		node", which is exactly the error this fixes). Each colour only sets its own label
 		and specificMeatDef.
@@ -32,7 +32,7 @@
 		Big & Small: the base also carries the shared RaceExtension, so all six colours
 		point at ONE tracker hediff (PMM_RaceTracker_Slime, at the bottom of this file).
 		One tracker is enough because the colours differ only by their jelly and their two
-		gizmo comps, and both of those live on the race def — no colour has its own pawn
+		gizmo comps, and both of those live on the race def - no colour has its own pawn
 		stats yet. B&S applies the tracker to any pawn wearing one of these races (on
 		spawn, and on a transformation swap), which is what makes the race a B&S citizen:
 		size scaling, race bookkeeping, and a clean swap-away when a slime is transformed
@@ -55,7 +55,7 @@
 	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
 		<defName>PMM_Race_SlimeMomo</defName>
 		<label>slime momo</label>
-		<description>A momo whose body has become living gel. There are no bones to break and no skin to tan — a slain slime momo collapses into a pool of slime jelly and nothing more.</description>
+		<description>A momo whose body has become living gel. There are no bones to break and no skin to tan - a slain slime momo collapses into a pool of slime jelly and nothing more.</description>
 		<race>
 			<specificMeatDef>PMM_SlimeJelly</specificMeatDef>
 		</race>
@@ -117,14 +117,14 @@
 
 	<!--
 		The shared Big & Small race tracker for every slime momo colour. B&S applies it to
-		any pawn whose race def carries the RaceExtension above — on spawn, and on a
-		transformation swap — and its CompProperties_Race lets a transformed slime swap away
+		any pawn whose race def carries the RaceExtension above - on spawn, and on a
+		transformation swap - and its CompProperties_Race lets a transformed slime swap away
 		to another race cleanly (without it the tracker would fight the swap).
 
 		Deliberately empty of stat stages: slimes are human-sized (body size 1.0, so no
 		SM_BodySizeMultiplier override) and unarmoured, and the per-colour differences are
 		race-def comps rather than pawn stats. Per-colour armour, romance tags or size would
-		mean one tracker per colour instead — nothing needs that yet.
+		mean one tracker per colour instead - nothing needs that yet.
 
 		The label/description are what the Health tab shows for the row; the tracker stays
 		visible there, which is how every B&S race behaves.

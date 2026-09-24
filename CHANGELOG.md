@@ -19,6 +19,8 @@
 
 ## Internal
 
+- 2026-09-24: Changed the em dashes in this mod's text to plain hyphens.
+
 - 2026-09-20: Changed the wander-in messages to go through core's `PMMLog`, so they only appear in development mode.
 - 2026-09-20: Added the six slime races to the shared momo corpses line in the core mod.
 - 2026-09-20: Changed the slime pawnkind and xenotype names to sort together in the dev spawner.

@@ -2,7 +2,7 @@
 <Defs>
 
 	<!--
-		Path of the Slime Core — the dark slime's custom VPE psycaster path.
+		Path of the Slime Core - the dark slime's custom VPE psycaster path.
 		Only meaningful while Vanilla Psycasts Expanded is loaded: the ability
 		classes (PMM_SlimeFaction assembly) reference VEF types, and Project
 		Momo's VPE integration is what grants the path to spawned dark slimes.
@@ -15,11 +15,11 @@
 	<VanillaPsycastsExpanded.PsycasterPathDef>
 		<defName>PMM_Path_SlimeCore</defName>
 		<label>Slime Core</label>
-		<description>The dark slime's awakened core lets her weaponize her own body: she splashes snaring gel, drains essence through it, and binds her prey in waves of overwhelming pleasure — leaving captured women one infusion short of becoming slimes themselves.</description>
+		<description>The dark slime's awakened core lets her weaponize her own body: she splashes snaring gel, drains essence through it, and binds her prey in waves of overwhelming pleasure - leaving captured women one infusion short of becoming slimes themselves.</description>
 		<background>UI/Backgrounds/NightstalkerPath</background>
 		<altBackground>UI/AlternativeBackgrounds/PathBG_Nightstalker</altBackground>
 		<tab>Psycasts</tab>
-		<tooltip>An upper-rank slime casting from the power stored in her core. Snare, grope, drain — then bind the slime-coated victim in unbelievable pleasure until her will breaks and the corruption takes hold.</tooltip>
+		<tooltip>An upper-rank slime casting from the power stored in her core. Snare, grope, drain - then bind the slime-coated victim in unbelievable pleasure until her will breaks and the corruption takes hold.</tooltip>
 	</VanillaPsycastsExpanded.PsycasterPathDef>
 
 	<!-- ======================= Tier 1: Sticky Slime Bomb ======================= -->
@@ -94,7 +94,7 @@
 	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
 		<defName>PMM_DrainingSlimeSplash</defName>
 		<label>draining slime splash</label>
-		<description>Splash a patch of living slime across the ground. For 15 seconds it laps at anyone standing in it — teasing them, sipping their essence for the caster, and seeping corruption into women.</description>
+		<description>Splash a patch of living slime across the ground. For 15 seconds it laps at anyone standing in it - teasing them, sipping their essence for the caster, and seeping corruption into women.</description>
 		<iconPath>UI/Icons/Xenotypes/Impid</iconPath>
 		<abilityClass>PMM_SlimeFaction.Ability_DrainingSlimeSplash</abilityClass>
 		<castTime>60</castTime>
@@ -167,7 +167,7 @@
 	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
 		<defName>PMM_PleasureAscension</defName>
 		<label>pleasure ascension</label>
-		<description>Only usable on someone already coated in slime — slowed by the bomb, caught in the hold, or standing in the splash. Binds the victim for 20 seconds and subjects them to unbelievable pleasures: waves of tease that break even the strongest will. Women are left three quarters corrupted — one infusion short of becoming a slime.</description>
+		<description>Only usable on someone already coated in slime - slowed by the bomb, caught in the hold, or standing in the splash. Binds the victim for 20 seconds and subjects them to unbelievable pleasures: waves of tease that break even the strongest will. Women are left three quarters corrupted - one infusion short of becoming a slime.</description>
 		<iconPath>UI/Icons/Xenotypes/Impid</iconPath>
 		<abilityClass>PMM_SlimeFaction.Ability_PleasureAscension</abilityClass>
 		<castTime>120</castTime>
