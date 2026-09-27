@@ -26,11 +26,6 @@
 		<statOffsets>
 			<FilthRate>4</FilthRate>
 		</statOffsets>
-		<customEffectDescriptions>
-			<li>Constantly sheds slime filth.</li>
-			<li>Periodically drops slime jelly.</li>
-			<li>Boneless, skinless body: all wounds are bruises, and butchering yields only slime jelly.</li>
-		</customEffectDescriptions>
 	</GeneDef>
 
 	<!--
@@ -191,10 +186,6 @@
 			<FilthRate>0.2</FilthRate>
 			<CleaningSpeed>1.5</CleaningSpeed>
 		</statFactors>
-		<customEffectDescriptions>
-			<li>Sheds 80% less filth than a normal person.</li>
-			<li>Cleans 50% faster.</li>
-		</customEffectDescriptions>
 	</GeneDef>
 
 </Defs>
