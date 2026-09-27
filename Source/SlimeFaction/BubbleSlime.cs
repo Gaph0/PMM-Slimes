@@ -20,13 +20,13 @@ namespace PMM_SlimeFaction
             {
                 return false;
             }
-            return pawn.def == SlimeDefOf.PMM_Race_SlimeMomoBubble ||
+            return pawn.def == SlimeDefOf.PMM_Race_SlimeMamonoBubble ||
                    pawn.genes?.Xenotype?.defName == "PMM_Slime_Bubble";
         }
 
         /// <summary>
         /// True if the pawn is bonded to a bubble slime. "Bonded" covers both Project
-        /// Momo's Tsugai bond (the mod's husband/wife-style bond, labelled "bonded" on
+        /// Mamono's Tsugai bond (the mod's husband/wife-style bond, labelled "bonded" on
         /// the Social tab) and the vanilla animal Bond relation, in case a slime ever
         /// ends up on the animal-bond path. Such a pawn's body has grown used to the
         /// slime's toxins and can eat bubble slime jelly without getting sick.
@@ -41,7 +41,7 @@ namespace PMM_SlimeFaction
             for (int i = 0; i < relations.Count; i++)
             {
                 DirectPawnRelation rel = relations[i];
-                if ((rel.def == ProjectMomo.ProjectMomo_DefOf.ProjectMomo_Tsugai ||
+                if ((rel.def == ProjectMamono.ProjectMamono_DefOf.ProjectMamono_Tsugai ||
                      rel.def == PawnRelationDefOf.Bond) && IsBubbleSlime(rel.otherPawn))
                 {
                     return true;
@@ -131,7 +131,7 @@ namespace PMM_SlimeFaction
     /// toxic wastepacks and the slime devours the whole stack, dissolving it into its
     /// body. The reaction bubbles off a small cloud of toxic gas (10% of the old burst)
     /// and the slime then needs 12 in-game hours to process before it can feed again.
-    /// On the bubble race def (Race_SlimeMomo.xml), so every bubble slime has it; the
+    /// On the bubble race def (Race_SlimeMamono.xml), so every bubble slime has it; the
     /// gizmo only shows for player-faction pawns.
     /// </summary>
     public class CompConsumeWastepack : ThingComp

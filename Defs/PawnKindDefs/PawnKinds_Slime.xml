@@ -16,7 +16,7 @@
 		<label>slime</label>
 		<!-- Custom race (deep-merged from Human): the info card shows slime jelly instead of
 		     human meat and no leather, and the vanilla butcher path agrees with our patch. -->
-		<race>PMM_Race_SlimeMomo</race>
+		<race>PMM_Race_SlimeMamono</race>
 		<!-- Factionless: slimes only enter the map as wild creatures (PMM_SlimeWandersIn incident),
 		     and are tamed like wild men (IsWildMan patch in the assembly). -->
 		<maxGenerationAge>60</maxGenerationAge>
@@ -95,7 +95,7 @@
 		she is a plain Human-race baseliner with no gear - but UNLIKE the nureonago she
 		keeps her vanilla-generated backstories, name, hair and looks: she really was an
 		ordinary woman once, and the parasite inside her preserves the facade perfectly.
-		The incident carrier-ifies her post-generation (Momo + slime-gel genes and the
+		The incident carrier-ifies her post-generation (Mamono + slime-gel genes and the
 		hidden carrier hediff), so nothing about her reads as a monster until the reveal.
 	-->
 	<PawnKindDef>
@@ -156,7 +156,7 @@
 	<PawnKindDef>
 		<defName>PMM_Slime_Bubble</defName>
 		<label>bubble slime</label>
-		<race>PMM_Race_SlimeMomoBubble</race>
+		<race>PMM_Race_SlimeMamonoBubble</race>
 		<maxGenerationAge>60</maxGenerationAge>
 		<chemicalAddictionChance>0</chemicalAddictionChance>
 		<apparelIgnorePollution>true</apparelIgnorePollution>
@@ -185,7 +185,7 @@
 	<PawnKindDef>
 		<defName>PMM_Slime_Taisui</defName>
 		<label>taisui</label>
-		<race>PMM_Race_SlimeMomoTaisui</race>
+		<race>PMM_Race_SlimeMamonoTaisui</race>
 		<maxGenerationAge>60</maxGenerationAge>
 		<chemicalAddictionChance>0</chemicalAddictionChance>
 		<apparelIgnorePollution>true</apparelIgnorePollution>
@@ -217,7 +217,7 @@
 	<PawnKindDef>
 		<defName>PMM_Slime_Sea</defName>
 		<label>sea slime</label>
-		<race>PMM_Race_SlimeMomoSea</race>
+		<race>PMM_Race_SlimeMamonoSea</race>
 		<maxGenerationAge>60</maxGenerationAge>
 		<chemicalAddictionChance>0</chemicalAddictionChance>
 		<apparelIgnorePollution>true</apparelIgnorePollution>

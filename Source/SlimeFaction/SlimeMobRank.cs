@@ -12,7 +12,7 @@ namespace PMM_SlimeFaction
     /// creature (slimes spawn factionless, like wild men) and rolls a rank on first
     /// access; ranks D and above map to levels well past 10. This postfix caps the spawn
     /// roll for slimes at E or F. It deliberately does NOT use SetRankOverride (which
-    /// would pin the rank permanently) — it only lowers the freshly-rolled rank/level,
+    /// would pin the rank permanently) - it only lowers the freshly-rolled rank/level,
     /// so the slime can still gain XP and rank up past E through play afterwards.
     /// </summary>
     [HarmonyPatch(typeof(MobRankComponent), nameof(MobRankComponent.RecalculateRank))]
@@ -22,10 +22,10 @@ namespace PMM_SlimeFaction
         private const int MaxSlimeLevel = 10;
 
         // Private state we adjust to lower the spawn roll without pinning the rank:
-        //  cachedRank / cachedBaseRank — the displayed tier, clamped to at most E so it
+        //  cachedRank / cachedBaseRank - the displayed tier, clamped to at most E so it
         //      matches the capped level.
-        //  cachedIsElite — cleared, since elite bonus levels could push past the cap.
-        //  statsInitialized — reset so EnsureStatsInitialized re-derives stats + level
+        //  cachedIsElite - cleared, since elite bonus levels could push past the cap.
+        //  statsInitialized - reset so EnsureStatsInitialized re-derives stats + level
         //      from the clamped rank string.
         private static readonly FieldInfo CachedRankField =
             AccessTools.Field(typeof(MobRankComponent), "cachedRank");
@@ -43,7 +43,7 @@ namespace PMM_SlimeFaction
             Pawn pawn = __instance.Pawn;
             if (!IsSlime(pawn) || __instance.currentLevel <= MaxSlimeLevel)
             {
-                return; // not a slime, or already E/F — leave the roll alone
+                return; // not a slime, or already E/F - leave the roll alone
             }
 
             // Cap the spawn roll at the bottom of the ladder. F (levels 1-5) is the

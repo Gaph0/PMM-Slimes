@@ -2,6 +2,9 @@
 
 ## Player-facing
 
+- 2026-09-27: Changed every internal name to Mamono, so saves from earlier versions no longer load.
+- 2026-09-27: Changed the mod name to Project Mamono Slime Faction.
+- 2026-09-27: Changed the word momo to mamono in the mod's labels and descriptions.
 - 2026-09-20: Changed the notes about a refused wander-in to appear only in development mode.
 - 2026-09-20: Added a "momo corpses" line in the butcher menu, holding all six slime momo corpses.
 - 2026-09-20: Fixed a woman corrupted into a slime keeping a human body. She now becomes the slime's own race, so her colour and body match the slime that made her.
@@ -19,6 +22,9 @@
 
 ## Internal
 
+- 2026-09-27: Changed the mod folder and project names to Mamono.
+- 2026-09-27: Changed the defNames, class names, scribe labels and file names to Mamono.
+- 2026-09-27: Changed the README to say mamono.
 - 2026-09-24: Changed the em dashes in this mod's text to plain hyphens.
 
 - 2026-09-20: Changed the wander-in messages to go through core's `PMMLog`, so they only appear in development mode.

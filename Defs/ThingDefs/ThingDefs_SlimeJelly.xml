@@ -4,7 +4,7 @@
 	<!--
 		Slime jelly: an analogue to insect jelly (same nourishment, joy and never-rots
 		properties) but with no food-poison chance, and a hidden extra: women who eat too
-		much of it are monsterised into slimes via Project Momo's mamono corruption
+		much of it are monsterised into slimes via Project Mamono's mamono corruption
 		(IngestionOutcomeDoer_SlimeJelly in the assembly).
 
 		Abstract base holding every shared field; the four concrete jellies below only set

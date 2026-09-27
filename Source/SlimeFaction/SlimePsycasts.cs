@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using ProjectMomo;
+using ProjectMamono;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -11,9 +11,9 @@ namespace PMM_SlimeFaction
 {
     /// <summary>
     /// The dark slime's custom psycasts (Path of the Slime Core). Every ability
-    /// leans on Project Momo's public systems — TeaseApplication for tease
-    /// damage, EssenceTransfer for essence/mana, Hediff_MomoCorruption for the
-    /// hidden corruption dose — so the numbers here feed the same economies as
+    /// leans on Project Mamono's public systems - TeaseApplication for tease
+    /// damage, EssenceTransfer for essence/mana, Hediff_MamonoCorruption for the
+    /// hidden corruption dose - so the numbers here feed the same economies as
     /// the mods' melee and infusion paths.
     ///
     /// SOFT DEPENDENCY: this file references VEF/VPE types and is only ever
@@ -120,25 +120,25 @@ namespace PMM_SlimeFaction
         /// <paramref name="severity"/> (female targets only), imprints the
         /// caster's xenotype so finishing the job turns her into another slime,
         /// and remembers the caster as the source for join offers. Quiet by
-        /// design — no letters, no mana cost (the psyfocus is the cost).
+        /// design - no letters, no mana cost (the psyfocus is the cost).
         /// </summary>
         public static void ApplyHiddenCorruption(Pawn caster, Pawn victim, float severity)
         {
-            var settings = ProjectMomoModSettings.Settings;
+            var settings = ProjectMamonoModSettings.Settings;
             if (settings == null || !settings.CorruptionEnabled)
             {
                 return;
             }
-            if (!MomoTransformation.CanEverTransform(victim))
+            if (!MamonoTransformation.CanEverTransform(victim))
             {
                 return;
             }
 
-            Hediff_MomoCorruption corruption = victim.health?.hediffSet?
-                .GetFirstHediffOfDef(ProjectMomo_DefOf.ProjectMomo_MomoCorruption) as Hediff_MomoCorruption;
+            Hediff_MamonoCorruption corruption = victim.health?.hediffSet?
+                .GetFirstHediffOfDef(ProjectMamono_DefOf.ProjectMamono_MamonoCorruption) as Hediff_MamonoCorruption;
             if (corruption == null)
             {
-                corruption = HediffMaker.MakeHediff(ProjectMomo_DefOf.ProjectMomo_MomoCorruption, victim) as Hediff_MomoCorruption;
+                corruption = HediffMaker.MakeHediff(ProjectMamono_DefOf.ProjectMamono_MamonoCorruption, victim) as Hediff_MamonoCorruption;
                 if (corruption == null)
                 {
                     return;
@@ -454,7 +454,7 @@ namespace PMM_SlimeFaction
     /// <summary>
     /// The 20-second bind of Pleasure Ascension: waves of unbelievable pleasure
     /// (0.4 tease every 10 seconds) that end in a guaranteed willpower knockout,
-    /// and — on women — a corruption dose that leaves her one infusion short of
+    /// and - on women - a corruption dose that leaves her one infusion short of
     /// becoming a slime herself.
     /// </summary>
     public class Hediff_PleasureAscension : HediffWithComps

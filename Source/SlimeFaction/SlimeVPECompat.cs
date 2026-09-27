@@ -6,9 +6,9 @@ namespace PMM_SlimeFaction
     /// <summary>
     /// Soft-detection of Vanilla Psycasts Expanded. The SlimeCore psycast path
     /// and its ability defs are plain XML referencing VPE/VEF types, which is
-    /// fine — RimWorld resolves abilityClass lazily and def-loading tolerates the
+    /// fine - RimWorld resolves abilityClass lazily and def-loading tolerates the
     /// missing modExtension classes when VPE is absent (the path itself is only
-    /// ever granted by Project Momo's VPE integration, which is inert then too).
+    /// ever granted by Project Mamono's VPE integration, which is inert then too).
     /// Everything in SlimePsycasts.cs touches VEF/VPE types, so the psycast
     /// classes are only ever instantiated while VPE is loaded; this gate keeps
     /// the rest of the mod honest.

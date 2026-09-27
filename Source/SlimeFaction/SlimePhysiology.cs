@@ -10,7 +10,7 @@ namespace PMM_SlimeFaction
     /// <summary>
     /// Slimes ooze slime, never trash. A full replacement for the vanilla ambient-filth
     /// branch: keeps the FilthRate gate (4x for slimes, from the gene), then always drops
-    /// <see cref="ThingDefOf.Filth_Slime"/> — vanilla would drop the terrain filth 66% of
+    /// <see cref="ThingDefOf.Filth_Slime"/> - vanilla would drop the terrain filth 66% of
     /// the time and <c>Filth_Trash</c> the other 34%. Runs as a prefix that skips the
     /// original for slime pawns only.
     /// </summary>
@@ -49,8 +49,8 @@ namespace PMM_SlimeFaction
 
     /// <summary>
     /// Slimes have no bones to break and no skin to cut: every wound they suffer is a
-    /// bruise. A prefix on <see cref="Thing.TakeDamage"/> — which Pawn does not override,
-    /// so this single point catches all damage before armour and damage workers run —
+    /// bruise. A prefix on <see cref="Thing.TakeDamage"/> - which Pawn does not override,
+    /// so this single point catches all damage before armour and damage workers run -
     /// that rewrites the incoming <see cref="DamageInfo"/> in place for slime targets:
     /// the damage def becomes Blunt, and hits aimed at solid parts (bones are the only
     /// solid body parts) are retargeted to the nearest non-solid ancestor. Editing in
@@ -60,10 +60,10 @@ namespace PMM_SlimeFaction
     /// Why Blunt and not Crush: HealthUtility.GetHediffDefFromDamage picks the wound
     /// hediff as hediffSkin for skin-covered parts, then hediffSolid for solid parts,
     /// then the plain hediff as fallback. Vanilla Crush's hediffSkin is Cut (a crushing
-    /// blow tears skin), so converting to Crush made every flesh wound a cut — the exact
+    /// blow tears skin), so converting to Crush made every flesh wound a cut - the exact
     /// opposite of this rule. Blunt's hediffSkin is Bruise, which is what we want. Blunt
     /// also brings the vanilla DamageWorker_Blunt extras (stun chance on heavy core-part
-    /// hits, chance of inner-part damage) — the same profile as fists and clubs.
+    /// hits, chance of inner-part damage) - the same profile as fists and clubs.
     /// </summary>
     [HarmonyPatch(typeof(Thing), nameof(Thing.TakeDamage))]
     public static class Patch_SlimeTakeDamage
@@ -85,7 +85,7 @@ namespace PMM_SlimeFaction
 
             // Any external violence lands as a bruise: bullets, cuts, burns, bites, all of it.
             // Blunt, not Crush: GetHediffDefFromDamage prefers hediffSkin on skin-covered
-            // parts, and Crush's hediffSkin is Cut — Blunt's is Bruise.
+            // parts, and Crush's hediffSkin is Cut - Blunt's is Bruise.
             if (dinfo.Def != DamageDefOf.Blunt && dinfo.Def.ExternalViolenceFor(pawn))
             {
                 DefField.SetValueDirect(__makeref(dinfo), DamageDefOf.Blunt);
@@ -115,7 +115,7 @@ namespace PMM_SlimeFaction
     }
 
     /// <summary>
-    /// Butchering a slime yields only slime jelly — no meat and no skin. A postfix on
+    /// Butchering a slime yields only slime jelly - no meat and no skin. A postfix on
     /// <see cref="Pawn.ButcherProducts"/> replaces the result wholesale for slimes; the
     /// corpse path delegates to the inner pawn, so this covers corpses too.
     /// </summary>
@@ -141,7 +141,7 @@ namespace PMM_SlimeFaction
             // Yield = MeatAmount stat × butcher efficiency. MeatAmount is base 20 on the
             // slime race (scaled by body size and butcher-yield stat parts), so a healthy
             // adult at full efficiency drops ~20 jelly, and a careless or low-skill
-            // butcher gets less — matching the meat stat row/tooltip shown in-game.
+            // butcher gets less - matching the meat stat row/tooltip shown in-game.
             int count = Mathf.Max(1, GenMath.RoundRandom(__instance.GetStatValue(StatDefOf.MeatAmount) * efficiency));
             Thing jelly = ThingMaker.MakeThing(JellyFor(__instance));
             jelly.stackCount = count;

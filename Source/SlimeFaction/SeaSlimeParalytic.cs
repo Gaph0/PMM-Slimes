@@ -26,7 +26,7 @@ namespace PMM_SlimeFaction
     /// Gives a player-owned sea slime a "paralytic tentacles" gizmo: tentacles emerge
     /// from beneath her bell and inject a paralytic poison into a nearby target,
     /// slowing it to a crawl for 1 in-game hour (the PMM_Hediff_SeaParalytic hediff).
-    /// On the sea race def (Race_SlimeMomo.xml), so every sea slime has it; the gizmo
+    /// On the sea race def (Race_SlimeMamono.xml), so every sea slime has it; the gizmo
     /// only shows for player-faction pawns. 12-hour cooldown.
     /// </summary>
     public class CompParalyticTentacles : ThingComp

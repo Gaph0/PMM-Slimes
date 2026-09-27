@@ -30,7 +30,7 @@ DLL="Assemblies/PMM_SlimeFaction.dll"
 if [ ! -f "$DLL" ] || [ -n "$(find Source -name '*.cs' -newer "$DLL" -print -quit)" ]; then
   ./build.sh
 else
-  echo "$DLL is up to date — skipping build"
+  echo "$DLL is up to date - skipping build"
 fi
 
 # 1b. Ensure the tag exists locally and on GitHub

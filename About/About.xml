@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Project Momo Slime Faction</name>
+	<name>Project Mamono Slime Faction</name>
 	<author>Gapho</author>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
 	<packageId>PMM.SlimeFaction</packageId>
 	<description>
-Adds wild slimes for Project Momo: amorphous slime-folk who wander in from the wilds - warm grasslands, polluted caverns, the deep underground, and the sea.
+Adds wild slimes for Project Mamono: amorphous slime-folk who wander in from the wilds - warm grasslands, polluted caverns, the deep underground, and the sea.
 
 Seven slime xenotypes: common blue slimes, fierce red slimes, spellcasting dark slimes, toxin-eating bubble slimes, genius taisui, coastal sea slimes, and the devoted nureonago. They spawn only in the wild, like wild men - and like wild men they can be tamed or captured and convinced to join. Some don't wait to be found: disguised as ordinary women, the nureonago and the slime carrier walk up to the colony on their own. And a rare parasite slime, eaten by an unwitting woman, remakes her from the inside while leaving her memories eerily intact.
 
@@ -15,7 +15,7 @@ A small C# assembly gives the slimes their signature physiology: hair always mat
 
 Their bodies are as soft as a human's to the weather: any temperature fatal to a naked human is fatal to a slime.
 
-Requires the Biotech and Odyssey expansions, Harmony, Big and Small - Framework, and Project Momo. Optional: Vanilla Psycasts Expanded (the dark slime's Slime Core path), ISEKAI RPG LEVELING (mob-rank caps), Anomaly (taisui strange chats).
+Requires the Biotech and Odyssey expansions, Harmony, Big and Small - Framework, and Project Mamono. Optional: Vanilla Psycasts Expanded (the dark slime's Slime Core path), ISEKAI RPG LEVELING (mob-rank caps), Anomaly (taisui strange chats).
 	</description>
 	<modDependencies>
 		<li>
@@ -34,7 +34,7 @@ Requires the Biotech and Odyssey expansions, Harmony, Big and Small - Framework,
 		</li>
 		<li>
 			<packageId>PMM.Core</packageId>
-			<displayName>Project Momo</displayName>
+			<displayName>Project Mamono</displayName>
 			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3786764047</steamWorkshopUrl>
 		</li>
 		<li>

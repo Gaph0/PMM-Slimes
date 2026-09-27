@@ -8,11 +8,11 @@ namespace PMM_SlimeFaction
     /// The slime carrier: a human woman infested and remade by a parasite slime. Unlike
     /// every other slime in the mod she is defined by what she KEEPS - her Human race,
     /// xenotype (usually Baseliner), backstories, name, hair, skin colour and genes are
-    /// all untouched. She gains exactly two genes (Momo + slime gel, as plain endogenes).
+    /// all untouched. She gains exactly two genes (Mamono + slime gel, as plain endogenes).
     ///
     /// Lifecycle (three stages), shared by the visit event and the item:
     ///   1. SECRET:    she carries the hidden PMM_Hediff_ParasiteCarrier marker but has
-    ///                 NO slime/Momo genes yet - so nothing shows on her Bio tab and her
+    ///                 NO slime/Mamono genes yet - so nothing shows on her Bio tab and her
     ///                 physiology is still human. The event masks her real backstories
     ///                 with "unknown" placeholders; the item path keeps her own.
     ///   2. COUNTDOWN: accepting her (event) or eating the item (colonist) starts the
@@ -108,11 +108,11 @@ namespace PMM_SlimeFaction
         }
 
         /// <summary>
-        /// STAGE 3 - the parasite finishes remaking her: add the Momo and slime-gel genes
+        /// STAGE 3 - the parasite finishes remaking her: add the Mamono and slime-gel genes
         /// as plain endogenes (she keeps every gene she already had), flip the marker
         /// visible, and fire the turn alert. Called by the takeover hediff at full
         /// severity; also usable directly by dev tools. Order matters:
-        ///  1. snapshot hair/body (Gene_Momo.PostAdd re-styles non-feminine hair);
+        ///  1. snapshot hair/body (Gene_Mamono.PostAdd re-styles non-feminine hair);
         ///  2. add the genes - the carrier-marker guard in Gene_SlimeGel.PostAdd is
         ///     already true (the marker was added in Stage 1), so no jelly-oozing hediff;
         ///  3. restore her hair/body: the woman she was, on the outside.
@@ -134,9 +134,9 @@ namespace PMM_SlimeFaction
             HairDef hair = pawn.story?.hairDef;
             BodyTypeDef body = pawn.story?.bodyType;
 
-            if (!pawn.genes.HasActiveGene(ProjectMomo.ProjectMomo_DefOf.ProjectMomo_Momo))
+            if (!pawn.genes.HasActiveGene(ProjectMamono.ProjectMamono_DefOf.ProjectMamono_Mamono))
             {
-                pawn.genes.AddGene(ProjectMomo.ProjectMomo_DefOf.ProjectMomo_Momo, xenogene: false);
+                pawn.genes.AddGene(ProjectMamono.ProjectMamono_DefOf.ProjectMamono_Mamono, xenogene: false);
             }
             if (!pawn.genes.HasActiveGene(SlimeDefOf.PMM_Gene_SlimeGel))
             {

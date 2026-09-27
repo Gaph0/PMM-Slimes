@@ -7,8 +7,8 @@ namespace PMM_SlimeFaction
 {
     /// <summary>
     /// "She is more likely to be encountered when she becomes tangled in a fisherman's
-    /// nets." A postfix on the private JobDriver_Fish.CompleteFishingToil — the exact
-    /// point where a fishing catch is generated — that gives each completed catch a
+    /// nets." A postfix on the private JobDriver_Fish.CompleteFishingToil - the exact
+    /// point where a fishing catch is generated - that gives each completed catch a
     /// small chance to haul up a sea slime instead, on maps bordering an ocean.
     /// (CompleteFishingToil is private, so the patch target is resolved by name through
     /// AccessTools.Method rather than a compile-time nameof.)

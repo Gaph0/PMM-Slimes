@@ -11,7 +11,7 @@ namespace PMM_SlimeFaction
     /// out. A travelling woman walks up to the colony and waits at its edge, smiling.
     /// She really was an ordinary woman once: she is generated as a plain baseliner with
     /// vanilla backstories, name, hair and looks - then carrier-ified post-generation
-    /// (Momo + slime-gel genes, hidden carrier hediff). Nothing about her reads as a
+    /// (Mamono + slime-gel genes, hidden carrier hediff). Nothing about her reads as a
     /// monster until the reveal.
     ///
     /// Unlike the nureonago she needs no rain to pass as human, so the only gates are:
@@ -21,7 +21,7 @@ namespace PMM_SlimeFaction
     ///   Accept -> reveal, she joins. No automatic bonding.
     ///   Reject -> reveal, then the level check (IsekaiCompat.GetLevel), exactly like
     ///             the nureonago: carrier stronger than the talker -> she attacks;
-    ///             otherwise she leaves. (Carriers ARE Momos, so she berserks.)
+    ///             otherwise she leaves. (Carriers ARE Mamonos, so she berserks.)
     /// Ignored, she simply leaves when her patience runs out (VisitDurationTicks).
     /// </summary>
     public class IncidentWorker_CarrierSlimeVisit : IncidentWorker
@@ -65,7 +65,7 @@ namespace PMM_SlimeFaction
             for (int i = 0; i < colonists.Count; i++)
             {
                 Pawn p = colonists[i];
-                if (p != null && !p.Dead && ProjectMomo.TsugaiFormation.IsBondable(p))
+                if (p != null && !p.Dead && ProjectMamono.TsugaiFormation.IsBondable(p))
                 {
                     return true;
                 }
@@ -334,7 +334,7 @@ namespace PMM_SlimeFaction
         }
 
         /// <summary>Called by the attack patch: her cover is blown, so she flees. She has
-        /// no slime/Momo genes yet (decision R2), so she cannot berserk - the parasite
+        /// no slime/Mamono genes yet (decision R2), so she cannot berserk - the parasite
         /// simply drives its host to escape with their secret intact.</summary>
         public void Notify_Attacked()
         {
@@ -536,7 +536,7 @@ namespace PMM_SlimeFaction
 
     /// <summary>
     /// The accept/reject dialog and the refugee-join flow-chart outcomes, mirror of
-    /// NureonagoDialogue. Carriers are Momos, so rejection runs the same level check:
+    /// NureonagoDialogue. Carriers are Mamonos, so rejection runs the same level check:
     /// stronger than the talker, she attacks; otherwise she leaves.
     /// </summary>
     public static class CarrierSlimeDialogue
@@ -561,7 +561,7 @@ namespace PMM_SlimeFaction
 
         /// <summary>Accept: her disguise comes off - the "unknown" mask lifts to reveal
         /// her real colonist backstories, she joins, and the hidden ~2-day takeover that
-        /// ends in the slime/Momo genes begins. She works as a normal colonist meanwhile.</summary>
+        /// ends in the slime/Mamono genes begins. She works as a normal colonist meanwhile.</summary>
         private static void Accept(Pawn talker, Pawn stranger)
         {
             CarrierSlimeBackstories.Unmask(stranger);

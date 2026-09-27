@@ -20,9 +20,9 @@ namespace PMM_SlimeFaction
     }
 
     /// <summary>
-    /// Finalises the slime momo race defs. Runs after def loading, so the def database
+    /// Finalises the slime mamono race defs. Runs after def loading, so the def database
     /// is safe to touch. leatherDef must go: an empty &lt;leatherDef /&gt; in XML would
-    /// log a cross-reference error at startup, while a C# null is silent — and it hides
+    /// log a cross-reference error at startup, while a C# null is silent - and it hides
     /// the "leather type" info row and every vanilla leather yield. (meatDef needs no
     /// C# help: specificMeatDef in XML handles it.)
     /// </summary>
@@ -31,12 +31,12 @@ namespace PMM_SlimeFaction
     {
         static SlimeRaceSetup()
         {
-            NullLeather(SlimeDefOf.PMM_Race_SlimeMomo);
-            NullLeather(SlimeDefOf.PMM_Race_SlimeMomoRed);
-            NullLeather(SlimeDefOf.PMM_Race_SlimeMomoBubble);
-            NullLeather(SlimeDefOf.PMM_Race_SlimeMomoDark);
-            NullLeather(SlimeDefOf.PMM_Race_SlimeMomoTaisui);
-            NullLeather(SlimeDefOf.PMM_Race_SlimeMomoSea);
+            NullLeather(SlimeDefOf.PMM_Race_SlimeMamono);
+            NullLeather(SlimeDefOf.PMM_Race_SlimeMamonoRed);
+            NullLeather(SlimeDefOf.PMM_Race_SlimeMamonoBubble);
+            NullLeather(SlimeDefOf.PMM_Race_SlimeMamonoDark);
+            NullLeather(SlimeDefOf.PMM_Race_SlimeMamonoTaisui);
+            NullLeather(SlimeDefOf.PMM_Race_SlimeMamonoSea);
         }
 
         private static void NullLeather(ThingDef race)
@@ -65,12 +65,12 @@ namespace PMM_SlimeFaction
         public static HediffDef PMM_Hediff_ParasiteCarrier;
         public static HediffDef PMM_Hediff_ParasiteTakeover;
         public static ThingDef PMM_ParasiteSlime;
-        public static ThingDef PMM_Race_SlimeMomo;
-        public static ThingDef PMM_Race_SlimeMomoRed;
-        public static ThingDef PMM_Race_SlimeMomoBubble;
-        public static ThingDef PMM_Race_SlimeMomoDark;
-        public static ThingDef PMM_Race_SlimeMomoTaisui;
-        public static ThingDef PMM_Race_SlimeMomoSea;
+        public static ThingDef PMM_Race_SlimeMamono;
+        public static ThingDef PMM_Race_SlimeMamonoRed;
+        public static ThingDef PMM_Race_SlimeMamonoBubble;
+        public static ThingDef PMM_Race_SlimeMamonoDark;
+        public static ThingDef PMM_Race_SlimeMamonoTaisui;
+        public static ThingDef PMM_Race_SlimeMamonoSea;
 
         static SlimeDefOf()
         {
@@ -90,12 +90,12 @@ namespace PMM_SlimeFaction
         {
             switch (xenotypeDefName)
             {
-                case "PMM_Slime_Red": return SlimeDefOf.PMM_Race_SlimeMomoRed;
-                case "PMM_Slime_Bubble": return SlimeDefOf.PMM_Race_SlimeMomoBubble;
-                case "PMM_Slime_Dark": return SlimeDefOf.PMM_Race_SlimeMomoDark;
-                case "PMM_Slime_Taisui": return SlimeDefOf.PMM_Race_SlimeMomoTaisui;
-                case "PMM_Slime_Sea": return SlimeDefOf.PMM_Race_SlimeMomoSea;
-                default: return SlimeDefOf.PMM_Race_SlimeMomo;
+                case "PMM_Slime_Red": return SlimeDefOf.PMM_Race_SlimeMamonoRed;
+                case "PMM_Slime_Bubble": return SlimeDefOf.PMM_Race_SlimeMamonoBubble;
+                case "PMM_Slime_Dark": return SlimeDefOf.PMM_Race_SlimeMamonoDark;
+                case "PMM_Slime_Taisui": return SlimeDefOf.PMM_Race_SlimeMamonoTaisui;
+                case "PMM_Slime_Sea": return SlimeDefOf.PMM_Race_SlimeMamonoSea;
+                default: return SlimeDefOf.PMM_Race_SlimeMamono;
             }
         }
 

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\Project Momo\PMM.Shared.props" />
+  <Import Project="..\Project Mamono\PMM.Shared.props" />
 
   <PropertyGroup>
     <AssemblyName>PMM_SlimeFaction</AssemblyName>
@@ -11,7 +11,7 @@
        sources here are Source/SlimeFaction/*.cs, matching the old build.sh glob). -->
 
   <ItemGroup>
-    <ProjectReference Include="..\Project Momo\ProjectMomo.csproj">
+    <ProjectReference Include="..\Project Mamono\ProjectMamono.csproj">
       <Private>false</Private>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </ProjectReference>

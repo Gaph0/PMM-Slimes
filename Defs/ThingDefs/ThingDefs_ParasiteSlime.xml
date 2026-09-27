@@ -8,7 +8,7 @@
 		and inherited outcome-doer lists merge additively and cannot be removed.
 		A parasite slime instead infests the woman who eats it, turning her into a
 		slime carrier: she keeps her race, xenotype, backstories, name, hair, skin
-		and genes, and gains only the Momo and slime-gel genes.
+		and genes, and gains only the Mamono and slime-gel genes.
 		Acquisition: exotic-goods traders, by the ExoticMisc trade tag (sporadic, never
 		guaranteed). The item carries its own texture under Textures/Things/Items/Parasite/.
 	-->
@@ -67,7 +67,7 @@
 		The parasite's silent takeover countdown. Invisible by design: the woman feels
 		nothing while the slime melts into her throat, stomach and womb and fuses with
 		her. Severity climbs over ~2 days via the vanilla SeverityPerDay comp; at full
-		severity the hediff class adds the Momo + slime-gel genes (the "turn"), removes
+		severity the hediff class adds the Mamono + slime-gel genes (the "turn"), removes
 		itself, and fires the turn alert letter. Not curable, not "bad", and never
 		shown - so it cannot be tended away. Started by event acceptance or item
 		ingestion (SlimeCarrierUtility.BeginTakeover).
@@ -99,7 +99,7 @@
 		off this hediff:
 		  - sterile: the slime has fused with her womb, so she can never conceive
 		    (fertilityFactor 0, applied by vanilla StatPart_FertilityByHediffs;
-		    unaffected by Project Momo's age-curve patch);
+		    unaffected by Project Mamono's age-curve patch);
 		  - no periodic jelly oozing and no jelly butcher yield (guards in the
 		    slime-gel patches): butchering her yields only human skin and meat;
 		  - hidden while she passes as an ordinary woman (event spawn, save-loaded

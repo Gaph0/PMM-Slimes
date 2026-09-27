@@ -38,12 +38,12 @@
 			<li>AptitudePoor_Intellectual</li>
 			<li>AptitudePoor_Social</li>
 			<li>RobustDigestion</li>
-			<li>ProjectMomo_Momo</li>
+			<li>ProjectMamono_Mamono</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
 		<modExtensions>
 			<li Class="BigAndSmall.XenotypeExtension">
-				<setRace>PMM_Race_SlimeMomo</setRace>
+				<setRace>PMM_Race_SlimeMamono</setRace>
 				<forceRace>true</forceRace>
 			</li>
 		</modExtensions>
@@ -80,12 +80,12 @@
 			<li>AptitudePoor_Intellectual</li>
 			<li>AptitudePoor_Social</li>
 			<li>RobustDigestion</li>
-			<li>ProjectMomo_Momo</li>
+			<li>ProjectMamono_Mamono</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
 		<modExtensions>
 			<li Class="BigAndSmall.XenotypeExtension">
-				<setRace>PMM_Race_SlimeMomoRed</setRace>
+				<setRace>PMM_Race_SlimeMamonoRed</setRace>
 				<forceRace>true</forceRace>
 			</li>
 		</modExtensions>
@@ -110,7 +110,7 @@
 		     always channels it through her own custom path
 		     (PsycastDefs/Psycasts_SlimeCore.xml) - the only path she can unlock. -->
 		<modExtensions>
-			<li Class="ProjectMomo.MomoPsycastExtension">
+			<li Class="ProjectMamono.MamonoPsycastExtension">
 				<pathDefNames>
 					<li>PMM_Path_SlimeCore</li>
 				</pathDefNames>
@@ -118,7 +118,7 @@
 				<statUpgradePoints>2~4</statUpgradePoints>
 			</li>
 			<li Class="BigAndSmall.XenotypeExtension">
-				<setRace>PMM_Race_SlimeMomoDark</setRace>
+				<setRace>PMM_Race_SlimeMamonoDark</setRace>
 				<forceRace>true</forceRace>
 			</li>
 		</modExtensions>
@@ -131,7 +131,7 @@
 			<li>AptitudePoor_Intellectual</li>
 			<li>Learning_Slow</li>
 			<li>PsychicAbility_Enhanced</li>
-			<li>ProjectMomo_Momo</li>
+			<li>ProjectMamono_Mamono</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
 	</XenotypeDef>
@@ -169,12 +169,12 @@
 			<li>AptitudePoor_Social</li>
 			<li>RobustDigestion</li>
 			<li>ToxResist_Total</li>
-			<li>ProjectMomo_Momo</li>
+			<li>ProjectMamono_Mamono</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
 		<modExtensions>
 			<li Class="BigAndSmall.XenotypeExtension">
-				<setRace>PMM_Race_SlimeMomoBubble</setRace>
+				<setRace>PMM_Race_SlimeMamonoBubble</setRace>
 				<forceRace>true</forceRace>
 			</li>
 		</modExtensions>
@@ -216,12 +216,12 @@ They share the same gelatinous physiology as other slimes: they heal fast, feel 
 			<li>AptitudeRemarkable_Intellectual</li>
 			<li>AptitudeTerrible_Social</li>
 			<li>RobustDigestion</li>
-			<li>ProjectMomo_Momo</li>
+			<li>ProjectMamono_Mamono</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
 		<modExtensions>
 			<li Class="BigAndSmall.XenotypeExtension">
-				<setRace>PMM_Race_SlimeMomoTaisui</setRace>
+				<setRace>PMM_Race_SlimeMamonoTaisui</setRace>
 				<forceRace>true</forceRace>
 			</li>
 		</modExtensions>
@@ -264,12 +264,12 @@ Gentle and simple-minded, she seldom chases her prey. But should a man give in t
 			<li>AptitudePoor_Intellectual</li>
 			<li>AptitudePoor_Social</li>
 			<li>RobustDigestion</li>
-			<li>ProjectMomo_Momo</li>
+			<li>ProjectMamono_Mamono</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
 		<modExtensions>
 			<li Class="BigAndSmall.XenotypeExtension">
-				<setRace>PMM_Race_SlimeMomoSea</setRace>
+				<setRace>PMM_Race_SlimeMamonoSea</setRace>
 				<forceRace>true</forceRace>
 			</li>
 		</modExtensions>
@@ -311,15 +311,15 @@ Gentle and simple-minded, she seldom chases her prey. But should a man give in t
 			<li>RobustDigestion</li>
 			<li>KindInstinct</li>
 			<li>PMM_Gene_Fastidious</li>
-			<li>ProjectMomo_Momo</li>
+			<li>ProjectMamono_Mamono</li>
 			<li>PMM_Gene_SlimeGel</li>
 		</genes>
 		<modExtensions>
 			<!-- The nureonago reveals as the base slime race: see NureonagoVisit.cs,
-			     which sets pawn.def = PMM_Race_SlimeMomo, and SlimeRaces.RaceFor,
+			     which sets pawn.def = PMM_Race_SlimeMamono, and SlimeRaces.RaceFor,
 			     which falls back to the blue slime for her xenotype. -->
 			<li Class="BigAndSmall.XenotypeExtension">
-				<setRace>PMM_Race_SlimeMomo</setRace>
+				<setRace>PMM_Race_SlimeMamono</setRace>
 				<forceRace>true</forceRace>
 			</li>
 		</modExtensions>

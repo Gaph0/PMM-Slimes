@@ -2,7 +2,7 @@
 <Defs>
 
 	<!--
-		Slime momo race. Inherits everything from Human via XML deep merge (body, tools,
+		Slime mamono race. Inherits everything from Human via XML deep merge (body, tools,
 		think tree, stat bases, ...), so slimes remain fully humanlike - but their body is
 		living gel: butchering yields slime jelly instead of human meat, and there is no
 		skin to tan into leather.
@@ -11,7 +11,7 @@
 		ThingDefGenerator_Meat.ImpliedMeatDefs, which GENERATES a meat def for every race
 		with hasMeat && hasCorpse and no specificMeatDef/useMeatFrom, and OVERWRITES
 		race.meatDef with it. A plain <meatDef> override is therefore replaced by a
-		generated "Slime momo meat". specificMeatDef both opts the race out of that
+		generated "Slime mamono meat". specificMeatDef both opts the race out of that
 		generation and (via RaceProperties.ResolveReferencesSpecial) sets meatDef = the
 		jelly, so the butcher stat tooltip and the info card point at slime jelly.
 
@@ -22,7 +22,7 @@
 		leather amount stat row disappears and no code path can ever yield leather.
 	-->
 	<!--
-		Abstract base for every slime momo race. Inherits the full human body/stats from
+		Abstract base for every slime mamono race. Inherits the full human body/stats from
 		Human (deep merge) and adds the shared slime overrides. Concrete colour races below
 		parent off THIS (abstract defs are the only valid ParentName targets - a concrete
 		def like the blue race cannot be a ParentName and throws "Could not find parent
@@ -38,7 +38,7 @@
 		size scaling, race bookkeeping, and a clean swap-away when a slime is transformed
 		into something else.
 	-->
-	<ThingDef Name="PMM_SlimeMomoRaceBase" ParentName="Human" Abstract="True">
+	<ThingDef Name="PMM_SlimeMamonoRaceBase" ParentName="Human" Abstract="True">
 		<statBases>
 			<!-- Base 20 x body size 1.0 = 20 shown on the meat stat row and tooltip. -->
 			<MeatAmount>20</MeatAmount>
@@ -51,31 +51,31 @@
 		</modExtensions>
 	</ThingDef>
 
-	<!-- Blue slime momo race (the default PMM_Slime_Blue xenotype). -->
-	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
-		<defName>PMM_Race_SlimeMomo</defName>
-		<label>slime momo</label>
-		<description>A momo whose body has become living gel. There are no bones to break and no skin to tan - a slain slime momo collapses into a pool of slime jelly and nothing more.</description>
+	<!-- Blue slime mamono race (the default PMM_Slime_Blue xenotype). -->
+	<ThingDef ParentName="PMM_SlimeMamonoRaceBase">
+		<defName>PMM_Race_SlimeMamono</defName>
+		<label>slime mamono</label>
+		<description>A mamono whose body has become living gel. There are no bones to break and no skin to tan - a slain slime mamono collapses into a pool of slime jelly and nothing more.</description>
 		<race>
 			<specificMeatDef>PMM_SlimeJelly</specificMeatDef>
 		</race>
 	</ThingDef>
 
-	<!-- Red slime momo: same body, but butchers into red slime jelly. -->
-	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
-		<defName>PMM_Race_SlimeMomoRed</defName>
-		<label>red slime momo</label>
+	<!-- Red slime mamono: same body, but butchers into red slime jelly. -->
+	<ThingDef ParentName="PMM_SlimeMamonoRaceBase">
+		<defName>PMM_Race_SlimeMamonoRed</defName>
+		<label>red slime mamono</label>
 		<race>
 			<specificMeatDef>PMM_SlimeJellyRed</specificMeatDef>
 		</race>
 	</ThingDef>
 
-	<!-- Bubble slime momo. The ConsumeWastepack comp gives player-owned bubble slimes
+	<!-- Bubble slime mamono. The ConsumeWastepack comp gives player-owned bubble slimes
 	     a gizmo to devour a nearby toxic wastepack, the reaction bubbling off as a
 	     small cloud of toxic gas. -->
-	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
-		<defName>PMM_Race_SlimeMomoBubble</defName>
-		<label>bubble slime momo</label>
+	<ThingDef ParentName="PMM_SlimeMamonoRaceBase">
+		<defName>PMM_Race_SlimeMamonoBubble</defName>
+		<label>bubble slime mamono</label>
 		<race>
 			<specificMeatDef>PMM_SlimeJellyBubble</specificMeatDef>
 		</race>
@@ -84,29 +84,29 @@
 		</comps>
 	</ThingDef>
 
-	<!-- Dark slime momo. -->
-	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
-		<defName>PMM_Race_SlimeMomoDark</defName>
-		<label>dark slime momo</label>
+	<!-- Dark slime mamono. -->
+	<ThingDef ParentName="PMM_SlimeMamonoRaceBase">
+		<defName>PMM_Race_SlimeMamonoDark</defName>
+		<label>dark slime mamono</label>
 		<race>
 			<specificMeatDef>PMM_SlimeJellyDark</specificMeatDef>
 		</race>
 	</ThingDef>
 
-	<!-- Taisui momo. -->
-	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
-		<defName>PMM_Race_SlimeMomoTaisui</defName>
-		<label>taisui momo</label>
+	<!-- Taisui mamono. -->
+	<ThingDef ParentName="PMM_SlimeMamonoRaceBase">
+		<defName>PMM_Race_SlimeMamonoTaisui</defName>
+		<label>taisui mamono</label>
 		<race>
 			<specificMeatDef>PMM_SlimeJellyTaisui</specificMeatDef>
 		</race>
 	</ThingDef>
 
-	<!-- Sea slime momo. The paralytic-tentacles comp gives player-owned sea slimes a
+	<!-- Sea slime mamono. The paralytic-tentacles comp gives player-owned sea slimes a
 	     gizmo to inject a paralytic poison that slows a victim for an hour. -->
-	<ThingDef ParentName="PMM_SlimeMomoRaceBase">
-		<defName>PMM_Race_SlimeMomoSea</defName>
-		<label>sea slime momo</label>
+	<ThingDef ParentName="PMM_SlimeMamonoRaceBase">
+		<defName>PMM_Race_SlimeMamonoSea</defName>
+		<label>sea slime mamono</label>
 		<race>
 			<specificMeatDef>PMM_SlimeJellySea</specificMeatDef>
 		</race>
@@ -116,7 +116,7 @@
 	</ThingDef>
 
 	<!--
-		The shared Big & Small race tracker for every slime momo colour. B&S applies it to
+		The shared Big & Small race tracker for every slime mamono colour. B&S applies it to
 		any pawn whose race def carries the RaceExtension above - on spawn, and on a
 		transformation swap - and its CompProperties_Race lets a transformed slime swap away
 		to another race cleanly (without it the tracker would fight the swap).
@@ -131,8 +131,8 @@
 	-->
 	<HediffDef ParentName="BS_DefaultRaceTracker">
 		<defName>PMM_RaceTracker_Slime</defName>
-		<label>slime momo</label>
-		<description>A slime momo: living gel in a woman's form, with no bones to break and no skin to tan.</description>
+		<label>slime mamono</label>
+		<description>A slime mamono: living gel in a woman's form, with no bones to break and no skin to tan.</description>
 		<comps>
 			<li Class="BigAndSmall.CompProperties_Race">
 				<canSwapAwayFrom>true</canSwapAwayFrom>

@@ -22,7 +22,7 @@ namespace PMM_SlimeFaction
     /// reveals what she really is; the flow then follows the refugee-join flow chart:
     ///   Accept -> reveal, she joins. No automatic bonding.
     ///   Reject -> reveal, then a level check (IsekaiCompat.GetLevel):
-    ///             momo level > pawn level -> she attacks; otherwise she leaves.
+    ///             mamono level > pawn level -> she attacks; otherwise she leaves.
     /// Ignored, she simply leaves when the rain stops.
     /// </summary>
     public class IncidentWorker_NureonagoVisit : IncidentWorker
@@ -85,7 +85,7 @@ namespace PMM_SlimeFaction
             for (int i = 0; i < colonists.Count; i++)
             {
                 Pawn p = colonists[i];
-                if (p != null && !p.Dead && ProjectMomo.TsugaiFormation.IsBondable(p))
+                if (p != null && !p.Dead && ProjectMamono.TsugaiFormation.IsBondable(p))
                 {
                     return true;
                 }
@@ -259,9 +259,9 @@ namespace PMM_SlimeFaction
             pawn.genes.SetXenotypeDirect(xenotype);
 
             // Move her to the slime race so the info card shows slime jelly, not human meat.
-            if (pawn.kindDef != null && pawn.kindDef.race != SlimeDefOf.PMM_Race_SlimeMomo)
+            if (pawn.kindDef != null && pawn.kindDef.race != SlimeDefOf.PMM_Race_SlimeMamono)
             {
-                pawn.def = SlimeDefOf.PMM_Race_SlimeMomo;
+                pawn.def = SlimeDefOf.PMM_Race_SlimeMamono;
             }
 
             // Now that she is known to be a slime, she gets the slime life story.
@@ -437,7 +437,7 @@ namespace PMM_SlimeFaction
             waiting = false;
             NureonagoReveal.Reveal(pawn);
             pawn.mindState?.mentalStateHandler?.TryStartMentalState(
-                ProjectMomo.ProjectMomo_DefOf.ProjectMomo_EssenceBerserk,
+                ProjectMamono.ProjectMamono_DefOf.ProjectMamono_EssenceBerserk,
                 reason: "PMM_NureonagoDisguiseBroken".Translate(pawn.Named("PAWN")),
                 forceWake: true);
         }
@@ -646,7 +646,7 @@ namespace PMM_SlimeFaction
         }
 
         /// <summary>
-        /// Reject: reveal, then the level check. A momo stronger than the talker attacks;
+        /// Reject: reveal, then the level check. A mamono stronger than the talker attacks;
         /// otherwise she accepts the rejection and leaves. The talker being a protagonist
         /// does NOT exempt him from the roll.
         /// </summary>
@@ -654,14 +654,14 @@ namespace PMM_SlimeFaction
         {
             NureonagoReveal.Reveal(stranger);
 
-            int momoLevel = ProjectMomo.IsekaiCompat.GetLevel(stranger);
-            int pawnLevel = ProjectMomo.IsekaiCompat.GetLevel(talker);
+            int mamonoLevel = ProjectMamono.IsekaiCompat.GetLevel(stranger);
+            int pawnLevel = ProjectMamono.IsekaiCompat.GetLevel(talker);
 
-            if (momoLevel > pawnLevel)
+            if (mamonoLevel > pawnLevel)
             {
                 // Spurned and stronger: she attacks.
                 stranger.mindState?.mentalStateHandler?.TryStartMentalState(
-                    ProjectMomo.ProjectMomo_DefOf.ProjectMomo_EssenceBerserk,
+                    ProjectMamono.ProjectMamono_DefOf.ProjectMamono_EssenceBerserk,
                     reason: "PMM_NureonagoScorned".Translate(stranger.Named("PAWN")),
                     forceWake: true);
             }

@@ -94,9 +94,9 @@ namespace PMM_SlimeFaction
 
     /// <summary>
     /// Eating slime jelly monsterises women who consume too much. Each jelly adds
-    /// severity to Project Momo's mamono corruption hediff, imprinted with the slime
+    /// severity to Project Mamono's mamono corruption hediff, imprinted with the slime
     /// xenotype, so a woman who binges melts into a slime. The corruption decays while
-    /// she is upright, so casual snacking is safe — only sustained consumption completes
+    /// she is upright, so casual snacking is safe - only sustained consumption completes
     /// the change. Men, children and monsters are unaffected (CanEverTransform gate).
     /// </summary>
     public class IngestionOutcomeDoer_SlimeJelly : IngestionOutcomeDoer
@@ -104,24 +104,24 @@ namespace PMM_SlimeFaction
         /// <summary>Corruption severity added per jelly eaten (XML-tunable).</summary>
         public float severityPerJelly = 0.08f;
 
-        // Hediff_MomoCorruption stores its imprint target in the private targetXenotypeDefName
-        // field, declared on the subclass (ProjectMomo.Hediff_MomoCorruption) — a FieldRef
+        // Hediff_MamonoCorruption stores its imprint target in the private targetXenotypeDefName
+        // field, declared on the subclass (ProjectMamono.Hediff_MamonoCorruption) - a FieldRef
         // resolved on the base Hediff type would fail (the field isn't there). Resolve the
         // FieldInfo on the subclass first, then bind a Hediff-typed FieldRef to it.
         private static readonly AccessTools.FieldRef<Hediff, string> CorruptionTargetRef =
             AccessTools.FieldRefAccess<Hediff, string>(
                 AccessTools.Field(
-                    AccessTools.TypeByName("ProjectMomo.Hediff_MomoCorruption"),
+                    AccessTools.TypeByName("ProjectMamono.Hediff_MamonoCorruption"),
                     "targetXenotypeDefName"));
 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int ingestedCount)
         {
-            if (pawn == null || pawn.Dead || !ProjectMomo.MomoTransformation.CanEverTransform(pawn))
+            if (pawn == null || pawn.Dead || !ProjectMamono.MamonoTransformation.CanEverTransform(pawn))
             {
                 return;
             }
 
-            HediffDef corruptionDef = ProjectMomo.ProjectMomo_DefOf.ProjectMomo_MomoCorruption;
+            HediffDef corruptionDef = ProjectMamono.ProjectMamono_DefOf.ProjectMamono_MamonoCorruption;
             Hediff corruption = pawn.health?.hediffSet?.GetFirstHediffOfDef(corruptionDef);
             if (corruption == null)
             {
@@ -131,9 +131,9 @@ namespace PMM_SlimeFaction
             }
 
             // Imprint the slime xenotype matching this jelly: she melts into that
-            // slime's colour, not a base Momo (blue jelly -> blue slime, taisui jelly
+            // slime's colour, not a base Mamono (blue jelly -> blue slime, taisui jelly
             // -> taisui, and so on).
-            if (corruption is ProjectMomo.Hediff_MomoCorruption)
+            if (corruption is ProjectMamono.Hediff_MamonoCorruption)
             {
                 CorruptionTargetRef(corruption) = SlimeRaces.XenotypeFor(ingested?.def);
             }
@@ -143,9 +143,9 @@ namespace PMM_SlimeFaction
             // Full severity: fire the transformation now rather than waiting for the
             // corruption hediff's own next 250-tick re-check.
             if (corruption.Severity >= corruption.def.maxSeverity - 0.0001f &&
-                corruption is ProjectMomo.Hediff_MomoCorruption momoCorruption)
+                corruption is ProjectMamono.Hediff_MamonoCorruption mamonoCorruption)
             {
-                momoCorruption.CompleteTransformation();
+                mamonoCorruption.CompleteTransformation();
             }
         }
 

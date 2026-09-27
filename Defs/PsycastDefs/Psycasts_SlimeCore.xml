@@ -5,10 +5,10 @@
 		Path of the Slime Core - the dark slime's custom VPE psycaster path.
 		Only meaningful while Vanilla Psycasts Expanded is loaded: the ability
 		classes (PMM_SlimeFaction assembly) reference VEF types, and Project
-		Momo's VPE integration is what grants the path to spawned dark slimes.
+		Mamono's VPE integration is what grants the path to spawned dark slimes.
 		With VPE absent the path is simply never unlocked.
 
-		The whole tree feeds Project Momo's economies: tease damage erodes
+		The whole tree feeds Project Mamono's economies: tease damage erodes
 		willpower (knockout at 0.9), drained essence refills the caster's Mana,
 		and every ability carries a hidden corruption dose on female targets.
 	-->

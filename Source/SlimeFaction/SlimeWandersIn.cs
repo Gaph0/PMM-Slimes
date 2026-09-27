@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using ProjectMomo;
+using ProjectMamono;
 using RimWorld;
 using Verse;
 
@@ -8,7 +8,7 @@ namespace PMM_SlimeFaction
     /// <summary>
     /// A slime wanders in. Modelled on the vanilla wild-man incident, but spawns a random
     /// slime pawn kind (with the slime xenotype mix) instead of a WildMan, and only fires
-    /// in warm, wet grasslands — the same climate rule the old slime faction's settlement
+    /// in warm, wet grasslands - the same climate rule the old slime faction's settlement
     /// code used: coldest-month temperature of at least ~18 °C and plentiful rainfall.
     /// Wild slimes are tamed like wild men (see Patch_SlimeIsWildMan).
     /// </summary>
