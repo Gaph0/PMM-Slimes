@@ -2,6 +2,10 @@
 
 ## Player-facing
 
+- 2026-10-01: Changed the preview image on the mod page.
+
+- 2026-09-30: Added an icon to the slime gel gene: the Mamono heart with an S on it.
+
 - 2026-09-27: Removed the prose lines from the slime genes' effect lists.
 - 2026-09-27: Changed every internal name to Mamono, so saves from earlier versions no longer load.
 - 2026-09-27: Changed the mod name to Project Mamono Slime Faction.

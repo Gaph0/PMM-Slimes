@@ -17,6 +17,10 @@
 		<label>slime gel</label>
 		<labelShortAdj>gelatinous</labelShortAdj>
 		<description>Carriers of this gene have a gelatinous, semi-liquid body. They constantly shed a slick of slime filth, and their bodies periodically ooze blobs of nourishing slime jelly. With no bones and no skin, every wound they suffer is a bruise.</description>
+		<!-- The family badge: the Mamono heart with this mod's letter, hand art dropped in the
+		     Project Mamono Textures folder (2026-09-30). This gene had no icon at all before -
+		     a gene without an iconPath draws a blank square in the gene list. -->
+		<iconPath>UI/Icons/Genes/PMM_Gene_SlimeGel</iconPath>
 		<geneClass>PMM_SlimeFaction.Gene_SlimeGel</geneClass>
 		<displayCategory>Miscellaneous</displayCategory>
 		<canGenerateInGeneSet>false</canGenerateInGeneSet>
