@@ -2,6 +2,7 @@
 
 ## Player-facing
 
+- 2026-10-01: Changed the slime gel gene so a mamono cannot hold it together with the insectoid or reptilian gene. She loses the others when she takes one, and the gene editors refuse the mix.
 - 2026-10-01: Changed the preview image on the mod page.
 
 - 2026-09-30: Added an icon to the slime gel gene: the Mamono heart with an S on it.

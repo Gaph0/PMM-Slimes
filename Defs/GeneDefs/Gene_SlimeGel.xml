@@ -14,6 +14,17 @@
 	-->
 	<GeneDef>
 		<defName>PMM_Gene_SlimeGel</defName>
+		<!-- One family per woman (user ruling 2026-10-01). The identity genes of the
+		     three families - the slime gel, the insectoid (PMM_Gene_Insect) and the
+		     reptilian (PMM_Gene_Reptile) - share the tag below, so the engine treats
+		     any two of them as conflicting: the loser is greyed out when both land on
+		     one pawn, the xenotype and xenogerm editors refuse to build the mix, and
+		     core's `RemoveConflictingGenes` (removal by shared tag) takes the old
+		     family's gene off a woman remade into another family. The tag string is
+		     never shown to the player; the UI names the gene that won. -->
+		<exclusionTags>
+			<li>PMM_MamonoFamily</li>
+		</exclusionTags>
 		<label>slime gel</label>
 		<labelShortAdj>gelatinous</labelShortAdj>
 		<description>Carriers of this gene have a gelatinous, semi-liquid body. They constantly shed a slick of slime filth, and their bodies periodically ooze blobs of nourishing slime jelly. With no bones and no skin, every wound they suffer is a bruise.</description>
