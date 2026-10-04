@@ -145,4 +145,4 @@ Thanks to:
 - Harmony - the patches under everything.
 - Vanilla Psycasts Expanded - the psycast path the dark slime walks.
 - ISEKAI RPG Leveling - the mob ranks the wild slimes spawn at.
-- The Monster Girl Encyclopedia wiki - the creatures and the lore this mod is built from.
+- Kenkou Cross - the Monster Girl Encyclopedia, where these creatures come from.
