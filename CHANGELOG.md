@@ -28,6 +28,7 @@
 
 ## Internal
 
+- 2026-10-04: Fixed an incorrect note in the slime race file about how the game picks a race's butcher meat.
 - 2026-09-27: Changed the mod folder and project names to Mamono.
 - 2026-09-27: Changed the defNames, class names, scribe labels and file names to Mamono.
 - 2026-09-27: Changed the README to say mamono.

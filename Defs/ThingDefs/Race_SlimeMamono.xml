@@ -7,13 +7,15 @@
 		living gel: butchering yields slime jelly instead of human meat, and there is no
 		skin to tan into leather.
 
-		Meat must go through <specificMeatDef>, not <meatDef>: at startup the game runs
-		ThingDefGenerator_Meat.ImpliedMeatDefs, which GENERATES a meat def for every race
-		with hasMeat && hasCorpse and no specificMeatDef/useMeatFrom, and OVERWRITES
-		race.meatDef with it. A plain <meatDef> override is therefore replaced by a
-		generated "Slime mamono meat". specificMeatDef both opts the race out of that
-		generation and (via RaceProperties.ResolveReferencesSpecial) sets meatDef = the
-		jelly, so the butcher stat tooltip and the info card point at slime jelly.
+		Meat goes through <specificMeatDef>. At startup ThingDefGenerator_Meat.
+		ImpliedMeatDefs GENERATES a meat def for every race with hasMeat && hasCorpse that
+		names neither a specificMeatDef nor a useMeatFrom - one "Slime mamono meat" per
+		race. specificMeatDef is what stops that generation, and through RaceProperties.
+		ResolveReferencesSpecial it also sets meatDef = the jelly, so the butcher stat
+		tooltip and the info card point at slime jelly. (A plain <meatDef> would redirect
+		the butcher yield as well - the XML cross-reference pass runs after the generator -
+		but the race's unused generated def would still be created and registered, which
+		is what this avoids.)
 
 		leatherDef cannot be cleared in XML: an empty def reference (<leatherDef />) makes
 		the cross-ref loader log a "could not resolve cross-reference" error at startup.
